@@ -25,25 +25,51 @@
     </form>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
     <script>
-        const busStops = @json($busStops);
-        const map = L.map('map').setView([0, 0], 2);
+    const busStops = @json($busStops);
+    const map = L.map('map').setView([0, 0], 2);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
 
+    const busStopIcon = L.icon({
+        iconUrl: 'Mexico_road_sign_parada_de_autobus.png',
+        iconSize: [20, 20],
+        iconAnchor: [0, 0],
+    });
+
+    let markers = [];
+
+    
+    function addMarkers() {
         busStops.forEach(busStop => {
-            L.marker([busStop.latitude, busStop.longitude]).addTo(map)
+            const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
                 .bindPopup(busStop.direction ? busStop.direction : 'Parada sin nombre');
+            markers.push(marker);
+            marker.addTo(map);
         });
+    }
 
-        if (busStops.length) {
-            const bounds = L.latLngBounds(busStops.map(busStop => [busStop.latitude, busStop.longitude]));
-            map.fitBounds(bounds);
+    
+    function removeMarkers() {
+        markers.forEach(marker => {
+            map.removeLayer(marker);
+        });
+        markers = [];
+    }
+
+    //addMarkers(); 
+
+    map.on('zoomend', function() {
+        
+        if (map.getZoom() <= 15) {
+            removeMarkers();
         } else {
-            map.setView([0, 0], 2);
+            addMarkers(); 
         }
-    </script>
+    });
+</script>
 </body>
 </html>
