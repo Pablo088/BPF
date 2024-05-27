@@ -10,7 +10,7 @@ class Bus_stop extends Model
     use HasFactory;
     protected $fillable = [
         'direction',
-        'lat',
-        'lon',
+        'latitude',
+        'longitude',
     ];
 }

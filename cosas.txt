@@ -1,0 +1,5 @@
+1. cambiar la parte de cuando se aleja del mapa desaperezca la parada
+2. cambiar el punto por una imagen de una parada 
+3. que empieze el mapa en la parte de gualeguaychu
+4. hacer la parte de los roles 
+5. hacer la primera vista del usuario 
