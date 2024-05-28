@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,14 +28,14 @@
     
     <script>
     const busStops = @json($busStops);
-    const map = L.map('map').setView([0, 0], 2);
+    const map = L.map('map').setView([-33.009668, -58.521428], 14);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
     }).addTo(map);
 
     const busStopIcon = L.icon({
-        iconUrl: 'Mexico_road_sign_parada_de_autobus.png',
+        iconUrl: 'Icono_paradas.png',
         iconSize: [20, 20],
         iconAnchor: [0, 0],
     });
@@ -70,6 +70,8 @@
             addMarkers(); 
         }
     });
+
+    console.log(map);
 </script>
 </body>
 </html>
