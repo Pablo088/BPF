@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('direction')->nullable();
             //$table->unsignedBigInteger('bus_id');
-            $table->string('latitude',10, 7);
-            $table->string('longitude',10, 7);
+            $table->string('latitude',20, 7);
+            $table->string('longitude',20, 7);
             $table->timestamps();
 
             //$table->foreign('bus_id')->references('id')->on('buses');
