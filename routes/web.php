@@ -18,5 +18,5 @@ use App\Http\Controllers\Bus_stopController;
     return view('welcome');
 });*/
 Route::get('/', [Bus_stopController::class, 'index']);
-//Route::post('/bus-stops', [Bus_stopController::class, 'store']);
+Route::post('/bus-stops', [Bus_stopController::class, 'store']);
 

@@ -18,9 +18,9 @@
         <label for="name">Nombre:</label>
         <input type="text" id="direction" name="direction">
         <label for="latitude">Latitud:</label>
-        <input type="text" id="latitude" name="latitude" required>
+        <input type="text" id="latitude" name="latitude" value = "laitude" required>
         <label for="longitude">Longitud:</label>
-        <input type="text" id="longitude" name="longitude" required>
+        <input type="text" id="longitude" name="longitude" value= "longitude" required>
         <button type="submit">Añadir Parada</button>
     </form>
 
@@ -71,7 +71,16 @@
         }
     });
 
-    console.log(map);
+    map.on('click', function(ev) {
+    alert(ev.latlng); // ev is an event object (MouseEvent in this case)
+    console.log(ev.latlng)
+    var latitude = ev.latlng.lat;
+    var longitude = ev.latlng.lng;
+    document.getElementById("latitude").value = latitude;
+    document.getElementById("longitude").value = longitude;
+    });
+    //console.log(L.map);
+    
 </script>
 </body>
 </html>
