@@ -16,7 +16,7 @@
     <form method="POST" action="/bus-stops">
         @csrf
         <label for="name">Nombre:</label>
-        <input type="text" id="direction" name="direction">
+        <input type="text" id="direction" name="direction" value = "direction" required>
         <label for="latitude">Latitud:</label>
         <input type="text" id="latitude" name="latitude" value = "laitude" required>
         <label for="longitude">Longitud:</label>
@@ -78,8 +78,43 @@
     var longitude = ev.latlng.lng;
     document.getElementById("latitude").value = latitude;
     document.getElementById("longitude").value = longitude;
-    });
-    //console.log(L.map);
+   });
+
+   var callesSeleccionadas = [];
+    map.on('contextmenu', function(e) {
+            // Obtener las coordenadas donde se hizo clic
+            var latlng = e.latlng;
+
+            var url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latlng.lat + '&lon=' + latlng.lng;
+            
+            // Realizar la solicitud HTTP
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Obtener la dirección del resultado
+                    var calle = data.address.road;
+                    alert(calle);
+
+                    callesSeleccionadas.push(calle);
+
+                    console.log(callesSeleccionadas);
+                    console.log(data);
+                    
+                    // Mostrar la dirección en un alert
+                    
+                    for (var i = 0; i < callesSeleccionadas.length; i++) {
+                        document.getElementById("direction").value = callesSeleccionadas[i-1] + " y " + callesSeleccionadas[i];
+                    }
+                    
+
+                    
+
+                })
+                .catch(error => {
+                    console.error('Error al obtener la dirección:', error);
+                }); 
+        });
+        
     
 </script>
 </body>
