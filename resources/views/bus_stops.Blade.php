@@ -98,7 +98,7 @@
                     callesSeleccionadas.push(calle);
 
                     console.log(callesSeleccionadas);
-                    console.log(data);
+                    //console.log(data);
                     
                     // Mostrar la dirección en un alert
                     
