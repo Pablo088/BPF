@@ -64,7 +64,7 @@
 
     map.on('zoomend', function() {
         
-        if (map.getZoom() <= 15) {
+        if (map.getZoom() <= 11) {
             removeMarkers();
         } else {
             addMarkers(); 
