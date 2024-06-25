@@ -31,13 +31,13 @@
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 20,
     }).addTo(map);
 
     const busStopIcon = L.icon({
         iconUrl: 'Icono_paradas.png',
         iconSize: [20, 20],
-        iconAnchor: [0, 0],
+        iconAnchor: [20, 20],
     });
 
     let markers = [];
