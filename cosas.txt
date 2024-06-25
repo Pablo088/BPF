@@ -6,3 +6,6 @@ para hacer pruebas
 3. que empieze el mapa en la parte de gualeguaychu
 4. hacer la parte de los roles 
 5. hacer la primera vista del usuario 
+6. Hacer una descripcion del proyecto
+7. Diagrama entidad relacion (ya está)
+8. Pantallas y opciones estimativas
