@@ -71,7 +71,7 @@
         }
     });
 
-    map.on('click', function(ev) {
+    map.on('contextmenu', function(ev) {
     alert(ev.latlng); // ev is an event object (MouseEvent in this case)
     console.log(ev.latlng)
     var latitude = ev.latlng.lat;
@@ -81,7 +81,7 @@
    });
 
    var callesSeleccionadas = [];
-    map.on('contextmenu', function(e) {
+    map.on('click', function(e) {
             // Obtener las coordenadas donde se hizo clic
             var latlng = e.latlng;
 
@@ -93,12 +93,12 @@
                 .then(data => {
                     // Obtener la dirección del resultado
                     var calle = data.address.road;
-                    alert(calle);
+                    //alert(calle);
 
                     callesSeleccionadas.push(calle);
 
                     console.log(callesSeleccionadas);
-                    console.log(data);
+                    //console.log(data);
                     
                     // Mostrar la dirección en un alert
                     
