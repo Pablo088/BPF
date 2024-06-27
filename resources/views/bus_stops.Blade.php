@@ -37,7 +37,7 @@
     const busStopIcon = L.icon({
         iconUrl: 'Icono_paradas.png',
         iconSize: [20, 20],
-        iconAnchor: [20, 20],
+        iconAnchor: [10, 10],
     });
 
     let markers = [];
