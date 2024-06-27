@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla bpf.bus_stops: ~121 rows (aproximadamente)
 /* INSERT INTO `bus_stops` (`id`, `direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES
@@ -162,7 +162,6 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Bvard. Daneri y Bernardino Rivadavia', '-33.007300989449284', '-58.53690505027772', '2024-05-29 00:01:51', '2024-05-29 00:01:51');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Bvard. Daneri y Bernardino Rivadavia', '-33.007354972718936', '-58.537210822105415', '2024-05-29 00:03:21', '2024-05-29 00:03:21');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Urquiza y L. N. Palma', '-33.00894718315231', '-58.53684067726136', '2024-06-10 19:20:52', '2024-06-10 19:20:52');
-	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Casa del bananero', '25.85115', '-80.13874', '2024-05-28 23:37:39', '2024-05-28 23:37:39');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Urquiza y L. N. Palma', '-33.00903715357081', '-58.53708744049073', '2024-06-10 19:23:32', '2024-06-10 19:23:32');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Bvard. Daneri y Clavarino', '-33.001875502339175', '-58.53726983070374', '2024-06-10 19:28:43', '2024-06-10 19:28:43');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Bvard. Daneri y Clavarino', '-33.00164577778215', '-58.53760242462159', '2024-06-10 19:29:11', '2024-06-10 19:29:11');
@@ -219,6 +218,7 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San José y Perito Moreno', '-32.99826479296347', '-58.51230114698411', '2024-06-25 21:40:25', '2024-06-25 21:40:25');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San José y Perito Moreno', '-32.99811182451898', '-58.512491583824165', '2024-06-25 21:40:37', '2024-06-25 21:40:37');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San José y Arturo Jauretche', '-32.99675084359441', '-58.512370884418495', '2024-06-25 21:41:35', '2024-06-25 21:41:35');
+	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Casa del bananero', '25.85115', '-80.13874', '2024-05-28 23:37:39', '2024-05-28 23:37:39');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San José y Arturo Jauretche', '-32.99661136998323', '-58.51254791021348', '2024-06-25 21:41:49', '2024-06-25 21:41:49');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San José y Juan Lapalma', '-32.995236868249435', '-58.512462079525', '2024-06-25 21:42:17', '2024-06-25 21:42:17');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San José y Juan Lapalma', '-32.9950816449406', '-58.512633740901954', '2024-06-25 21:42:27', '2024-06-25 21:42:27');
