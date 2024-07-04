@@ -12,9 +12,8 @@
 <body>
     <h1>Paradas de Colectivo</h1>
     <label>
-        {{-- <input type="hidden" id="mostrarParadas" value = "0"> --}}
-        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check">
         Mostrar Paradas de Colectivo
+        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()"> 
       </label>
     <div id="map"></div>
 
@@ -36,6 +35,7 @@
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
     let checkbox = document.getElementById('mostrarParadas');
     
+    //console.log(busStops);
     //const listaParadas = document.getElementById('listaParadas');
 
     L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
@@ -60,7 +60,6 @@
         });
     }
 
-    
     function removeMarkers() {
         markers.forEach(marker => {
             map.removeLayer(marker);
@@ -73,15 +72,19 @@
     //removeDefaultMarkers();
     //addMarkers();
      
-
+    function sm(){
+        if (checkbox.checked){
+        addMarkers();
+        }else{
+            removeMarkers();
+        } 
     map.on('zoomend', function() {
-        
         if (map.getZoom() > 11 && checkbox.checked ) {
             addMarkers(); 
         } else {          
             removeMarkers();
         }
-    });
+    })};
 
         /* function toggleParadas(){
             //var check = "";
