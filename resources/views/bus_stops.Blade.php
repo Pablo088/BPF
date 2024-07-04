@@ -11,6 +11,11 @@
 </head>
 <body>
     <h1>Paradas de Colectivo</h1>
+    <label>
+        {{-- <input type="hidden" id="mostrarParadas" value = "0"> --}}
+        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check">
+        Mostrar Paradas de Colectivo
+      </label>
     <div id="map"></div>
 
     <form method="POST" action="/bus-stops">
@@ -29,8 +34,11 @@
     <script>
     const busStops = @json($busStops);
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
+    let checkbox = document.getElementById('mostrarParadas');
+    
+    //const listaParadas = document.getElementById('listaParadas');
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
         maxZoom: 20,
     }).addTo(map);
 
@@ -42,7 +50,7 @@
 
     let markers = [];
 
-    
+
     function addMarkers() {
         busStops.forEach(busStop => {
             const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
@@ -60,16 +68,30 @@
         markers = [];
     }
 
-    //addMarkers(); 
+    
+
+    //removeDefaultMarkers();
+    //addMarkers();
+     
 
     map.on('zoomend', function() {
         
-        if (map.getZoom() <= 11) {
-            removeMarkers();
-        } else {
+        if (map.getZoom() > 11 && checkbox.checked ) {
             addMarkers(); 
+        } else {          
+            removeMarkers();
         }
     });
+
+        /* function toggleParadas(){
+            //var check = "";
+            if (checkbox.checked){
+                removeMarkers();
+            }else{
+                addMarkers(); 
+            }
+            console.log(check);
+        } */
 
     map.on('contextmenu', function(ev) {
     alert(ev.latlng); // ev is an event object (MouseEvent in this case)
@@ -96,6 +118,7 @@
                     //alert(calle);
 
                     callesSeleccionadas.push(calle);
+                    
 
                     console.log(callesSeleccionadas);
                     //console.log(data);
@@ -114,8 +137,9 @@
                     console.error('Error al obtener la dirección:', error);
                 }); 
         });
-        
     
+        
+        
 </script>
 </body>
 </html>
