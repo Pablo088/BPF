@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
         #map { height: 500px; }
     </style>
@@ -29,6 +31,7 @@
     </form>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     
     <script>
     const busStops = @json($busStops);
@@ -48,23 +51,20 @@
         iconAnchor: [10, 10],
     });
 
-    let markers = [];
+    const markers = L.markerClusterGroup();
 
 
     function addMarkers() {
         busStops.forEach(busStop => {
             const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
                 .bindPopup(busStop.direction ? busStop.direction : 'Parada sin nombre');
-            markers.push(marker);
-            marker.addTo(map);
+            markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });
+        map.addLayer(markers); // Añadir el grupo de clusters al mapa
     }
 
     function removeMarkers() {
-        markers.forEach(marker => {
-            map.removeLayer(marker);
-        });
-        markers = [];
+        markers.clearLayers(); // Remover todas las capas del grupo de clusters
     }
 
     
@@ -74,7 +74,7 @@
      
     function sm(){
         if (checkbox.checked){
-        addMarkers();
+            addMarkers();
         }else{
             removeMarkers();
         } 
