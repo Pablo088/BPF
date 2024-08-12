@@ -188,7 +188,6 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Avda. Del Valle y Mitre', '-33.0143927404136', '-58.5095919740207', '2024-06-10 14:41:28', '2024-06-10 14:41:30');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Avda. Del Valle y Borques', '-33.0144656309626', '-58.5082374246519', '2024-06-10 14:42:01', '2024-06-10 14:42:03');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Borques y Gervasio Mendez', '-33.0122511544541', '-58.5081310813951', '2024-06-10 14:43:48', '2024-06-10 14:43:49');
-	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Borques y Bolivar', '-33.010826247136', '-33.010826247136', '2024-06-10 14:44:43', '2024-06-10 14:44:44');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San Martin y Caseros', '-33.010005', '-58.507453', '2024-06-10 14:45:33', '2024-06-10 14:45:33');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Bolivar y Camila Nievas', '-33.01075', '-58.50902', '2024-06-10 14:46:24', '2024-06-10 14:46:25');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Bolivar y Mitre', '-33.010725', '-58.509984', '2024-06-10 14:47:20', '2024-06-10 14:47:21');
@@ -471,6 +470,8 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('30 de Marzo y Domingo Veronesi', '-33.01605090867608', '-58.462039232254035', '2024-07-04 01:20:49', '2024-07-04 01:20:49');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Domingo Veronesi y Pedro Ayala', '-33.01475542883215', '-58.46134185791016', '2024-07-04 01:21:17', '2024-07-04 01:21:17');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Avenida Fiorotto y Viale', '-33.00963629798577', '-58.4708046913147', '2024-07-04 01:21:41', '2024-07-04 01:21:41');
+	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San Martín y Monseñor Chalup', '-33.010216038730405', '-58.5115796327591', '2024-08-12 20:16:46', '2024-08-12 20:16:46');
+	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Avenida del Valle y Lavalle', '-33.01514621143217', '-58.5245829820633', '2024-08-12 20:19:12', '2024-08-12 20:19:12');
 
 	
 	/*falta pueblo belgrano */;

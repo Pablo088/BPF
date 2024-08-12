@@ -51,13 +51,20 @@
         iconAnchor: [10, 10],
     });
 
-    const markers = L.markerClusterGroup();
+    var markers = L.markerClusterGroup({
+    disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
+});
 
 
     function addMarkers() {
         busStops.forEach(busStop => {
             const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
-                .bindPopup(busStop.direction ? busStop.direction : 'Parada sin nombre');
+            .bindPopup(`
+                <b>${busStop.direction ? busStop.direction : 'Parada sin nombre'}</b><br>
+                Latitud: ${busStop.latitude}<br>
+                Longitud: ${busStop.longitude}<br>
+                ID: ${busStop.id}<br>
+            `);
             markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });
         map.addLayer(markers); // Añadir el grupo de clusters al mapa
@@ -72,29 +79,13 @@
     //removeDefaultMarkers();
     //addMarkers();
      
-    function sm(){
-        if (checkbox.checked){
-            addMarkers();
-        }else{
-            removeMarkers();
-        } 
-    map.on('zoomend', function() {
-        if (map.getZoom() > 11 && checkbox.checked ) {
-            addMarkers(); 
-        } else {          
-            removeMarkers();
-        }
-    })};
-
-        /* function toggleParadas(){
-            //var check = "";
-            if (checkbox.checked){
-                removeMarkers();
-            }else{
-                addMarkers(); 
-            }
-            console.log(check);
-        } */
+    function sm() {
+    if (checkbox.checked) {
+        addMarkers();
+    } else {
+        removeMarkers();
+    }
+}
 
     map.on('contextmenu', function(ev) {
     alert(ev.latlng); // ev is an event object (MouseEvent in this case)
@@ -140,9 +131,6 @@
                     console.error('Error al obtener la dirección:', error);
                 }); 
         });
-    
-        
-        
-</script>
+    </script>
 </body>
 </html>
