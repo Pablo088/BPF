@@ -15,7 +15,7 @@
     <h1>Paradas de Colectivo</h1>
     <label>
         Mostrar Paradas de Colectivo
-        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()"> 
+        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
       </label>
     <div id="map"></div>
 
@@ -77,13 +77,13 @@
     
 
     //removeDefaultMarkers();
-    //addMarkers();
+    addMarkers();
      
     function sm() {
     if (checkbox.checked) {
         addMarkers();
     } else {
-        removeMarkers();
+       removeMarkers();
     }
 }
 
