@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Resumen del programa
+
+El software permite ver las diferentes paradas de colectivo, las distintas rutas que siguen los mismos, admas de una experiencia personalizada para el usuario, estas caracteristicas se muestran en un mapa de la localidad de Gualeguaychu Entre Rios 
+
 ## Guia de instalación
 
 1. Podes descargar el proyecto tocando el boton "code" y luego presionando "download", o podes hacer un git clone (en la consola de comandos introducís: git clone https://github.com/Pablo088/BPF.git)

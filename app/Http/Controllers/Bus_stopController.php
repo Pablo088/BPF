@@ -8,7 +8,12 @@ use App\Models\Bus_stop;
 
 class Bus_stopController extends Controller
 {
-    public function index()
+    public function index(){
+        $busStops = Bus_Stop::all();
+        return view('index', compact('busStops'));
+    }
+    
+    public function edit()
     {
         $busStops = Bus_Stop::all();
         return view('bus_stops', compact('busStops'));
