@@ -12,11 +12,24 @@
     </style>
 </head>
 <body>
+    <script>
+        function permiso(){
+            let respuesta = confirm('¿Queres agregar una parada?');
+
+            if(respuesta == true){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
     
     <form action="{{ route('login') }}" method="GET">
         <button type="submit">Iniciar sesion</button>
     </form>
     
+    <a href="{{route('bus-stop.admin')}}"><button onclick="return permiso()">Agregar Parada</button></a>
+
     <label>
         Mostrar Paradas de Colectivo
         <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
