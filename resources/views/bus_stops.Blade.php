@@ -12,7 +12,9 @@
     </style>
 </head>
 <body>
-    <h1>Paradas de Colectivo</h1>
+
+    <input type="hidden" id="busStops" value="{{$busStops}}">
+
     <label>
         Mostrar Paradas de Colectivo
         <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
@@ -34,12 +36,12 @@
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     
     <script>
-    const busStops = @json($busStops);
+    const busStops = JSON.parse(document.getElementById('busStops').value);
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
     let checkbox = document.getElementById('mostrarParadas');
     
     //console.log(busStops);
-    //const listaParadas = document.getElementById('listaParadas');
+    const listaParadas = document.getElementById('listaParadas');
 
     L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
         maxZoom: 20,

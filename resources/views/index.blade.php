@@ -24,6 +24,8 @@
         }
     </script>
     
+    <input type="hidden" id="busStops" value="{{$busStops}}">
+
     <form action="{{ route('login') }}" method="GET">
         <button type="submit">Iniciar sesion</button>
     </form>
@@ -41,7 +43,7 @@
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     
     <script>
-        const busStops = @json($busStops);
+        const busStops = JSON.parse(document.getElementById('busStops').value);
         const map = L.map('map').setView([-33.009668, -58.521428], 14);
         let checkbox = document.getElementById('mostrarParadas');
         
