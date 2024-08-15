@@ -82,6 +82,11 @@
         <button id="button" type="submit">Enviar</button>
         </div>
     </form>
+
     <a href="{{ route('register') }}" id="register">Registrarse</a>
+
+    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
+    <a>||</a>
+    <a href="{{ route('register') }}" type='button'>Registrarse</a>
 </body>
 </html>
