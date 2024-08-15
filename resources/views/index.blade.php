@@ -4,98 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
+    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
-       body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        .menu {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            background-color: #333;
-            padding-top: 60px;
-            transition: 0.3s;
-            z-index: 1000;
-        }
-
-        .menu a {
-            padding: 8px 16px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .menu a:hover {
-            background-color: #575757;
-        }
-
-        .menu .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        .open-menu {
-            font-size: 30px;
-            cursor: pointer;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 2000;
-            color: #333
-            
-            
-            ;
-        }
-
-        .content {
-            transition: margin-left 0.3s;
-            padding: 16px;
-            margin-left: 0;
-            position: relative;
-            z-index: 500;
-        }
-
-        /* Estilo para la capa oscura (overlay) */
-        .overlay {
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 900;
-            opacity: 0;
-            transition: opacity 0.3s;
-            display: none;
-            pointer-events: none; /* Desactiva la interacción */
-        }
-
-        /* Cuando el overlay está activo */
-        .overlay.active {
-            opacity: 1;
-            display: block;
-            pointer-events: auto; /* Activa la interacción */
-        }
-
-        /* Desactiva la interacción con el mapa cuando el menú está abierto */
-        .map-container.inactive {
-            pointer-events: none;
-        }
-
         .leaflet-top.leaflet-left {
             left: 95vw; /* Ajusta este valor según el ancho de tu menú */
         }
@@ -110,22 +23,13 @@
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
-        <a href="{{route('bus-stop.admin')}}" onclick="return permiso()">Agregar Parada</a>
-        <a href="#">About Us</a>
+        <a href="{{route('register')}}">Registrarse</a>
+        <a>
+            Mostrar Paradas de Colectivo
+            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
+        </a>
     </div>
-    <script>
-        function openMenu() {
-            document.getElementById("menu").style.left = "0";
-            document.getElementById("overlay").classList.add("active");
-            document.getElementById("map-container").classList.add("inactive");
-        }
-
-        function closeMenu() {
-            document.getElementById("menu").style.left = "-250px";
-            document.getElementById("overlay").classList.remove("active");
-            document.getElementById("map-container").classList.remove("inactive");
-        }
-    </script>
+    <script src="{{ asset('js\menu.js') }}"></script>
     <script>
         function permiso(){
             let respuesta = confirm('¿Queres agregar una parada?');
@@ -144,10 +48,10 @@
     
     {{-- <a href="{{route('bus-stop.admin')}}"><button onclick="return permiso()">Agregar Parada</button></a> --}}
 
-    <label>
+    {{-- <label>
         Mostrar Paradas de Colectivo
         <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
-      </label>
+    </label> --}}
     <div id="map"></div>
 
 

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ asset('css\menu.css')}}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -60,18 +61,27 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            background-color: rgba(167, 27, 209, 0.589);
+            background-color: rgba(136, 136, 136, 0.589);
         }
         #register{
             position: absolute;
             top: 50%;
             right: 35%;
+            color: black;
         }
        
 
     </style>
 </head>
 <body>
+    <div class="open-menu" onclick="openMenu()">&#9776;</div>
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+        <a href="{{ route('bus-stops.index') }}">Inicio</a>
+        <a href="{{route('register')}}">Registrarse</a>
+    </div>
     <h1 id='login'>Iniciar sesión</h1>
     <form action="{{ route('dashboard') }}" method="POST">
         @csrf
@@ -85,8 +95,9 @@
 
     <a href="{{ route('register') }}" id="register">Registrarse</a>
 
-    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
-    <a>||</a>
-    <a href="{{ route('register') }}" type='button'>Registrarse</a>
+    {{-- <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a> --}}
+    {{-- <a>||</a>
+    <a href="{{ route('register') }}" type='button'>Registrarse</a> --}}
+    <script src="{{ asset('js\menu.js') }}"></script>
 </body>
 </html>

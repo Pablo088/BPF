@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
     <title>Registrarse</title>
 </head>
 <body>
-    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
+    <div class="open-menu" onclick="openMenu()">&#9776;</div>
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+        <a href="{{ route('bus-stops.index') }}">Inicio</a>
+        <a href="{{route('login')}}">Iniciar sesión</a>
+    </div>
+    {{-- <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a> --}}
     <h2>Registrarse</h2>
         <form action="{{ route('dashboard') }}" method="POST">
             @csrf
@@ -18,4 +27,5 @@
             <button id="button" type="submit">Enviar</button>
         </form>
 </body>
+<script src="{{ asset('js\menu.js') }}"></script>
 </html>
