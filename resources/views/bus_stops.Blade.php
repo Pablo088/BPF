@@ -7,8 +7,25 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
-        #map { height: 580px; }
+        #map { height: 570px; }
+
+        #eliminar {
+        color: white;
+        background-color: #ff0000;
+        border-color: #ff0000;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        }
+        #editar{
+        color: white;
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -48,7 +65,7 @@
     }).addTo(map);
 
     const busStopIcon = L.icon({
-        iconUrl: 'Icono_paradas.png',
+        iconUrl: '/Icono_paradas.png',
         iconSize: [20, 20],
         iconAnchor: [10, 10],
     });
@@ -66,6 +83,9 @@
                 Latitud: ${busStop.latitude}<br>
                 Longitud: ${busStop.longitude}<br>
                 ID: ${busStop.id}<br>
+                <br>
+                <a href="/bus-stops/admin/eliminar/${busStop.id}" id=eliminar > Eliminar </a>
+                <a href="/bus-stops/admin/editar/${busStop.id}" id=editar > Editar </a>
             `);
             markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });

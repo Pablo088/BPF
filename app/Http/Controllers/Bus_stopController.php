@@ -31,4 +31,22 @@ class Bus_stopController extends Controller
 
         return redirect()->back();
     }
+
+    public function eliminar($id){
+        //dd($id);
+        $Buss = Bus_Stop::find($id);
+        $Buss->delete();
+        return redirect()->back();
+    }
+
+    public function edite($id){
+        //dd($id);
+        return view('Edit_Stop', [
+            'id' => $id,
+        ]);
+    }
+
+    public function editar(Request $request){
+        dd($request->all());
+    }
 }

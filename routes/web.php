@@ -24,6 +24,9 @@ use App\Http\Controllers\MenuController;
     Route::get('/', 'index')->name('bus-stops.index');
     Route::get('/bus-stops/admin', 'edit')->name('bus-stop.admin');
     Route::post('/bus-stops', 'store');
+    Route::get('/bus-stops/admin/eliminar/{id}', 'eliminar')->name('bus-stops.eliminar');
+    Route::get('/bus-stops/admin/editar/{id}', 'edite')->name('bus-stops.editar');
+    Route::post('/bus-stops/admin/edit', 'editar')->name('bus-stops.edit');
 
   });
   
