@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -35,7 +36,7 @@
         }
         #button{
             position: absolute;
-            top: 65%;
+            top: 68%;
             right: 50%;
             transform: translate(50% , -50%); 
             width: 23%;
@@ -61,6 +62,12 @@
             justify-content: center; 
             background-color: rgba(167, 27, 209, 0.589);
         }
+        #register{
+            position: absolute;
+            top: 50%;
+            right: 35%;
+        }
+       
 
     </style>
 </head>
@@ -75,6 +82,6 @@
         <button id="button" type="submit">Enviar</button>
         </div>
     </form>
-    <a href="{{ route('register') }}" type='button'>Registrarse</a>
+    <a href="{{ route('register') }}" id="register">Registrarse</a>
 </body>
 </html>
