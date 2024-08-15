@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Bus_stopController;
 use App\Http\Controllers\UserController;
 use Database\Factories\UserFactory;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ use Database\Factories\UserFactory;
   Route::controller(UserController::class)->group(function(){
     Route::get('/login', 'login')->name('login');
     Route::get('/register', 'register')->name('register');
-    Route::post('dashboard', 'dashboard')->name('dashboard');
+    Route::post('dashboard', 'storeUser')->name('dashboard');
   });
 
+  Route::get('/menu', [MenuController::class, 'showMenu']);
 

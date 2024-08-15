@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
-        #map { height: 500px; }
+        #map { height: 580px; }
     </style>
 </head>
 <body>
-
+    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
     <input type="hidden" id="busStops" value="{{$busStops}}">
 
     <label>

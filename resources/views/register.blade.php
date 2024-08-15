@@ -7,6 +7,7 @@
     <title>Registrarse</title>
 </head>
 <body>
+    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
     <h2>Registrarse</h2>
         <form action="{{ route('dashboard') }}" method="POST">
             @csrf

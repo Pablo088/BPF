@@ -14,4 +14,16 @@ class UserController extends Controller
     public function register(){
         return view('register');
     }
+    public function storeUser(Request $request){
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->assignRole('User');
+        
+        $user->save();
+
+        return redirect()->route('bus-stops.index');
+    }
 }
