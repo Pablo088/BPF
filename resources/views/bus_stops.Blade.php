@@ -85,7 +85,7 @@
                 ID: ${busStop.id}<br>
                 <br>
                 <a href="/bus-stops/admin/eliminar/${busStop.id}" id=eliminar > Eliminar </a>
-                <a href="/bus-stops/admin/editar/${busStop.id}" id=editar > Editar </a>
+                <a href="/bus-stops/admin/editar/${busStop.id}" id=editar >  </a>
             `);
             markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });
