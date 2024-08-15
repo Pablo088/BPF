@@ -24,6 +24,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
+        <a href="{{route('bus-stop.admin')}}">Editar paradas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 

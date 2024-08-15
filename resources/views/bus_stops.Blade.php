@@ -7,35 +7,36 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
     <style>
-        #map { height: 570px; }
-
-        #eliminar {
-        color: white;
-        background-color: #ff0000;
-        border-color: #ff0000;
-        padding: 0.375rem 0.75rem;
-        font-size: 0.875rem;
-        }
-        #editar{
-        color: white;
-        background-color: #007bff;
-        border-color: #007bff;
-        padding: 0.375rem 0.75rem;
-        font-size: 0.875rem;
-        text-align: right;
+        #map { height: 580px; }
+        .leaflet-top.leaflet-left {
+            left: 95vw; /* Ajusta este valor según el ancho de tu menú */
         }
     </style>
 </head>
 <body>
-    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
+    <div class="open-menu" onclick="openMenu()">&#9776;</div>
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+        <a href="{{ route('bus-stops.index') }}">Inicio</a>
+        <a href="{{ route('login') }}">Iniciar sesión</a>
+        <a href="{{route('register')}}">Registrarse</a>
+
+        <a>
+            Mostrar Paradas de Colectivo
+            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
+        </a>
+    </div>
+    {{-- <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a> --}}
     <input type="hidden" id="busStops" value="{{$busStops}}">
 
-    <label>
+    {{-- <label>
         Mostrar Paradas de Colectivo
         <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
-      </label>
+      </label> --}}
     <div id="map"></div>
 
     <form method="POST" action="/bus-stops">
@@ -51,6 +52,7 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="{{asset('js\menu.js')}}"></script>
     
     <script>
     const busStops = JSON.parse(document.getElementById('busStops').value);
@@ -65,7 +67,7 @@
     }).addTo(map);
 
     const busStopIcon = L.icon({
-        iconUrl: '/Icono_paradas.png',
+        iconUrl: 'Icono_paradas.png',
         iconSize: [20, 20],
         iconAnchor: [10, 10],
     });
@@ -83,9 +85,6 @@
                 Latitud: ${busStop.latitude}<br>
                 Longitud: ${busStop.longitude}<br>
                 ID: ${busStop.id}<br>
-                <br>
-                <a href="/bus-stops/admin/eliminar/${busStop.id}" id=eliminar > Eliminar </a>
-                <a href="/bus-stops/admin/editar/${busStop.id}" id=editar > Editar </a>
             `);
             markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });
