@@ -89,7 +89,7 @@
             `);
             markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });
-        map.addLayer(markers); // Añadir el grupo de clusters al mapa
+        map.addLayer(markers); // Añadir el grupo de clusters al magi
     }
 
     function removeMarkers() {
