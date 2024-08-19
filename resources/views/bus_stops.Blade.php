@@ -53,7 +53,7 @@
 
     <div id="map"></div>
 
-    <form method="POST" action="/bus-stops">
+    <form method="POST" action="{{route('bus-stops.store')}}">
         @csrf
         <label for="name">Nombre:</label>
         <input type="text" id="direction" name="direction" value = "direction" required>

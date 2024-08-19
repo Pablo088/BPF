@@ -17,6 +17,8 @@
     </style>
 </head>
 <body>
+    <button onclick="showMyLocation()">Mostrar mi ubicación</button>
+
     <div class="open-menu" onclick="openMenu()">&#9776;</div>
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
@@ -24,7 +26,9 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        <a href="{{route('bus-stop.admin')}}">Editar paradas</a>
+        <form action="{{route('bus-stop.admin')}}" method="GET">
+            <button type="submit">Editar paradas</button>
+        </form>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
@@ -109,29 +113,40 @@
             }
         }
 
-        // Función para mostrar la ubicación del usuario
-        /*function showMyLocation() {
+        const userLocationIcon = L.icon({
+            iconUrl: 'Icono_ubicacion.png',
+            iconSize: [25, 25],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+
+
+        function showMyLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
 
-                    // Crear un marcador para la ubicación del usuario
-                    const userMarker = L.marker([lat, lng]).addTo(map)
-                        .bindPopup('Estás aquí')
-                        .openPopup();
+                        // Create a marker for the user's location
+                        const userMarker = L.marker([lat, lng], {icon: userLocationIcon}).addTo(map)
+                            /* .bindPopup('Estás aquí')
+                            .openPopup(); */
 
-                    // Centrar el mapa en la ubicación del usuario
-                    map.setView([lat, lng], 15);
-
-                }, function(error) {
-                    console.error('Error al obtener la ubicación: ', error);
-                    alert('No se pudo obtener la ubicación.');
-                });
+                        // Center the map on the user's location
+                        map.setView([lat, lng], 15);
+                    },
+                    function(error) {
+                        console.error('Error al obtener la ubicación: ', error);
+                        alert('No se pudo obtener la ubicación.');
+                    }
+                );
             } else {
                 alert('La geolocalización no es soportada por este navegador.');
             }
-        }*/
+        }
+
+       
 
     </script>
 </body>
