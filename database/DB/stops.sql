@@ -467,9 +467,6 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('San Martín y Monseñor Chalup', '-33.010216038730405', '-58.5115796327591', '2024-08-12 20:16:46', '2024-08-12 20:16:46');
 	INSERT INTO `bus_stops` (`direction`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES ('Avenida del Valle y Lavalle', '-33.01514621143217', '-58.5245829820633', '2024-08-12 20:19:12', '2024-08-12 20:19:12');
 
-	
-	/*falta pueblo belgrano */;
-
 	/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 	/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 	/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

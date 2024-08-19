@@ -13,7 +13,7 @@
             left: 95vw; /* Ajusta este valor según el ancho de tu menú */
         }
 
-        #map { height: 620px; }
+        #map { height: 640px; }
     </style>
 </head>
 <body>
@@ -108,6 +108,30 @@
                 removeMarkers();
             }
         }
+
+        // Función para mostrar la ubicación del usuario
+        /*function showMyLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+
+                    // Crear un marcador para la ubicación del usuario
+                    const userMarker = L.marker([lat, lng]).addTo(map)
+                        .bindPopup('Estás aquí')
+                        .openPopup();
+
+                    // Centrar el mapa en la ubicación del usuario
+                    map.setView([lat, lng], 15);
+
+                }, function(error) {
+                    console.error('Error al obtener la ubicación: ', error);
+                    alert('No se pudo obtener la ubicación.');
+                });
+            } else {
+                alert('La geolocalización no es soportada por este navegador.');
+            }
+        }*/
 
     </script>
 </body>

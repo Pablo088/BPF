@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
+    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
     <style>
-        #map { height: 570px; }
+        .leaflet-top.leaflet-left {
+            left: 95vw; /* Ajusta este valor según el ancho de tu menú */
+        }
 
+        #map { height: 600px; }
+        
         #eliminar {
         color: white;
         background-color: #ff0000;
@@ -29,13 +34,23 @@
     </style>
 </head>
 <body>
-    <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a>
+
+    <div class="open-menu" onclick="openMenu()">&#9776;</div>
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+    
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+        <a href="{{ route('bus-stops.index')}}">Inicio</a>
+        <a href="{{ route('login') }}">Iniciar sesión</a>
+        <a href="{{route('register')}}">Registrarse</a>
+        <a>
+            Mostrar Paradas de Colectivo
+            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
+        </a>
+    </div>
+
     <input type="hidden" id="busStops" value="{{$busStops}}">
 
-    <label>
-        Mostrar Paradas de Colectivo
-        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
-      </label>
     <div id="map"></div>
 
     <form method="POST" action="/bus-stops">
@@ -49,8 +64,10 @@
         <button type="submit">Añadir Parada</button>
     </form>
 
+    <script src="{{ asset('js\menu.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    
     
     <script>
     const busStops = JSON.parse(document.getElementById('busStops').value);

@@ -9,7 +9,7 @@
 
 ## Resumen del programa
 
-El software permite ver las diferentes paradas de colectivo, las distintas rutas que siguen los mismos, admas de una experiencia personalizada para el usuario, estas caracteristicas se muestran en un mapa de la localidad de Gualeguaychu Entre Rios 
+El software permite ver las diferentes paradas de colectivo, las distintas rutas que siguen los mismos, ademas de una experiencia personalizada para el usuario, estas caracteristicas se muestran en un mapa de la localidad de Gualeguaychu Entre Rios 
 
 ## Guia de instalación
 

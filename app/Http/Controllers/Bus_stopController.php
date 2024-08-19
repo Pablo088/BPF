@@ -40,9 +40,10 @@ class Bus_stopController extends Controller
     }
 
     public function edite($id){
-        //dd($id);
+        $stop = Bus_Stop::find($id);
+
         return view('Edit_Stop', [
-            'id' => $id,
+            'stop' => $stop,
         ]);
     }
 
