@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <button onclick="showMyLocation()">Mostrar mi ubicación</button>
+    {{-- <button onclick="showMyLocation()">Mostrar mi ubicación</button> --}}
 
     <div class="open-menu" onclick="openMenu()">&#9776;</div>
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>
@@ -67,6 +67,8 @@
         const busStops = JSON.parse(document.getElementById('busStops').value);
         const map = L.map('map').setView([-33.009668, -58.521428], 14);
         let checkbox = document.getElementById('mostrarParadas');
+        
+
         
         //console.log(busStops);
         //const listaParadas = document.getElementById('listaParadas');
@@ -121,6 +123,28 @@
         });
 
 
+        L.Control.LocationButton = L.Control.extend({
+            onAdd: function(map) {
+                var button = L.DomUtil.create('button', 'leaflet-bar leaflet-control leaflet-control-custom');
+                button.innerHTML = '📍'; // Puedes usar un icono o texto
+                button.style.backgroundColor = 'white';
+                button.style.width = '30px';
+                button.style.height = '30px';
+                
+                L.DomEvent.on(button, 'click', function() {
+                    showMyLocation();
+                });
+                
+                return button;
+            }
+        });
+
+        L.control.locationButton = function(opts) {
+            return new L.Control.LocationButton(opts);
+        }
+
+        L.control.locationButton({ position: 'bottomright' }).addTo(map);
+
         function showMyLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -130,11 +154,12 @@
 
                         // Create a marker for the user's location
                         const userMarker = L.marker([lat, lng], {icon: userLocationIcon}).addTo(map)
-                            /* .bindPopup('Estás aquí')
-                            .openPopup(); */
+                            .bindPopup('Estás aquí')
+                            //.openPopup();
 
                         // Center the map on the user's location
-                        map.setView([lat, lng], 15);
+                        map.setView([lat, lng], 16);
+                       // map.locate({setView: true, maxZoom: 16});
                     },
                     function(error) {
                         console.error('Error al obtener la ubicación: ', error);
@@ -146,6 +171,9 @@
             }
         }
 
+        /* function showMyLocation() {
+            map.locate({setView: true, maxZoom: 16});
+        } */
        
 
     </script>
