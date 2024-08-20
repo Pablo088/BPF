@@ -26,9 +26,10 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        <form action="{{route('bus-stop.admin')}}" method="GET">
+        {{-- <form action="{{route('bus-stop.admin')}}" method="GET">
             <button type="submit">Editar paradas</button>
-        </form>
+        </form> --}}
+        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
@@ -67,7 +68,8 @@
         const busStops = JSON.parse(document.getElementById('busStops').value);
         const map = L.map('map').setView([-33.009668, -58.521428], 14);
         let checkbox = document.getElementById('mostrarParadas');
-        
+        let locationActive = false;
+        let userMarker = null;
 
         
         //console.log(busStops);
@@ -132,7 +134,17 @@
                 button.style.height = '30px';
                 
                 L.DomEvent.on(button, 'click', function() {
-                    showMyLocation();
+                    if (locationActive) {
+                        removeCurrentLocation();
+                        locationActive = false;
+                        button.style.backgroundColor = 'white';
+                        
+                    }else{
+                        showMyLocation();
+                        locationActive = true;
+                        button.style.backgroundColor = locationActive ? 'lightblue' : 'white';
+                    }
+                    
                 });
                 
                 return button;
@@ -145,6 +157,7 @@
 
         L.control.locationButton({ position: 'bottomright' }).addTo(map);
 
+
         function showMyLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -152,14 +165,15 @@
                         const lat = position.coords.latitude;
                         const lng = position.coords.longitude;
 
-                        // Create a marker for the user's location
-                        const userMarker = L.marker([lat, lng], {icon: userLocationIcon}).addTo(map)
-                            .bindPopup('Estás aquí')
-                            //.openPopup();
+                        if (userMarker) {
+                            removeCurrentLocation()
+                        }
 
-                        // Center the map on the user's location
+                        userMarker = L.marker([lat, lng], {icon: userLocationIcon}).addTo(map)
+                            .bindPopup('Estás aquí');
+
                         map.setView([lat, lng], 16);
-                       // map.locate({setView: true, maxZoom: 16});
+                        locationActive = true;
                     },
                     function(error) {
                         console.error('Error al obtener la ubicación: ', error);
@@ -171,9 +185,16 @@
             }
         }
 
-        /* function showMyLocation() {
-            map.locate({setView: true, maxZoom: 16});
-        } */
+
+        function removeCurrentLocation() {
+            if (userMarker) {
+                map.removeLayer(userMarker);
+                userMarker = null;
+                console.log("ejecutando");
+            }
+            
+            map.setView([-33.009668, -58.521428], 14);
+        }
        
 
     </script>

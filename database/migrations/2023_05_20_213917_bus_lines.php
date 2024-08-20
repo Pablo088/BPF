@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('bus_lines', function (Blueprint $table) {
             $table->id();
             //$table->unsignedBigInteger('bus_id');
-            $table->string('name');
+            $table->foreign('busStop_id')->references('id')->on('bus_stops'); 
+            $table->string('line_name');
+            $table->string('company_name');
             $table->timestamps();
-
-            //$table->foreign('bus_id')->references('id')->on('buses'); 
         });
     }
 
