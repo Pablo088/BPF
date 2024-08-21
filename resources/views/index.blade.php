@@ -70,6 +70,7 @@
         let checkbox = document.getElementById('mostrarParadas');
         let locationActive = false;
         let userMarker = null;
+        
 
         
         //console.log(busStops);
@@ -86,7 +87,7 @@
         });
 
         var markers = L.markerClusterGroup({
-            disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
+            disableClusteringAtZoom: 16
         });
 
         function addMarkers() {
@@ -124,7 +125,7 @@
             popupAnchor: [0, -32]
         });
 
-
+        
         L.Control.LocationButton = L.Control.extend({
             onAdd: function(map) {
                 var button = L.DomUtil.create('button', 'leaflet-bar leaflet-control leaflet-control-custom');
@@ -157,6 +158,7 @@
 
         L.control.locationButton({ position: 'bottomright' }).addTo(map);
 
+        
 
         function showMyLocation() {
             if (navigator.geolocation) {
@@ -172,7 +174,14 @@
                         userMarker = L.marker([lat, lng], {icon: userLocationIcon}).addTo(map)
                             .bindPopup('Estás aquí');
 
-                        map.setView([lat, lng], 16);
+                        var zoomvalue = map.getZoom();
+                        
+                        if (zoomvalue > 16) {
+                            map.setView([lat, lng]);
+                        }else{
+                            map.setView([lat, lng], 16);
+                        }
+                        
                         locationActive = true;
                     },
                     function(error) {
@@ -190,10 +199,12 @@
             if (userMarker) {
                 map.removeLayer(userMarker);
                 userMarker = null;
-                console.log("ejecutando");
+                //console.log("ejecutando");
             }
             
-            map.setView([-33.009668, -58.521428], 14);
+
+            
+            //map.setView([-33.009668, -58.521428], 14);
         }
        
 

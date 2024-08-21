@@ -57,11 +57,11 @@
             @csrf
             <div id="contenedor">
                 <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInputName" name='Name' placeholder="Nombre" required>
+                <input type="text" class="form-control" id="floatingInputName" name='name' placeholder="Nombre" required>
                 <label for="floatingInputName">Name</label>
                 </div>
                 <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" name='Email' placeholder="Direccion de correo electronico" required>
+                <input type="email" class="form-control" id="floatingInput" name='email' placeholder="Direccion de correo electronico" required>
                 <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
