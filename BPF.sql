@@ -647,10 +647,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.users: ~2 rows (aproximadamente)
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'santi', 'santi@autista.net', NULL, '$2y$12$bzXbGGT1wevwaEaRKZD07uyUfPG10.bVrmtxmKgRwYlMX0ItDjN6i', NULL, '2024-08-21 02:03:17', '2024-08-21 02:03:17'),
-	(2, 'pavlo', 'pavlovich@pavlo.pa', NULL, '$2y$12$9c2ir4PLftnXDlNnDlBBJuc84Jp2K0Dbqa5JEE.ZPB5Ri8gQOtvK6', NULL, '2024-08-22 01:41:26', '2024-08-22 01:41:26');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
