@@ -14,6 +14,46 @@
         }
 
         #map { height: 640px; }
+
+        #searchContainer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000; /* Asegura que esté encima del mapa */
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #searchInput {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .suggestions-list {
+            position: absolute;
+            top: 50px;
+            right: 50%;
+            width: 100%;
+            background: white;
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .suggestions-list li {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestions-list li:hover {
+            background: #f0f0f0;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +61,12 @@
 
     <div class="open-menu" onclick="openMenu()">&#9776;</div>
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <!-- para buscar las pardas  -->
+    <div id="searchContainer">
+            <input type="text" id="searchInput" placeholder="Buscar parada...">
+            <ul id="suggestions" class="suggestions-list"></ul>
+    </div>
 
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
@@ -34,6 +80,7 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+        
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
     <script>
@@ -208,6 +255,33 @@
         }
        
 
+
+        const searchInput = document.getElementById('searchInput');
+        const suggestions = document.getElementById('suggestions');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            suggestions.innerHTML = '';
+
+            if (query.length > 0) {
+                const filteredStops = busStops.filter(busStop =>
+                    busStop.direction && busStop.direction.toLowerCase().includes(query)
+                );
+
+                filteredStops.forEach(busStop => {
+                    const li = document.createElement('li');
+                    li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
+                    li.addEventListener('click', () => {
+                        map.setView([busStop.latitude, busStop.longitude], 16);
+                        removeMarkers(); // Opcional, dependiendo si quieres limpiar los marcadores existentes
+                        addMarkers(); // Opcional, si quieres volver a mostrar todos los marcadores
+                        searchInput.value = busStop.direction;
+                        suggestions.innerHTML = '';
+                    });
+                    suggestions.appendChild(li);
+                });
+            }
+        });
     </script>
 </body>
 </html>
