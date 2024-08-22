@@ -59,7 +59,7 @@
         <a href="{{route('register')}}">Registrarse</a>
     </div>
     <h1 id='login'>Iniciar sesión</h1>
-    <form action="{{ route('dashboard') }}" method="POST">
+    <form action="{{ route('bus-stops.index') }}" method="get">
         @csrf
         <div id="contenedor">
        <div class="form-floating mb-3">

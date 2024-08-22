@@ -21,7 +21,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('line_id')->references('id')->on('bus_lines');
-            $table->foreign('stop_id')->references('id')->on('bus_stops'); 
         });
     }
 
