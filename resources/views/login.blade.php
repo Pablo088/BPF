@@ -59,7 +59,7 @@
         <a href="{{route('register')}}">Registrarse</a>
     </div>
     <h1 id='login'>Iniciar sesión</h1>
-    <form action="{{ route('bus-stops.index') }}" method="get">
+    <form action="{{ route('login.validate') }}" method="post">
         @csrf
         <div id="contenedor">
        <div class="form-floating mb-3">
@@ -73,6 +73,11 @@
         <button id="button" class="form-control" type="submit">Enviar</button>
         </div>
     </form>
+    @if (session('error'))
+        <div class="alert alert-danger text-center">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <a href="{{ route('register') }}"class="btn btn-success" id="register">Registrarse</a>
 

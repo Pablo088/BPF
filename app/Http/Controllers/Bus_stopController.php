@@ -18,7 +18,7 @@ class Bus_stopController extends Controller
         $busStops = Bus_Stop::all();
         return view('bus_stops', compact('busStops'));
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([

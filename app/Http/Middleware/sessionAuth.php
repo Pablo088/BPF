@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-
+use Illuminate\Support\Facades\Hash;
 
 class sessionAuth
 {
@@ -18,12 +18,14 @@ class sessionAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = User::where('email','=',$request->email )->where('password','=',$request->password)->get();
-        dd($user);
-        if($user !== null){
-            return $next($request);
-        } else if($user == null){
-            return redirect()->back();
+        $users = User::where('email',$request->email)->get();
+        
+        foreach($users as $user){
+            if(Hash::check($request->password, $user->password) && $user->email == $request->email){
+                return $next($request);
+            } else{
+                return redirect()->back()->with(['error' => 'Su correo o contraseña es incorrecta']);
+            }
         }
     }
 }

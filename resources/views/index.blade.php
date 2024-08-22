@@ -35,6 +35,7 @@
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
     </div>
+
     <script src="{{ asset('js\menu.js') }}"></script>
     <script>
         function permiso(){
@@ -50,9 +51,6 @@
     
     <input type="hidden" id="busStops" value="{{$busStops}}">
 
-
-    
-    {{-- <a href="{{route('bus-stop.admin')}}"><button onclick="return permiso()">Agregar Parada</button></a> --}}
 
     {{-- <label>
         Mostrar Paradas de Colectivo

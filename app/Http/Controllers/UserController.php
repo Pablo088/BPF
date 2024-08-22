@@ -12,8 +12,8 @@ class UserController extends Controller
     public function login(){
         return view('login');
     }
-    public function beginSession(Request $request){
-
+    public function validateLogin(){
+        return redirect()->route('bus-stops.index');
     }
     public function register(){
         return view('register');
