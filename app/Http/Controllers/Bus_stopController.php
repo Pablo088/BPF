@@ -48,11 +48,18 @@ class Bus_stopController extends Controller
     }
 
     public function editar(Request $request){
+        //dd($request);
+        $coordenadas = $request->input('latlon');
+        $partes = explode(',', $coordenadas);
+        $latitud = $partes[0];
+        $longitud = $partes[1];
+
+        //dd($latitud);
         $ida=$request->id;
         $edit= Bus_Stop::find($ida);
         $edit-> direction= $request->nombre;
-        $edit-> latitude= $request->latitud;
-        $edit-> longitude= $request->longitud;
+        $edit-> latitude= $latitud;
+        $edit-> longitude= $longitud;
         $edit-> save();
         return redirect()->route('bus-stop.admin');
 

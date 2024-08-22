@@ -127,13 +127,34 @@
 }
 
     map.on('contextmenu', function(ev) {
-    alert(ev.latlng); // ev is an event object (MouseEvent in this case)
-    console.log(ev.latlng)
+    
     var latitude = ev.latlng.lat;
     var longitude = ev.latlng.lng;
+    var popupContent = `
+        <div>
+            <p>Coordenadas: ${latitude}, ${longitude}</p>
+            <button id="copiarBtn" onclick="copiarCoordenadas(${latitude}, ${longitude})">Copiar Coordenadas</button>
+        </div>
+    `;
+    L.popup()
+        .setLatLng(ev.latlng)
+        .setContent(popupContent)
+        .openOn(map);
     document.getElementById("latitude").value = latitude;
     document.getElementById("longitude").value = longitude;
    });
+
+
+   function copiarCoordenadas(lat, lng) {
+    var coordenadas = lat + ", " + lng;
+
+    var tempInput = document.createElement("input");
+    document.body.appendChild(tempInput);
+    tempInput.value = coordenadas;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+}
 
    var callesSeleccionadas = [];
     map.on('click', function(e) {
