@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
         .leaflet-top.leaflet-left {
-            left: 95vw; /* Ajusta este valor según el ancho de tu menú */
-            top: 5vw;
+            left: 96.2vw; /* Ajusta este valor según el ancho de tu menú */
+            top: 35vw;
         }
 
         #map { height: 640px; }
@@ -19,7 +19,7 @@
         #searchContainer {
             position: absolute;
             top: 10px;
-            right: 10px;
+            right: 2vw;
             z-index: 1000; /* Asegura que esté encima del mapa */
             background: white;
             padding: 5px;
@@ -36,12 +36,12 @@
 
         .suggestions-list {
             position: absolute;
-            top: 50px;
-            right: 50%;
-            width: 100%;
+            top: 35px;
+            right: 5px;
+            width: 95%;
             background: white;
-            border: 1px solid #ccc;
-            max-height: 200px;
+            border: 1px solid white;
+            max-height: 100px;
             overflow-y: auto;
             z-index: 1000;
             list-style-type: none;
