@@ -14,12 +14,9 @@ return new class extends Migration
         Schema::create('bus_stops', function (Blueprint $table) {
             $table->id();
             $table->string('direction')->nullable();
-            //$table->unsignedBigInteger('bus_id');
             $table->string('latitude',20, 7);
             $table->string('longitude',20, 7);
             $table->timestamps();
-
-            //$table->foreign('bus_id')->references('id')->on('buses');
         });
     }
 

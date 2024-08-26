@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bus_lines', function (Blueprint $table) {
+        Schema::create('lines_has_stops', function (Blueprint $table){
             $table->id();
-            $table->string('line_name');
-            $table->string('company_name');
-            $table->time('horarios');
+            $table->unsignedBigInteger('busLine_id');
+            $table->unsignedBigInteger('busStop_id');
+            $table->foreign('busLine_id')->references('id')->on('bus_lines')->onDelete('cascade');
+            $table->foreign('busStop_id')->references('id')->on('bus_stops')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bus_lines');
+        Schema::dropIfExists('lines_has_stops');
     }
 };
