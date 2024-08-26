@@ -11,13 +11,18 @@ class Bus_stopController extends Controller
 {
     public function index(){
         $busStops = Bus_Stop::all();
-        $roads = Bus_road::all()->groupBy("road_id");
-            foreach ($roads as $road) {
+        $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
+        $roadgroup = [];
+
+        foreach ($roads as $road) {
+            $roadgroup[$road][]=$road;
+        }
+            /* foreach ($roads as $road) {
                 foreach ($road as $registry) {
                     dd($registry);
                 }
-            }
-       
+            } */
+        dd($roadgroup);
         return view('index', compact('busStops', 'roads'));
     }
 
