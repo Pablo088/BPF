@@ -5,6 +5,7 @@ use App\Http\Controllers\Bus_stopController;
 use App\Http\Controllers\UserController;
 use Database\Factories\UserFactory;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,7 @@ use App\Http\Controllers\MenuController;
 
   Route::get('/menu', [MenuController::class, 'showMenu']);
 
+  
+
+
+Route::get('/pruebamail', [MailController::class, 'enviarCorreoPrueba']);
