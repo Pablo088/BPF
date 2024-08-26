@@ -11,4 +11,7 @@ class Bus_line extends Model
     protected $fillable = [
         'name',
     ];
+    public function LinesHasStop(){
+        return $this->belongsTo(LineHasStop::class);
+    }
 }
