@@ -22,13 +22,14 @@ class UserController extends Controller
     public function storeUser(Request $request){
         $user = new User();
        
-
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->assignRole('User');
         
         $user->save();
+
+        Auth::login($user);
 
         return redirect()->route('bus-stops.index');
     }

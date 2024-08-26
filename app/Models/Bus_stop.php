@@ -13,4 +13,8 @@ class Bus_stop extends Model
         'latitude',
         'longitude',
     ];
+
+    public function LinesHasStop(){
+        return $this->belongsTo(LineHasStop::class);
+    }
 }
