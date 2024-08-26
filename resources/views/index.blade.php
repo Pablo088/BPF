@@ -11,6 +11,7 @@
     <style>
         .leaflet-top.leaflet-left {
             left: 95vw; /* Ajusta este valor según el ancho de tu menú */
+            top: 5vw;
         }
 
         #map { height: 640px; }
