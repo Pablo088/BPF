@@ -4,14 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bus_stop;
+use App\Models\Bus_road;
 use Illuminate\Support\Facades\Auth;
 
 class Bus_stopController extends Controller
 {
     public function index(){
         $busStops = Bus_Stop::all();
-        return view('index', compact('busStops'));
+        $roads = Bus_road::all()->groupBy("road_id");
+            foreach ($roads as $road) {
+                foreach ($road as $registry) {
+                    dd($registry);
+                }
+            }
+       
+        return view('index', compact('busStops', 'roads'));
     }
+
     
     public function edit()
     {

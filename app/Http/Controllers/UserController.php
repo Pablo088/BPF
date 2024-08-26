@@ -13,8 +13,18 @@ class UserController extends Controller
     public function login(){
         return view('login');
     }
-    public function validateLogin(){
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+
         return redirect()->route('bus-stops.index');
+    }
+    public function validateLogin(){
+        if(Auth::check()){
+            return redirect()->back()->with(['warning' => 'Tu sesion ya está activa']);
+        } else{
+            return redirect()->route('bus-stops.index');
+        }
     }
     public function register(){
         return view('register');
