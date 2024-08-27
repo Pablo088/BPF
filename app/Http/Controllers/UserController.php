@@ -30,17 +30,23 @@ class UserController extends Controller
         return view('register');
     }
     public function storeUser(Request $request){
-        $user = new User();
+        $credentials = $request->validate([
+            'email'=>['required'],
+        ]);
+
+        if(Auth::attempt($credentials)){
+            return redirect()->back()->with(['warning' => 'Tu email ya esta registrado']);
+        } else {
+            $user = new User();
        
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->assignRole('User');
-        
-        $user->save();
-
-        Auth::login($user);
-
-        return redirect()->route('bus-stops.index');
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->assignRole('User');
+            
+            $user->save();
+    
+            return redirect()->route('bus-stops.index');
+        }
     }
 }

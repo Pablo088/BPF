@@ -18,14 +18,14 @@ class sessionAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $users = User::where('email',$request->email)->get();
+            $users = User::where('email',$request->email)->get();
         
-        foreach($users as $user){
-            if(Hash::check($request->password, $user->password) && $user->email == $request->email){
-                return $next($request);
-            } else{
-                return redirect()->back()->with(['error' => 'Su correo o contraseña es incorrecta']);
-            }
-        }
+            foreach($users as $user){
+                if(Hash::check($request->password, $user->password) && $user->email == $request->email){
+                    return $next($request);
+                } else{
+                    return redirect()->back()->with(['error' => 'Su correo o contraseña es incorrecta']);
+                }
+            }  
     }
 }

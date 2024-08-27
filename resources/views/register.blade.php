@@ -51,7 +51,7 @@
         <a href="{{ route('bus-stops.index') }}">Inicio</a>
         <a href="{{route('login')}}">Iniciar sesión</a>
     </div>
-    {{-- <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a> --}}
+ 
     <h2 id='login'>Registrarse</h2>
         <form action="{{ route('dashboard') }}" method="POST">
             @csrf
@@ -74,8 +74,13 @@
                 </div>
             <button id="button" class="form-control" type="submit">Enviar</button>
             </div>
-           
     </form>
+   
+    @if (session('warning'))
+        <div class="alert alert-warning text-center">
+            {{ session('warning') }}
+        </div>
+    @endif
 </body>
 <script src="{{ asset('js\menu.js') }}"></script>
 </html>
