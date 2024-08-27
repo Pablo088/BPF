@@ -79,6 +79,12 @@
         </div>
     @endif
 
+    @if (session('warning'))
+        <div class="alert alert-warning text-center">
+            {{ session('warning') }}
+        </div>
+    @endif
+
     <a href="{{ route('register') }}"class="btn btn-success" id="register">Registrarse</a>
 
     {{-- <a href="{{ route('bus-stops.index') }}" type='button'>Inicio</a> --}}
