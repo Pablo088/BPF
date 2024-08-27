@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
         .leaflet-top.leaflet-left {
-            left: 96.2vw; /* Ajusta este valor según el ancho de tu menú */
-            top: 35vw;
+            left: 95vw; /* Ajusta este valor según el ancho de tu menú */
         }
 
         #map { height: 640px; }
@@ -19,7 +18,7 @@
         #searchContainer {
             position: absolute;
             top: 10px;
-            right: 2vw;
+            right: 10px;
             z-index: 1000; /* Asegura que esté encima del mapa */
             background: white;
             padding: 5px;
@@ -36,12 +35,12 @@
 
         .suggestions-list {
             position: absolute;
-            top: 35px;
-            right: 5px;
-            width: 95%;
+            top: 50px;
+            right: 50%;
+            width: 100%;
             background: white;
-            border: 1px solid white;
-            max-height: 100px;
+            border: 1px solid #ccc;
+            max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
             list-style-type: none;
@@ -83,7 +82,6 @@
         </a>
         
     </div>
-
     <script src="{{ asset('js\menu.js') }}"></script>
     <script>
         function permiso(){
@@ -99,6 +97,9 @@
     
     <input type="hidden" id="busStops" value="{{$busStops}}">
 
+
+    
+    {{-- <a href="{{route('bus-stop.admin')}}"><button onclick="return permiso()">Agregar Parada</button></a> --}}
 
     {{-- <label>
         Mostrar Paradas de Colectivo
@@ -281,6 +282,15 @@
                 });
             }
         });
+
+    var polyline = L.polyline(rutaColectivo, {
+    color: 'blue',
+    weight: 3,
+    opacity: 0.7,
+    smoothFactor: 1
+    })
+.bindPopup('Esta es la ruta del colectivo')
+.addTo(map);
     </script>
 </body>
 </html>
