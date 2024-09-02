@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Auth\LoginRequest;
 
 class sessionAuth
 {
@@ -18,6 +20,9 @@ class sessionAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if(Auth::check()){
+            return redirect()->back()->with(['warning' => 'Tu sesion ya está activa']);
+        } else{
             $users = User::where('email',$request->email)->get();
         
             foreach($users as $user){
@@ -27,5 +32,6 @@ class sessionAuth
                     return redirect()->back()->with(['error' => 'Su correo o contraseña es incorrecta']);
                 }
             }  
+        }          
     }
 }
