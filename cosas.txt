@@ -1,11 +1,8 @@
-para hacer pruebas 
--33.011126 lat
--58.526288 long
-1. cambiar la parte de cuando se aleja del mapa desaperezca la parada
-2. cambiar el punto por una imagen de una parada 
-3. que empieze el mapa en la parte de gualeguaychu
-4. hacer la parte de los roles 
-5. hacer la primera vista del usuario 
-6. Hacer una descripcion del proyecto
-7. Diagrama entidad relacion (ya está)
-8. Pantallas y opciones estimativas
+1. Diagrama entidad relacion (ya está)
+2. Calculo distancia de la parada más cercana al usuario en base a su ubicación
+3. Hacer relaciones entre las lineas y las paradas
+4. Terminar rutas (eliminar y editar, ocultar y mostrar)
+5. Hacer calculo estimativo del horario de llegada de una linea a una parada
+6. Desarrollar la vista del usuario registrado
+7. Terminar la cuestion de los roles
+8. Agregar opcion para buscar/mostrar paradas en base a su linea
