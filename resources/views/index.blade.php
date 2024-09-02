@@ -97,6 +97,7 @@
     </script>
     
     <input type="hidden" id="busStops" value="{{$busStops}}">
+    
 
 
     
@@ -114,6 +115,7 @@
     
     <script>
         const busStops = JSON.parse(document.getElementById('busStops').value);
+        var rutas = <?php echo $rutas; ?>;
         const map = L.map('map').setView([-33.009668, -58.521428], 14);
         let checkbox = document.getElementById('mostrarParadas');
         let locationActive = false;
@@ -283,15 +285,16 @@
                 });
             }
         });
-
-    var polyline = L.polyline(rutaColectivo, {
-    color: 'blue',
-    weight: 3,
-    opacity: 0.7,
-    smoothFactor: 1
+    rutas.forEach(ruta => {
+    var polyline = L.polyline(ruta.coordenadas, {
+        color: 'blue',
+        weight: 3,
+        opacity: 0.7,
+        smoothFactor: 1
     })
-.bindPopup('Esta es la ruta del colectivo')
-.addTo(map);
+    .bindPopup(`Esta es la ruta: ${ruta.nombre}`)
+    .addTo(map);
+    });
     </script>
 </body>
 </html>

@@ -12,19 +12,29 @@ class Bus_stopController extends Controller
     public function index(){
         $busStops = Bus_Stop::all();
         $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
-        $roadgroup = [];
+        //$roadgroup = [];
 
-        foreach ($roads as $road) {
-            $roadgroup[$road][]=$road;
+    $rutas = [];
+    foreach ($roads as $fila) {
+        $nombreRuta = $fila->road_group;
+        if (!isset($rutas[$nombreRuta])) {
+            $rutas[$nombreRuta] = [
+                'nombre' => $nombreRuta,
+                'coordenadas' => []
+            ];
         }
-            /* foreach ($roads as $road) {
-                foreach ($road as $registry) {
-                    dd($registry);
-                }
-            } */
-        //dd($roadgroup);
-        return view('index', compact('busStops', 'roads'));
+        $rutas[$nombreRuta]['coordenadas'][] = [
+            (float)$fila->latitude,
+            (float)$fila->longitude
+        ];
     }
+
+    $rutas = array_values($rutas);
+    $rutas = json_encode($rutas);
+
+    //dd($rutas);
+    return view('index', compact('busStops','rutas'));
+}
 
     
     public function edit()
