@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
         .leaflet-top.leaflet-left {
-            left: 95vw; /* Ajusta este valor según el ancho de tu menú */
+            left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
+            top: 500px;
         }
 
         #map { height: 640px; }
