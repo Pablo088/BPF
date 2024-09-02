@@ -91,4 +91,8 @@ class Bus_stopController extends Controller
         return redirect()->route('bus-stop.admin');
 
     }
+
+    public function rutas(Request $request){
+        dd($request);
+    }
 }
