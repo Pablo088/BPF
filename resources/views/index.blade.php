@@ -82,6 +82,7 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+        <a href="{{route('dashboard')}}">Dashboard</a>
         <a href="{{route('logout')}}">Cerrar sesion</a>
         
     </div>
