@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('road_group');
             $table->string('latitude',20, 7);
             $table->string('longitude',20, 7);
-            $table->string('color');
+            $table->integer('color');
             $table->integer('order');
             $table->timestamps();
         });
