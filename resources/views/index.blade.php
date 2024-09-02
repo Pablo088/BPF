@@ -35,11 +35,11 @@
 
         .suggestions-list {
             position: absolute;
-            top: 50px;
-            right: 50%;
-            width: 100%;
+            top: 2.5vw;
+            right: 0.5vw;
+            width: 92%;
             background: white;
-            border: 1px solid #ccc;
+            border: 1px solid white;
             max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
@@ -47,6 +47,7 @@
             padding: 0;
             margin: 0;
         }
+        
         .suggestions-list li {
             padding: 8px;
             cursor: pointer;
