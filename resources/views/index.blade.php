@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <style>
         .leaflet-top.leaflet-left {
-            left: 95vw; /* Ajusta este valor según el ancho de tu menú */
+            left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
+            top: 500px;
         }
 
         #map { height: 640px; }
@@ -35,11 +36,11 @@
 
         .suggestions-list {
             position: absolute;
-            top: 50px;
-            right: 50%;
-            width: 100%;
+            top: 2.5vw;
+            right: 0.5vw;
+            width: 92%;
             background: white;
-            border: 1px solid #ccc;
+            border: 1px solid white;
             max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
@@ -47,6 +48,7 @@
             padding: 0;
             margin: 0;
         }
+        
         .suggestions-list li {
             padding: 8px;
             cursor: pointer;
@@ -80,7 +82,12 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+<<<<<<< HEAD
         <!-- <a href="{{route('logout')}}">Cerrar sesion</a> -->
+=======
+        <a href="{{route('dashboard')}}">Dashboard</a>
+        <a href="{{route('logout')}}">Cerrar sesion</a>
+>>>>>>> 5725ad131aa5a1b91291ed42bf375b0ba0ce25f2
         
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
