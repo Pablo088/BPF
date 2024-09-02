@@ -285,15 +285,33 @@
                 });
             }
         });
-    rutas.forEach(ruta => {
+
+
+        let color;
+        rutas.forEach(ruta => {
+            console.log(ruta);
+        switch(ruta.color){
+            case 1:
+            color= 'blue';
+            break;
+            case 2: 
+            color= 'red';
+            break;
+                
+        }
+
+        console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
+
     var polyline = L.polyline(ruta.coordenadas, {
-        color: 'blue',
-        weight: 3,
-        opacity: 0.7,
-        smoothFactor: 1
+    color: color,
+    weight: 3,
+    opacity: 0.7,
+    smoothFactor: 1
     })
+    
     .bindPopup(`Esta es la ruta: ${ruta.nombre}`)
     .addTo(map);
+
     });
     </script>
 </body>

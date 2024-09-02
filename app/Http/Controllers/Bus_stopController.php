@@ -17,16 +17,19 @@ class Bus_stopController extends Controller
     $rutas = [];
     foreach ($roads as $fila) {
         $nombreRuta = $fila->road_group;
+        $tipocolor= $fila->color;
         if (!isset($rutas[$nombreRuta])) {
             $rutas[$nombreRuta] = [
                 'nombre' => $nombreRuta,
-                'coordenadas' => []
+                'coordenadas' => [],
+                'color'=>$tipocolor
             ];
         }
         $rutas[$nombreRuta]['coordenadas'][] = [
             (float)$fila->latitude,
             (float)$fila->longitude
         ];
+       
     }
 
     $rutas = array_values($rutas);
