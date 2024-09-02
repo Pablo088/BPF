@@ -22,7 +22,7 @@ class Bus_stopController extends Controller
                     dd($registry);
                 }
             } */
-        dd($roadgroup);
+        //dd($roadgroup);
         return view('index', compact('busStops', 'roads'));
     }
 
