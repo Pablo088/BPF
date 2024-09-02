@@ -63,6 +63,25 @@
         <input type="text" id="longitude" name="longitude" value= "longitude" required>
         <button type="submit">Añadir Parada</button>
     </form>
+    <form method="POST" action="{{route('bus-stops.rutas')}}">
+        @csrf
+        <label for="road_group">Conjunto ruta:</label>
+        <input type="text" id="road_group" name="road_group" required>
+
+        <label for="latitude">Latitud:</label>
+        <input type="text" id="latitude" name="laitude" required>
+
+        <label for="longitude">Longitud:</label>
+        <input type="text" id="longitude"  name="longitude" required>
+
+        <label for="orden">orden:</label>
+        <input type="text" id="order"  name="order" required>
+
+        <label for="color">color:</label>
+        <input type="text" id="color"  name="color" required>
+
+        <button type="submit">Añadir Ruta</button>
+    </form>
 
     <script src="{{ asset('js\menu.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
