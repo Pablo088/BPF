@@ -278,11 +278,11 @@
         let color;
         rutas.forEach(ruta => {
             console.log(ruta);
-        switch(ruta.color){
-            case azul:
+        switch(ruta.nombre){
+            case 1:
             color= 'blue';
             break;
-            case rojo: 
+            case 1: 
             color= 'red';
             break;
                 
