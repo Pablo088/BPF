@@ -19,5 +19,7 @@ class RolSeeder extends Seeder
 
         Permission::create(['name' => 'bus-stops.index'])->syncRoles([$role1,$role2]);
         Permission::create(['name' => 'bus-stops.admin'])->assignRole($role1);
+        
     }
+    
 }
