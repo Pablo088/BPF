@@ -53,7 +53,7 @@
 
     <div id="map"></div>
 
-    <form method="POST" action="{{route('bus-stops.store')}}">
+    {{-- <form method="POST" action="{{route('bus-stops.store')}}">
         @csrf
         <label for="name">Nombre:</label>
         <input type="text" id="direction" name="direction" value = "direction" required>
@@ -62,7 +62,7 @@
         <label for="longitude">Longitud:</label>
         <input type="text" id="longitude" name="longitude" value= "longitude" required>
         <button type="submit">Añadir Parada</button>
-    </form>
+    </form> --}}
     <form method="POST" action="{{route('bus-stops.routes')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
