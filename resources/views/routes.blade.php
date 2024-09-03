@@ -77,9 +77,6 @@
         <label for="orden">orden:</label>
         <input type="text" id="order"  name="order" required>
 
-        <label for="color">color:</label>
-        <input type="text" id="color"  name="color" required>
-
         <button type="submit">Añadir Ruta</button>
     </form>
 
@@ -90,6 +87,7 @@
     
     <script>
     const busStops = JSON.parse(document.getElementById('busStops').value);
+    var rutas = <?php echo $rutas; ?>;
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
     let checkbox = document.getElementById('mostrarParadas');
     
@@ -210,6 +208,48 @@
                     console.error('Error al obtener la dirección:', error);
                 }); 
         });
+
+        let color;
+        rutas.forEach(ruta => {
+            console.log(ruta);
+        switch(ruta.nombre){
+            case 1:
+            color= 'blue';
+            break;
+            case 1: 
+            color= 'red';
+            break;
+            case 3:
+            color = 'green'; // Green: #00FF00
+            break;
+            case 4:
+            color = 'orange'; // Bright Orange: #FFA500
+            break;
+            case 5:
+            color = 'purple'; // Bright Purple: #8A2BE2
+            break;
+            case 6:
+            color = 'teal'; // Teal: #008080
+            break;
+            case 7:
+            color = 'salmon'; // Salmon: #FA8072
+            break;
+                
+        }
+
+        console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
+
+    var polyline = L.polyline(ruta.coordenadas, {
+    color: color,
+    weight: 3,
+    opacity: 0.7,
+    smoothFactor: 1
+    })
+    
+    .bindPopup(`Esta es la ruta: ${ruta.nombre}`)
+    .addTo(map);
+
+    });
     </script>
 </body>
 </html>

@@ -10,7 +10,9 @@ class Bus_road extends Model
     use HasFactory;
     protected $fillable = [
         'road_id',
+        'road_group',
         'latitude',
         'longitude',
+        'order',
     ];
 }
