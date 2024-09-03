@@ -75,7 +75,7 @@
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
         <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
-        <a href="{{route('bus-stop.routes')}}">Agregar Rutas</a>
+        <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
@@ -283,7 +283,7 @@
             case 1:
             color= 'blue';
             break;
-            case 1: 
+            case 2: 
             color= 'red';
             break;
             case 3:
