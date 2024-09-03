@@ -74,20 +74,17 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        {{-- <form action="{{route('bus-stop.admin')}}" method="GET">
-            <button type="submit">Editar paradas</button>
-        </form> --}}
         <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 76d1b910e973919463bc35786dc399d1ba742310
         <a href="{{route('dashboard')}}">Dashboard</a>
-        <a href="{{route('logout')}}">Cerrar sesion</a>
-
-        
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
     <script>
@@ -104,17 +101,7 @@
     
     <input type="hidden" id="busStops" value="{{$busStops}}">
     
-
-
-    
-    {{-- <a href="{{route('bus-stop.admin')}}"><button onclick="return permiso()">Agregar Parada</button></a> --}}
-
-    {{-- <label>
-        Mostrar Paradas de Colectivo
-        <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
-    </label> --}}
     <div id="map"></div>
-
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
@@ -126,9 +113,7 @@
         let checkbox = document.getElementById('mostrarParadas');
         let locationActive = false;
         let userMarker = null;
-        
-
-        
+                
         //console.log(busStops);
         //const listaParadas = document.getElementById('listaParadas');
 
