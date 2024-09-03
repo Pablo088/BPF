@@ -1,4 +1,4 @@
-1. Diagrama entidad relacion (ya está)
+1. Diagrama entidad relacion (modificar)
 2. Calculo distancia de la parada más cercana al usuario en base a su ubicación
 3. Hacer relaciones entre las lineas y las paradas
 4. Terminar rutas (eliminar y editar, ocultar y mostrar)
