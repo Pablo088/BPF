@@ -79,11 +79,8 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 76d1b910e973919463bc35786dc399d1ba742310
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
@@ -282,10 +279,10 @@
         rutas.forEach(ruta => {
             console.log(ruta);
         switch(ruta.color){
-            case 1:
+            case azul:
             color= 'blue';
             break;
-            case 2: 
+            case rojo: 
             color= 'red';
             break;
                 
