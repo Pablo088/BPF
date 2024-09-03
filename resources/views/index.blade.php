@@ -76,9 +76,7 @@
         <a href="{{route('register')}}">Registrarse</a>
         @can('bus-stop.admin')
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
-        @endcan
-        
-        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+        @endcan        
         <a href="{{route('bus-stop.routes')}}">Agregar Rutas</a>
         <a>
             Mostrar Paradas de Colectivo
