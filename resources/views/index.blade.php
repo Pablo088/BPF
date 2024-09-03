@@ -78,10 +78,14 @@
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
         @endcan
         
+        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+        <a href="{{route('bus-stop.routes')}}">Agregar Rutas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+<<<<<<< HEAD
+
 
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
@@ -280,12 +284,27 @@
         let color;
         rutas.forEach(ruta => {
             console.log(ruta);
-        switch(ruta.color){
+        switch(ruta.nombre){
             case 1:
             color= 'blue';
             break;
-            case 2: 
+            case 1: 
             color= 'red';
+            break;
+            case 3:
+            color = 'green'; // Green: #00FF00
+            break;
+            case 4:
+            color = 'orange'; // Bright Orange: #FFA500
+            break;
+            case 5:
+            color = 'purple'; // Bright Purple: #8A2BE2
+            break;
+            case 6:
+            color = 'teal'; // Teal: #008080
+            break;
+            case 7:
+            color = 'salmon'; // Salmon: #FA8072
             break;
                 
         }
