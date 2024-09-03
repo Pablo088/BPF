@@ -246,7 +246,12 @@
     smoothFactor: 1
     })
     
-    .bindPopup(`Esta es la ruta: ${ruta.nombre}`)
+    .bindPopup(`
+    <div>
+        <p>Esta es la ruta: ${ruta.nombre}</p>
+        <button onclick="eliminarRuta(${ruta.nombre})">Eliminar Ruta</button>
+    </div>`
+    )
     .addTo(map);
 
     });
