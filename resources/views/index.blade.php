@@ -285,6 +285,21 @@
             case 1: 
             color= 'red';
             break;
+            case 3:
+            color = 'green'; // Green: #00FF00
+            break;
+            case 4:
+            color = 'orange'; // Bright Orange: #FFA500
+            break;
+            case 5:
+            color = 'purple'; // Bright Purple: #8A2BE2
+            break;
+            case 6:
+            color = 'teal'; // Teal: #008080
+            break;
+            case 7:
+            color = 'salmon'; // Salmon: #FA8072
+            break;
                 
         }
 
