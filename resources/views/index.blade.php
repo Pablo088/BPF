@@ -74,12 +74,15 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+        @can('bus-stop.admin')
+            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+        @endcan        
         <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+<<<<<<< HEAD
 
 
         <a href="{{route('dashboard')}}">Dashboard</a>
