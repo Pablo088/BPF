@@ -63,7 +63,7 @@
         <input type="text" id="longitude" name="longitude" value= "longitude" required>
         <button type="submit">Añadir Parada</button>
     </form>
-    <form method="POST" action="{{route('bus-stops.routes')}}">
+    <form method="POST" action="{{route('bus-stops.rutas')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
         <input type="text" id="road_group" name="road_group" required>
