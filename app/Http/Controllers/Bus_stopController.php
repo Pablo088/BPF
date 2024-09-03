@@ -92,13 +92,13 @@ class Bus_stopController extends Controller
 
     }
 
-    public function editroute()
+    public function routes()
     {
         $busStops = Bus_Stop::all();
         return view('routes', compact('busStops'));
     }
 
-    public function routes(Request $request){
+    public function storeroutes(Request $request){
         dd($request);
     }
 }

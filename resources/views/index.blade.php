@@ -83,10 +83,7 @@
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
 
-<<<<<<< HEAD
-=======
-        <!-- <a href="{{route('logout')}}">Cerrar sesion</a> -->
->>>>>>> 4d189ac52e3d1119d8603055fc0862575e6c980a
+
         <a href="{{route('dashboard')}}">Dashboard</a>
         <a href="{{route('logout')}}">Cerrar sesion</a>
 
