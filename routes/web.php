@@ -39,6 +39,7 @@ Route::controller(Bus_stopController::class)->group(function(){
   Route::get('/bus-stops/admin/editar/{id}', 'edite')->name('bus-stops.editar');
   Route::post('/bus-stops/admin/edit', 'editar')->name('bus-stops.edit');
   Route::get('/bus-stops/admin/routes', 'routes')->name('bus-stops.routes');
+  Route::post('/bus-stops/admin/storeroutes', 'storeroutes')->name('bus-stops.storeroutes');
 });
 
 Route::get('/menu', [MenuController::class, 'showMenu']);

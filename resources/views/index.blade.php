@@ -75,15 +75,11 @@
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
         <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+        <a href="{{route('bus-stops.routes')}}">Agregar Ruta</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 76d1b910e973919463bc35786dc399d1ba742310
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
