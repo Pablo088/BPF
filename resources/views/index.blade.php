@@ -268,7 +268,15 @@
     });
 
     if (nearestBusStop) {
-        alert(`La parada más cercana es: ${nearestBusStop.direction} (ID: ${nearestBusStop.id}). Distancia: ${Math.round(minDistance)} metros.`);
+        // Crear un marcador en la parada más cercana
+        const nearestMarker = L.marker([nearestBusStop.latitude, nearestBusStop.longitude], { icon: busStopIcon })
+            .addTo(map)
+            .bindPopup(`
+                <b>${nearestBusStop.direction ? nearestBusStop.direction : 'Parada sin nombre'}</b><br>
+                ID: ${nearestBusStop.id}<br>
+                Distancia: ${Math.round(minDistance)} metros.
+            `)
+            .openPopup(); // Mostrar el pop-up inmediatamente
     }
     }
 
