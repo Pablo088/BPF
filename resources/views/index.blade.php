@@ -83,7 +83,7 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
-<<<<<<< HEAD
+
 
 
         <a href="{{route('dashboard')}}">Dashboard</a>
@@ -287,7 +287,7 @@
             case 1:
             color= 'blue';
             break;
-            case 1: 
+            case 2: 
             color= 'red';
             break;
             case 3:

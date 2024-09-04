@@ -93,10 +93,39 @@ class Bus_stopController extends Controller
     public function routes()
     {
         $busStops = Bus_Stop::all();
-        return view('routes', compact('busStops'));
+        $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
+        
+
+        $rutas = [];
+        foreach ($roads as $fila) {
+        $nombreRuta = $fila->road_group;
+        if (!isset($rutas[$nombreRuta])) {
+            $rutas[$nombreRuta] = [
+                'nombre' => $nombreRuta,
+                'coordenadas' => [],
+            ];
+        }
+        $rutas[$nombreRuta]['coordenadas'][] = [
+            (float)$fila->latitude,
+            (float)$fila->longitude
+        ];
+       
+    }
+
+        $rutas = array_values($rutas);
+        $rutas = json_encode($rutas);
+        return view('routes', compact('busStops','rutas'));
     }
 
     public function storeroutes(Request $request){
-        dd($request);
+        //dd($request);
+        $rutas = new Bus_road();
+        $rutas-> road_group = $request->road_group;
+        $rutas-> latitude=$request->laitude;
+        $rutas-> longitude=$request->longitude;
+        $rutas-> order= $request->order;
+        $rutas-> created_at = now();
+        $rutas-> save();
+        return redirect()->back();
     }
 }
