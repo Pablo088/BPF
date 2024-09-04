@@ -225,6 +225,8 @@
                         }
                         
                         locationActive = true;
+
+                        findNearestBusStop(myLocation);
                     },
                     function(error) {
                         console.error('Error al obtener la ubicación: ', error);
@@ -248,7 +250,24 @@
             
             //map.setView([-33.009668, -58.521428], 14);
         }
-       
+        function findNearestBusStop(myLocation) {
+    let nearestBusStop = null;
+    let minDistance = Infinity;
+
+    busStops.forEach(busStop => {
+        const busStopLatLng = L.latLng(busStop.latitude, busStop.longitude);
+        const distance = myLocation.distanceTo(busStopLatLng); // Calcula la distancia en metros
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestBusStop = busStop;
+        }
+    });
+
+    if (nearestBusStop) {
+        alert(`La parada más cercana es: ${nearestBusStop.direction} (ID: ${nearestBusStop.id}). Distancia: ${Math.round(minDistance)} metros.`);
+    }
+    }
 
 
         const searchInput = document.getElementById('searchInput');
