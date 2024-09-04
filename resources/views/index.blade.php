@@ -202,13 +202,14 @@
         L.control.locationButton({ position: 'bottomright' }).addTo(map);
 
         
-        let userMarker = null;
+        
         function showMyLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         const lat = position.coords.latitude;
                         const lng = position.coords.longitude;
+                        const myLocation = L.latLng(lat, lng);
 
                         if (userMarker) {
                             removeCurrentLocation()
@@ -251,7 +252,7 @@
             
             //map.setView([-33.009668, -58.521428], 14);
         }
-        
+
     function findNearestBusStop(myLocation) {
     let nearestBusStop = null;
     let minDistance = Infinity;
