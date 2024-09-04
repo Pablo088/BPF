@@ -118,12 +118,16 @@ class Bus_stopController extends Controller
     }
 
     public function storeroutes(Request $request){
-        //dd($request);
-        $rutas = new Bus_road();
+        
+        $latitu=$request->input("latitude");
+        dd($latitu[]);
+
+
+       /*  $rutas = new Bus_road();
         $rutas-> road_group = $request->road_group;
         $rutas-> latitude=$request->laitude;
         $rutas-> longitude=$request->longitude;
-        $rutas-> order= $request->order;
+        $rutas-> order= $request->order; */
         $rutas-> created_at = now();
         $rutas-> save();
         return redirect()->back();

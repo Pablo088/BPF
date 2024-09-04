@@ -68,15 +68,17 @@
         <label for="road_group">Conjunto ruta:</label>
         <input type="text" id="road_group" name="road_group" required>
 
-        <label for="latitude">Latitud:</label>
-        <input type="text" id="latitude" name="laitude" required>
+        <label for="latitude"></label>
+        <input type="hidden" id="latitude" name="latitude[]" required>
 
-        <label for="longitude">Longitud:</label>
-        <input type="text" id="longitude"  name="longitude" required>
+        <label for="longitude"></label>
+        <input type="hidden" id="longitude"  name="longitude[]" required>
 
-        <label for="orden">orden:</label>
-        <input type="text" id="order"  name="order" required>
+        {{-- <label for="orden">orden:</label>
+        <a type="text" id="order"  name="order" required> --}}
 
+        <label for="puntos">Puntos seleccionados:</label>
+        <a id="puntos"></a>
         <button type="submit">Añadir Ruta</button>
     </form>
 
@@ -173,40 +175,34 @@
     document.body.removeChild(tempInput);
 }
 
-   var callesSeleccionadas = [];
+   var routelat = [];
+   var routelong = [];
+   var cantidadrutas = 0;
     map.on('click', function(e) {
             // Obtener las coordenadas donde se hizo clic
             var latlng = e.latlng;
 
-            var url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latlng.lat + '&lon=' + latlng.lng;
+            var rlat=latlng.lat;
+            var rlong=latlng.lng;
+            cantidadrutas = cantidadrutas+1;
+
+            routelat.push(rlat);
+            routelong.push(rlong);
+
             
-            // Realizar la solicitud HTTP
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Obtener la dirección del resultado
-                    var calle = data.address.road;
-                    //alert(calle);
 
-                    callesSeleccionadas.push(calle);
-                    
+            console.log(routelat);
+            console.log(routelong);
+            console.log(cantidadrutas);
 
-                    console.log(callesSeleccionadas);
-                    //console.log(data);
-                    
-                    // Mostrar la dirección en un alert
-                    
-                    for (var i = 0; i < callesSeleccionadas.length; i++) {
-                        document.getElementById("direction").value = callesSeleccionadas[i-1] + " y " + callesSeleccionadas[i];
-                    }
-                    
+            document.getElementById("puntos").innerHTML= cantidadrutas;
 
-                    
+           
+            document.getElementById("latitude").innerHTML= routelat;
+            document.getElementById("longitude").innerHTML= routelong;
 
-                })
-                .catch(error => {
-                    console.error('Error al obtener la dirección:', error);
-                }); 
+
+           
         });
 
         let color;
@@ -216,7 +212,7 @@
             case 1:
             color= 'blue';
             break;
-            case 1: 
+            case 2: 
             color= 'red';
             break;
             case 3:
