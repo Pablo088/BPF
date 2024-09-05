@@ -66,7 +66,7 @@
     <form method="POST" action="{{route('bus-stops.storeroutes')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
-        <input type="number" id="road_group" name="road_group" required>
+        <input type="number" min="1" max="9" id="road_group" name="road_group" required>
 
         <label for="latitude"></label>
         <input type="hidden" id="latitude" name="latitude[]" required>
@@ -175,9 +175,10 @@
     document.body.removeChild(tempInput);
 }
 
-   var routelat = [];
-   var routelong = [];
-   var cantidadrutas = 0;
+    var routelat = [];
+    var routelong = [];
+    var cantidadrutas = 0;
+    var routes = [];
     map.on('click', function(e) {
             // Obtener las coordenadas donde se hizo clic
             var latlng = e.latlng;
@@ -189,11 +190,29 @@
             routelat.push(rlat);
             routelong.push(rlong);
 
-            
+           var ruta = {
+                lat: routelat,
+                lng: routelong,
+           }
 
-            console.log(routelat);
+
+            
+            routes.push(latlng);
+            /* var polyline = L.polyline(latlng, {
+                color: 'black', 
+                weight: 4,
+                opacity: 1,
+                smoothFactor: 1,
+            }).addTo(map); */
+            
+            var polyline = L.polyline(routes, {color: 'black'}).addTo(map);
+
+            console.log(rutex);
+            console.log(routes);
+            console.log(ruta);
+            /* console.log(routelat);
             console.log(routelong);
-            console.log(cantidadrutas);
+            console.log(cantidadrutas); */
 
             document.getElementById("puntos").innerHTML= cantidadrutas;
         });
