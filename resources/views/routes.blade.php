@@ -66,17 +66,19 @@
     <form method="POST" action="{{route('bus-stops.storeroutes')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
-        <input type="text" id="road_group" name="road_group" required>
+        <input type="number" id="road_group" name="road_group" required>
 
-        <label for="latitude">Latitud:</label>
-        <input type="text" id="latitude" name="laitude" required>
+        <label for="latitude"></label>
+        <input type="hidden" id="latitude" name="latitude[]" required>
 
-        <label for="longitude">Longitud:</label>
-        <input type="text" id="longitude"  name="longitude" required>
+        <label for="longitude"></label>
+        <input type="hidden" id="longitude"  name="longitude[]" required>
 
-        <label for="orden">orden:</label>
-        <input type="text" id="order"  name="order" required>
+        {{-- <label for="orden">orden:</label>
+        <a type="text" id="order"  name="order" required> --}}
 
+        <label for="puntos">Puntos seleccionados:</label>
+        <a id="puntos"></a>
         <button type="submit">Añadir Ruta</button>
     </form>
 
@@ -173,50 +175,63 @@
     document.body.removeChild(tempInput);
 }
 
-   var callesSeleccionadas = [];
+   var routelat = [];
+   var routelong = [];
+   var cantidadrutas = 0;
     map.on('click', function(e) {
             // Obtener las coordenadas donde se hizo clic
             var latlng = e.latlng;
 
-            var url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latlng.lat + '&lon=' + latlng.lng;
+            var rlat=latlng.lat;
+            var rlong=latlng.lng;
+            cantidadrutas = cantidadrutas+1;
+
+            routelat.push(rlat);
+            routelong.push(rlong);
+
             
-            // Realizar la solicitud HTTP
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Obtener la dirección del resultado
-                    var calle = data.address.road;
-                    //alert(calle);
 
-                    callesSeleccionadas.push(calle);
-                    
+            console.log(routelat);
+            console.log(routelong);
+            console.log(cantidadrutas);
 
-                    console.log(callesSeleccionadas);
-                    //console.log(data);
-                    
-                    // Mostrar la dirección en un alert
-                    
-                    for (var i = 0; i < callesSeleccionadas.length; i++) {
-                        document.getElementById("direction").value = callesSeleccionadas[i-1] + " y " + callesSeleccionadas[i];
-                    }
-                    
-
-                    
-
-                })
-                .catch(error => {
-                    console.error('Error al obtener la dirección:', error);
-                }); 
+            document.getElementById("puntos").innerHTML= cantidadrutas;
         });
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevenir el envío por defecto del formulario
+                
+                var form = this;
+                routelat.forEach(function(lat, index) {
+                    var latInput = document.createElement('input');
+                    latInput.type = 'hidden';
+                    latInput.name = 'latitude[]';
+                    latInput.value = lat;
+                    form.appendChild(latInput);
+                });
+                
+                routelong.forEach(function(long, index) {
+                    var longInput = document.createElement('input');
+                    longInput.type = 'hidden';
+                    longInput.name = 'longitude[]';
+                    longInput.value = long;
+                    form.appendChild(longInput);
+                });
+                
+                form.submit();
+            });
+        
+
 
         let color;
         rutas.forEach(ruta => {
             console.log(ruta);
+
         switch(ruta.nombre){
             case 1:
             color= 'blue';
             break;
-            case 1: 
+            case 2: 
             color= 'red';
             break;
             case 3:
@@ -234,6 +249,12 @@
             case 7:
             color = 'salmon'; // Salmon: #FA8072
             break;
+            case 8:
+            color = 'yellow'; // Yellow: #FFFF00
+            break;
+            case 9:
+            color = 'cian'; // cian: #00FFFF
+            break;
                 
         }
 
@@ -241,15 +262,15 @@
 
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
-    weight: 3,
-    opacity: 0.7,
-    smoothFactor: 1
+    weight: 4,
+    opacity: 1,
+    smoothFactor: 1,
     })
     
     .bindPopup(`
     <div>
         <p>Esta es la ruta: ${ruta.nombre}</p>
-        <button onclick="eliminarRuta(${ruta.nombre})">Eliminar Ruta</button>
+        <a href="/bus-stops/admin/routes/eliminar/${ruta.nombre}" id=eliminar > Eliminar </a>
     </div>`
     )
     .addTo(map);

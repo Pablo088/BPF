@@ -201,13 +201,14 @@
         L.control.locationButton({ position: 'bottomright' }).addTo(map);
 
         
-
+        
         function showMyLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         const lat = position.coords.latitude;
                         const lng = position.coords.longitude;
+                        const myLocation = L.latLng(lat, lng);
 
                         if (userMarker) {
                             removeCurrentLocation()
@@ -225,6 +226,8 @@
                         }
                         
                         locationActive = true;
+
+                        findNearestBusStop(myLocation);
                     },
                     function(error) {
                         console.error('Error al obtener la ubicación: ', error);
@@ -248,7 +251,33 @@
             
             //map.setView([-33.009668, -58.521428], 14);
         }
-       
+
+    function findNearestBusStop(myLocation) {
+    let nearestBusStop = null;
+    let minDistance = Infinity;
+
+    busStops.forEach(busStop => {
+        const busStopLatLng = L.latLng(busStop.latitude, busStop.longitude);
+        const distance = myLocation.distanceTo(busStopLatLng); // Calcula la distancia en metros
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestBusStop = busStop;
+        }
+    });
+
+    if (nearestBusStop) {
+        // Crear un marcador en la parada más cercana
+        const nearestMarker = L.marker([nearestBusStop.latitude, nearestBusStop.longitude], { icon: busStopIcon })
+            .addTo(map)
+            .bindPopup(`
+                <b>${nearestBusStop.direction ? nearestBusStop.direction : 'Parada sin nombre'}</b><br>
+                ID: ${nearestBusStop.id}<br>
+                Distancia: ${Math.round(minDistance)} metros.
+            `)
+            .openPopup(); // Mostrar el pop-up inmediatamente
+    }
+    }
 
 
         const searchInput = document.getElementById('searchInput');
@@ -304,7 +333,12 @@
             case 7:
             color = 'salmon'; // Salmon: #FA8072
             break;
-                
+            case 8:
+            color = 'yellow'; // Yellow: #FFFF00
+            break;
+            case 9:
+            color = 'cian'; // cian: #00FFFF
+            break;
         }
 
         console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
@@ -316,7 +350,7 @@
     smoothFactor: 1
     })
     
-    .bindPopup(`Esta es la ruta: ${ruta.nombre}`)
+    .bindPopup(`Esta es la ruta ${ruta.nombre}`)
     .addTo(map);
 
     });

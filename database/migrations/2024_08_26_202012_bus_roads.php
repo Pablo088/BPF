@@ -13,7 +13,7 @@ return new class extends Migration
     { 
         Schema::create('bus_roads', function (Blueprint $table) {
             $table->id();  
-            $table->integer('road_group');
+            $table->string('road_group');
             $table->string('latitude',20, 7);
             $table->string('longitude',20, 7);
             $table->integer('order');
