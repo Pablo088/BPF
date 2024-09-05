@@ -135,4 +135,13 @@ class Bus_stopController extends Controller
         }
 
         return redirect()->back()->with('success', 'Ruta guardada correctamente');
-    }}
+    }
+    public function eliminarRutas($road_group){
+        //dd($road_group);
+        $road_groups=$road_group;
+        Bus_road::where('road_group', $road_groups)->delete();
+        return redirect()->back()->with('success', 'Ruta eliminada correctamente');
+    }
+}
+
+    

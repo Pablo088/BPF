@@ -270,7 +270,7 @@
     .bindPopup(`
     <div>
         <p>Esta es la ruta: ${ruta.nombre}</p>
-        <button onclick="eliminarRuta(${ruta.nombre})">Eliminar Ruta</button>
+        <a href="/bus-stops/admin/routes/eliminar/${ruta.nombre}" id=eliminar > Eliminar </a>
     </div>`
     )
     .addTo(map);
