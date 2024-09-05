@@ -66,7 +66,7 @@
     <form method="POST" action="{{route('bus-stops.storeroutes')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
-        <input type="text" id="road_group" name="road_group" required>
+        <input type="number" id="road_group" name="road_group" required>
 
         <label for="latitude"></label>
         <input type="hidden" id="latitude" name="latitude[]" required>
@@ -196,18 +196,37 @@
             console.log(cantidadrutas);
 
             document.getElementById("puntos").innerHTML= cantidadrutas;
-
-           
-            document.getElementById("latitude").innerHTML= routelat;
-            document.getElementById("longitude").innerHTML= routelong;
-
-
-           
         });
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevenir el envío por defecto del formulario
+                
+                var form = this;
+                routelat.forEach(function(lat, index) {
+                    var latInput = document.createElement('input');
+                    latInput.type = 'hidden';
+                    latInput.name = 'latitude[]';
+                    latInput.value = lat;
+                    form.appendChild(latInput);
+                });
+                
+                routelong.forEach(function(long, index) {
+                    var longInput = document.createElement('input');
+                    longInput.type = 'hidden';
+                    longInput.name = 'longitude[]';
+                    longInput.value = long;
+                    form.appendChild(longInput);
+                });
+                
+                form.submit();
+            });
+        
+
 
         let color;
         rutas.forEach(ruta => {
             console.log(ruta);
+
         switch(ruta.nombre){
             case 1:
             color= 'blue';
@@ -230,6 +249,12 @@
             case 7:
             color = 'salmon'; // Salmon: #FA8072
             break;
+            case 8:
+            color = 'yellow'; // Yellow: #FFFF00
+            break;
+            case 9:
+            color = 'cian'; // cian: #00FFFF
+            break;
                 
         }
 
@@ -237,9 +262,9 @@
 
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
-    weight: 3,
-    opacity: 0.7,
-    smoothFactor: 1
+    weight: 4,
+    opacity: 1,
+    smoothFactor: 1,
     })
     
     .bindPopup(`

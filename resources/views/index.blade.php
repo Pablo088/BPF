@@ -334,7 +334,12 @@
             case 7:
             color = 'salmon'; // Salmon: #FA8072
             break;
-                
+            case 8:
+            color = 'yellow'; // Yellow: #FFFF00
+            break;
+            case 9:
+            color = 'cian'; // cian: #00FFFF
+            break;
         }
 
         console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
@@ -346,7 +351,7 @@
     smoothFactor: 1
     })
     
-    .bindPopup(`Esta es la ruta: ${ruta.nombre}`)
+    .bindPopup(`Esta es la ruta ${ruta.nombre}`)
     .addTo(map);
 
     });
