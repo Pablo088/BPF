@@ -10,7 +10,10 @@ class BusCompany extends Model
 {
     use HasFactory;
 
-    public function BusLine(){
-        $this->hasMany(Bus_line::class,'company_id','id');
+    protected $fillable = [
+        'company_name',
+    ];
+    public function Bus_Line(){
+        return $this->belongsTo(BusCompany::class);
     }
 }
