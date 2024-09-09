@@ -84,7 +84,7 @@
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
 
-
+        <a href="{{route('LinesView')}}">Lineas</a>
 
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>

@@ -41,6 +41,9 @@ Route::controller(Bus_stopController::class)->group(function(){
   Route::get('/bus-stops/admin/routes', 'routes')->name('bus-stops.routes');
   Route::get('/bus-stops/admin/routes/eliminar/{road_group}', 'eliminarRutas')->name('bus-stops.routes.eliminar');
   Route::post('/bus-stops/admin/storeroutes', 'storeroutes')->name('bus-stops.storeroutes');
+  Route::get('/Lines', function () {
+    return view('Lines');
+    })->name('LinesView');
 });
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
