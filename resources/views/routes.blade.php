@@ -13,9 +13,6 @@
         .leaflet-top.leaflet-left {
             left: 95vw; /* Ajusta este valor según el ancho de tu menú */
         }
-
-        #map { height: 600px; }
-        
         #eliminar {
         color: white;
         background-color: #ff0000;
@@ -31,12 +28,65 @@
         font-size: 0.875rem;
         text-align: right;
         }
+
+        .leaflet-top.leaflet-left {
+            left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
+            top: 500px;
+        }
+
+        #map { height: 595px; }
+
+        #searchContainer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000; /* Asegura que esté encima del mapa */
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #searchInput {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .suggestions-list {
+            position: absolute;
+            top: 2.5vw;
+            right: 0.5vw;
+            width: 92%;
+            background: white;
+            border: 1px solid white;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .suggestions-list li {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestions-list li:hover {
+            background: #f0f0f0;
+        }
     </style>
 </head>
 <body>
 
     <div class="open-menu" onclick="openMenu()">&#9776;</div>
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="Buscar parada...">
+        <ul id="suggestions" class="suggestions-list"></ul>
+    </div>
     
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
@@ -63,6 +113,7 @@
         <input type="text" id="longitude" name="longitude" value= "longitude" required>
         <button type="submit">Añadir Parada</button>
     </form> --}}
+    <button onclick="back()">↩</button>
     <form method="POST" action="{{route('bus-stops.storeroutes')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
@@ -80,7 +131,9 @@
         <label for="puntos">Puntos seleccionados:</label>
         <a id="puntos"></a>
         <button type="submit">Añadir Ruta</button>
+        
     </form>
+    
 
     <script src="{{ asset('js\menu.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -206,8 +259,8 @@
             }).addTo(map); */
             
             var polyline = L.polyline(routes, {color: 'black'}).addTo(map);
-
-            console.log(rutex);
+           
+            console.log(cantidadrutas);
             console.log(routes);
             console.log(ruta);
             /* console.log(routelat);
@@ -217,6 +270,34 @@
             document.getElementById("puntos").innerHTML= cantidadrutas;
         });
 
+        function back() {
+            if (routelat.length > 0 && routelong.length > 0) {
+                routelat.pop();
+                routelong.pop();
+                cantidadrutas--;
+
+                // Actualizar la polyline en el mapa
+                routes.pop();
+                map.eachLayer(function (layer) {
+                    if (layer instanceof L.Polyline && layer.options.color ==="black") {
+                        map.removeLayer(layer);
+                    }
+                });
+                if (routes.length > 0) {
+                    L.polyline(routes, {color: 'black'}).addTo(map);
+                }
+
+                // Actualizar el contador de puntos en la interfaz
+                document.getElementById("puntos").innerHTML = cantidadrutas;
+
+                console.log(routelat);
+                console.log(routelong);
+                console.log("Punto eliminado. Puntos restantes:", cantidadrutas);
+            } else {
+                console.log("No hay puntos para eliminar");
+            }
+        }
+        
         document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault(); // Prevenir el envío por defecto del formulario
                 
@@ -241,6 +322,30 @@
             });
         
 
+            const searchInput = document.getElementById('searchInput');
+        const suggestions = document.getElementById('suggestions');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            suggestions.innerHTML = '';
+
+            if (query.length > 0) {
+                const filteredStops = busStops.filter(busStop =>
+                    busStop.direction && busStop.direction.toLowerCase().includes(query)
+                );
+
+                filteredStops.forEach(busStop => {
+                    const li = document.createElement('li');
+                    li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
+                    li.addEventListener('click', () => {
+                        map.setView([busStop.latitude, busStop.longitude], 16);
+                        searchInput.value = busStop.direction;
+                        suggestions.innerHTML = '';
+                    });
+                    suggestions.appendChild(li);
+                });
+            }
+        });
 
         let color;
         rutas.forEach(ruta => {
