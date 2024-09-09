@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Bus_stopController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\LineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,10 @@ Route::controller(Bus_stopController::class)->group(function(){
   Route::get('/bus-stops/admin/routes/eliminar/{road_group}', 'eliminarRutas')->name('bus-stops.routes.eliminar');
   Route::get('/bus-stops/admin/routes', 'routes')->name('bus-stops.routes');//->middleware('solo.admin');
   Route::post('/bus-stops/admin/storeroutes', 'storeroutes')->name('bus-stops.storeroutes');
-  Route::get('/Lines', function () {
-    return view('Lines');
-    })->name('LinesView');
+});
+
+Route::controller(LineController::class)->group(function(){
+Route::get('/Lines', 'Lines')->name('LinesView');
 });
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
