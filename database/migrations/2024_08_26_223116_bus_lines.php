@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('bus_lines', function (Blueprint $table) {
             $table->id();
             $table->string('line_name');
-            $table->string('company_name');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('bus_company')->onDelete('cascade');
             $table->time('horarios');
             $table->timestamps();
         });
