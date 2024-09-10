@@ -6,3 +6,15 @@
 6. Desarrollar la vista del usuario registrado
 7. Terminar la cuestion de los roles
 8. Agregar opcion para buscar/mostrar paradas en base a su linea
+
+
+
+
+Rutas:
+Ruta 1, 2, 3, 4, 5 Primero de agosto - Buses gchu
+Rutas 6, 7 Santa rita 
+Rutas 8, 9 El verde
+
+Ruta 1: 1A
+Ruta 2: 1B
+Ruta 3: 4A
