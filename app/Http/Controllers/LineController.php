@@ -11,7 +11,7 @@ class LineController extends Controller
     public function Lines(){
         //$lines = Bus_line::all();
         $lines = Bus_line::with('BusCompany')->get();
-        dd($lines);
+        //dd($lines);
         return view('Lines', compact('lines'));
     }
 }

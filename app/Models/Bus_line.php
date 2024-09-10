@@ -16,7 +16,7 @@ class Bus_line extends Model
     ];
     
     public function BusCompany(){
-       return $this->hasMany(Bus_line::class, 'company_id', 'id');
+        return $this->belongsTo(BusCompany::class, 'company_id', 'id');
     }
 
     public function LinesHasStop(){
