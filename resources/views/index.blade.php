@@ -69,20 +69,23 @@
             <input type="text" id="searchInput" placeholder="Buscar parada...">
             <ul id="suggestions" class="suggestions-list"></ul>
     </div>
-
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a> {{-- temporal --}}   
-        <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a> {{-- temporal --}}
-        {{-- @can('bus-stop.admin')
+        @role('admin')
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
+        @endrole
+        @can('bus-stops.routes')
             <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
-        @endcan --}}
+        @endcan
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
+        </a>
+        <a>
+            Mostrar Rutas de Colectivo
+            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sr()" checked> 
         </a>
 
         <a href="{{route('LinesView')}}">Lineas</a>
@@ -155,6 +158,14 @@
         addMarkers();
         
         function sm() {
+            if (checkbox.checked) {
+                addMarkers();
+            } else {
+                removeMarkers();
+            }
+        }
+
+        function sr() {
             if (checkbox.checked) {
                 addMarkers();
             } else {
@@ -313,36 +324,76 @@
         let color;
         rutas.forEach(ruta => {
             console.log(ruta);
-        switch(ruta.nombre){
+         switch(ruta.nombre){
             case 1:
-            color= 'blue';
+            color= 'yellow'; // Yellow: #FFFF00 || 1A
             break;
             case 2: 
-            color= 'red';
+            color= 'red'; // Red: #FF0000 || 1B
             break;
             case 3:
-            color = 'green'; // Green: #00FF00
+            color = 'teal'; // Teal: #008080 || 4A
             break;
             case 4:
-            color = 'orange'; // Bright Orange: #FFA500
+            color = 'orange'; // Bright Orange: #FFA500 || 4A1
             break;
             case 5:
-            color = 'purple'; // Bright Purple: #8A2BE2
+            color = 'salmon'; // Salmon: #FA8072|| 4B
             break;
             case 6:
-            color = 'teal'; // Teal: #008080
+            color = 'blue'; // Blue: #0000FF || 2A
             break;
             case 7:
-            color = 'salmon'; // Salmon: #FA8072
+            color = 'purple'; // Bright Purple: #8A2BE2  || 2B
             break;
             case 8:
-            color = 'yellow'; // Yellow: #FFFF00
+            color = 'green'; // Yellow: #FFFF00 || 5A - vuelta
             break;
             case 9:
-            color = 'cian'; // cian: #00FFFF
+            color = '#00FFFF' ; // cian: #00FFFF || 5A - ida
             break;
-        }
-
+            case 10:
+            color = 'pink'; // Pink: #FFC0CB || 5B - vuelta
+            break;
+            case 11:
+            color = 'brown'; // Brown: #A52A2A || 5B - ida
+            break;
+        } 
+        /* switch(ruta.nombre){
+            case 1:
+            color= '#F7E300'; // 1A
+            break;
+            case 2: 
+            color= '#FFFF99'; // 1B
+            break;
+            case 3:
+            color = '#FFD700'; // 4A
+            break;
+            case 4:
+            color = '#FFCC00'; // 4A1
+            break;
+            case 5:
+            color = '#FFAE42'; // 4B
+            break;
+            case 6:
+            color = '#87CEEB'; // 2A
+            break;
+            case 7:
+            color = '#003366'; // 2B
+            break;
+            case 8:
+            color = '#32CD32'; // 5A - vuelta
+            break;
+            case 9:
+            color = '#77DD77' ; // 5A - ida
+            break;
+            case 10:
+            color = '#228B22'; // 5B - vuelta
+            break;
+            case 11:
+            color = '#6B8E23'; // 5B - ida
+            break;
+        } */
         console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
 
     var polyline = L.polyline(ruta.coordenadas, {
