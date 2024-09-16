@@ -44,7 +44,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $user->assignRole('User');
-        $user->givePermissionTo('bus-stops.index');
         event(new Registered($user));
 
         Auth::login($user);

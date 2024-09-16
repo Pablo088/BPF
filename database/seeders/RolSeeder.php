@@ -14,16 +14,16 @@ class RolSeeder extends Seeder
      */
     public function run(): void
     {
-        $role1 = Role::create(['name'=>'Admin']);
-        $role2 = Role::create(['name'=>'User']);
+        $role1 = Role::create(['guard_name'=>'admin','name'=>'Admin']);
+        $role2 = Role::create(['guard_name'=>'user','name'=>'User']);
 
-        Permission::create(['name' => 'bus-stops.index'])->syncRoles([$role1,$role2]);
+        Permission::create(['name' => 'bus-stops.index']);
         
-        Permission::create(['name' => 'bus-stops.admin'])->assignRole($role1);
-        Permission::create(['name' => 'bus-stops.eliminar'])->assignRole($role1);
-        Permission::create(['name' => 'bus-stops.editar'])->assignRole($role1);
-        Permission::create(['name' => 'bus-stops.route'])->assignRole($role1);
-        Permission::create(['name' => 'bus-stops.routes.eliminar'])->assignRole($role1);
+        Permission::create(['guard_name'=>'admin','name' => 'bus-stops.admin'])->assignRole($role1);
+        Permission::create(['guard_name'=>'admin','name' => 'bus-stops.eliminar'])->assignRole($role1);
+        Permission::create(['guard_name'=>'admin','name' => 'bus-stops.editar'])->assignRole($role1);
+        Permission::create(['guard_name'=>'admin','name' => 'bus-stops.route'])->assignRole($role1);
+        Permission::create(['guard_name'=>'admin','name' => 'bus-stops.routes.eliminar'])->assignRole($role1);
     }
     
 }

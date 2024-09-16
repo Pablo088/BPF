@@ -69,14 +69,15 @@
             <input type="text" id="searchInput" placeholder="Buscar parada...">
             <ul id="suggestions" class="suggestions-list"></ul>
     </div>
-
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        @can('bus-stop.admin')
+        @role('admin')
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
-            <a href="{{route('bus-stop.routes')}}">Agregar Rutas</a>
+        @endrole
+        @can('bus-stops.routes')
+            <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
         @endcan
         <a>
             Mostrar Paradas de Colectivo

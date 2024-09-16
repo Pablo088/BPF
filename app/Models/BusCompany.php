@@ -14,6 +14,6 @@ class BusCompany extends Model
         'company_name',
     ];
     public function Bus_Line(){
-        return $this->belongsTo(BusCompany::class);
+        return $this->hasMany(BusLine::class, 'company_id', 'id');
     }
 }

@@ -18,6 +18,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $guard_name = ['user', 'admin'];
+    public function guardName() { return ['user', 'admin']; }
     protected $fillable = [
         'name',
         'email',

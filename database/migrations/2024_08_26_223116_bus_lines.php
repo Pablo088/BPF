@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('line_name');
             $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('bus_company')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('bus_companies')->onDelete('cascade');
             $table->time('horarios');
             $table->timestamps();
         });
