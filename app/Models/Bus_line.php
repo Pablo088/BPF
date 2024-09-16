@@ -21,16 +21,11 @@ class Bus_line extends Model
         return $this->belongsTo(BusCompany::class, 'company_id', 'id');
     }
 
-<<<<<<< HEAD
-    public function LinesHasStop(){
-        return $this->hasMany(LineHasStop::class);
-=======
     public function linesHasStops(){
         return $this->hasMany(LineHasStop::class, 'busLine_id', 'id');
     }
 
     public function busStops(){
         return $this->belongsToMany(Bus_stop::class, 'line_has_stops', 'busLine_id', 'busStop_id');
->>>>>>> f4e997bbce6f8353f130c71ce4e9c78ba8132f90
     }
 }

@@ -72,34 +72,7 @@
     </style>
 </head>
 <body>
-<div class="open-menu" onclick="openMenu()">&#9776;</div>
-    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-    <div id="menu" class="menu">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-        <a href="{{ route('login') }}">Iniciar sesión</a>
-        <a href="{{route('register')}}">Registrarse</a>
-        @can('bus-stop.admin')
-            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
-            <a href="{{route('bus-stop.routes')}}">Agregar Rutas</a>
-        @endcan
-        <a>
-            Mostrar Paradas de Colectivo
-            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
-        </a>
-    </div>
-    <script src="{{ asset('js\menu.js') }}"></script>
-    <script>
-        function permiso(){
-            let respuesta = confirm('¿Queres agregar una parada?');
-
-            if(respuesta == true){
-                return true;
-            } else {
-                return false;
-            }
-        }
-</script>
 
 <div id="contenedor1">
     <table class="table">
