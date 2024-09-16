@@ -32,14 +32,16 @@
             
 
         }
-        .modal {
+    .modal {
     display: none; /* Oculto por defecto */
     position: fixed;
-    z-index: 1; /* En la parte superior */
-    left: 40%;
-    top: 10%;
-    width: 50%; /* Ancho completo */
-    height: 80%; /* Alto completo */
+    z-index: 1000; /* En la parte superior */
+    left: 68%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Ancho completo */
+    height: auto; /* Alto completo */
+    max-height: 80%;
     overflow: auto; /* Agregar scroll si es necesario */
     background-color: rgb(0,0,0); /* Color de fondo con opacidad */
     background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
@@ -137,14 +139,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalInfo = document.getElementById('modalInfo');
 
     rows.forEach(row => {
-        row.addEventListener('click', function() {
-            
+    row.addEventListener('click', function() {
+        const id = this.querySelector('td:nth-child(4)').textContent;
+        fetch(`/Lines/buscar/${id}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                let stopsInfo = '';
 
-            const id = this.querySelector('td:nth-child(4)').textContent;
-            modalInfo.textContent = `Detalles para la línea con ID: ${id}`;
-            modal.style.display = 'block';
-        });
+                // Iterar sobre las paradas de autobús (busStops)
+                data.bus_stops.forEach(stop => {
+                    stopsInfo += `
+                        <strong>Dirección de la parada:</strong> ${stop.direction} <br>
+                        <strong>Latitud:</strong> ${stop.latitude} <br>
+                        <strong>Longitud:</strong> ${stop.longitude} <br><br>
+                    `;
+                });
+
+                
+                modalInfo.innerHTML = `
+                    <strong>Nombre de la línea:</strong> ${data.line_name} <br>
+                    <strong>Horario:</strong> ${data.horarios} <br><br>
+                    ${stopsInfo}
+                `;
+                modal.style.display = 'block';
+            });
     });
+});
 
     closeModal.addEventListener('click', function() {
         modal.style.display = 'none';

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BusCompany;
+use App\Models\LineHasStop;
+use App\Models\Bus_stop;
 
 class Bus_line extends Model
 {
@@ -19,7 +21,11 @@ class Bus_line extends Model
         return $this->belongsTo(BusCompany::class, 'company_id', 'id');
     }
 
-    public function LinesHasStop(){
-        return $this->belongsTo(LineHasStop::class);
+    public function linesHasStops(){
+        return $this->hasMany(LineHasStop::class, 'busLine_id', 'id');
+    }
+
+    public function busStops(){
+        return $this->belongsToMany(Bus_stop::class, 'line_has_stops', 'busLine_id', 'busStop_id');
     }
 }

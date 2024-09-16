@@ -49,7 +49,8 @@ Route::middleware('solo.admin')->group(function (){
 });
 
 Route::controller(LineController::class)->group(function(){
-Route::get('/Lines', 'Lines')->name('LinesView');
+    Route::get('/Lines', 'Lines')->name('LinesView');
+    Route::get('/Lines/buscar/{id}', 'LinesBusc')->name('LineBusc');
 });
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
