@@ -15,8 +15,20 @@ Ruta 1, 2, 3, 4, 5 Primero de agosto - Buses gchu
 Rutas 6, 7 Santa rita 
 Rutas 8, 9 El verde
 
+Primero de agosto:
 Ruta 1: 1A
 Ruta 2: 1B
 Ruta 3: 4A
 Ruta 4: 4A1
 Ruta 5: 4B
+-------------------------------------------------------------------------------------------------
+Santa rita:
+Ruta 6: 2A
+Ruta 7: 2B
+-------------------------------------------------------------------------------------------------
+El verde3:
+Ruta 8: 5A - vuelta
+Ruta 9: 5A - ida
+Ruta 10: 5B - vuelta
+Ruta 11: 5B - ida
+
