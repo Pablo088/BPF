@@ -97,6 +97,10 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
+        <a>
+            Mostrar Rutas de Colectivo
+            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sr()" checked> 
+        </a>
     </div>
 
     <input type="hidden" id="busStops" value="{{$busStops}}">
@@ -117,7 +121,7 @@
     <form method="POST" action="{{route('bus-stops.storeroutes')}}">
         @csrf
         <label for="road_group">Conjunto ruta:</label>
-        <input type="number" min="1" max="9" id="road_group" name="road_group" required>
+        <input type="number" min="1" max="11" id="road_group" name="road_group" required>
 
         <label for="latitude"></label>
         <input type="hidden" id="latitude" name="latitude[]" required>
@@ -195,8 +199,14 @@
         addMarkers();
     } else {
        removeMarkers();
-    }
-}
+    }}
+
+function sr() {
+    if (checkbox.checked) {
+        addMarkers();
+    } else {
+       removeMarkers();
+    }}
 
     map.on('contextmenu', function(ev) {
     
@@ -351,36 +361,41 @@
         rutas.forEach(ruta => {
             console.log(ruta);
 
-        switch(ruta.nombre){
+            switch(ruta.nombre){
             case 1:
-            color= 'blue';
+            color= 'yellow'; // Yellow: #FFFF00 || 1A
             break;
             case 2: 
-            color= 'red';
+            color= 'red'; // Red: #FF0000 || 1B
             break;
             case 3:
-            color = 'green'; // Green: #00FF00
+            color = 'teal'; // Teal: #008080 || 4A
             break;
             case 4:
-            color = 'orange'; // Bright Orange: #FFA500
+            color = 'orange'; // Bright Orange: #FFA500 || 4A1
             break;
             case 5:
-            color = 'purple'; // Bright Purple: #8A2BE2
+            color = 'salmon'; // Salmon: #FA8072|| 4B
             break;
             case 6:
-            color = 'teal'; // Teal: #008080
+            color = 'blue'; // Blue: #0000FF || 2A
             break;
             case 7:
-            color = 'salmon'; // Salmon: #FA8072
+            color = 'purple'; // Bright Purple: #8A2BE2  || 2B
             break;
             case 8:
-            color = 'yellow'; // Yellow: #FFFF00
+            color = 'green'; // Yellow: #FFFF00 || 5A - vuelta
             break;
             case 9:
-            color = 'cian'; // cian: #00FFFF
+            color = '#00FFFF' ; // cian: #00FFFF || 5A - ida
             break;
-                
-        }
+            case 10:
+            color = 'pink'; // Pink: #FFC0CB || 5B - vuelta
+            break;
+            case 11:
+            color = 'brown'; // Brown: #A52A2A || 5B - ida
+            break;
+        } 
 
         console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
 
