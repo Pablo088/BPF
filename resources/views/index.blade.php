@@ -85,7 +85,7 @@
         </a>
         <a>
             Mostrar Rutas de Colectivo
-            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sr()" checked> 
+            <input type="checkbox" id="mostrarRutas" value="" name="Rutas" class="check" onchange="sr()" checked> 
         </a>
 
         <a href="{{route('LinesView')}}">Lineas</a>
@@ -116,7 +116,8 @@
         const busStops = JSON.parse(document.getElementById('busStops').value);
         var rutas = <?php echo $rutas; ?>;
         const map = L.map('map').setView([-33.009668, -58.521428], 14);
-        let checkbox = document.getElementById('mostrarParadas');
+        let checkboxP = document.getElementById('mostrarParadas');
+        let checkboxR = document.getElementById('mostrarRutas');
         let locationActive = false;
         let userMarker = null;
                 
@@ -158,20 +159,14 @@
         addMarkers();
         
         function sm() {
-            if (checkbox.checked) {
+            if (checkboxP.checked) {
                 addMarkers();
             } else {
                 removeMarkers();
             }
         }
 
-        function sr() {
-            if (checkbox.checked) {
-                addMarkers();
-            } else {
-                removeMarkers();
-            }
-        }
+        
 
         const userLocationIcon = L.icon({
             iconUrl: 'Icono_ubicacion.png',
@@ -310,8 +305,8 @@
                     li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
                     li.addEventListener('click', () => {
                         map.setView([busStop.latitude, busStop.longitude], 16);
-                        removeMarkers(); // Opcional, dependiendo si quieres limpiar los marcadores existentes
-                        addMarkers(); // Opcional, si quieres volver a mostrar todos los marcadores
+                       /*  removeMarkers(); // Opcional, dependiendo si quieres limpiar los marcadores existentes
+                        addMarkers();  */// Opcional, si quieres volver a mostrar todos los marcadores
                         searchInput.value = busStop.direction;
                         suggestions.innerHTML = '';
                     });
@@ -406,7 +401,21 @@
     .bindPopup(`Esta es la ruta ${ruta.nombre}`)
     .addTo(map);
 
-    });
+    })
+
+    function sr() {
+        map.eachLayer(function (layer) {
+                    if (layer instanceof L.Polyline && !checkboxR.checked) {
+                        map.removeLayer(layer);
+                    }else if(checkboxR.checked){
+                        console.log('xd');
+                        map.addLayer(layer);
+                    }
+                });
+        }
+    ;
+
+    
     </script>
 </body>
 </html>
