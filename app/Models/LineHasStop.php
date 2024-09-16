@@ -16,6 +16,10 @@ class LineHasStop extends Model
     }
 
     public function busStop(){
+<<<<<<< HEAD
+        return $this->belongsTo(Bus_stop::class);
+=======
         return $this->belongsTo(Bus_stop::class, 'busStop_id', 'id');
+>>>>>>> f4e997bbce6f8353f130c71ce4e9c78ba8132f90
     }
 }

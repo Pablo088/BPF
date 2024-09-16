@@ -69,17 +69,16 @@
             <input type="text" id="searchInput" placeholder="Buscar parada...">
             <ul id="suggestions" class="suggestions-list"></ul>
     </div>
-
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a> {{-- temporal --}}   
-        <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a> {{-- temporal --}}
-        {{-- @can('bus-stop.admin')
+        @role('admin')
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
+        @endrole
+        @can('bus-stops.routes')
             <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
-        @endcan --}}
+        @endcan
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
