@@ -18,3 +18,5 @@ Rutas 8, 9 El verde
 Ruta 1: 1A
 Ruta 2: 1B
 Ruta 3: 4A
+Ruta 4: 4A1
+Ruta 5: 4B
