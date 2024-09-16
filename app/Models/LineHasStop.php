@@ -13,6 +13,6 @@ class LineHasStop extends Model
         return $this->hasMany(Bus_line::class);
     }
     public function busStop(){
-        return $this->hasMany(Bus_stop::class);
+        return $this->belongsTo(Bus_stop::class);
     }
 }

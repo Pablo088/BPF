@@ -18,8 +18,12 @@ class RolSeeder extends Seeder
         $role2 = Role::create(['name'=>'User']);
 
         Permission::create(['name' => 'bus-stops.index'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'bus-stops.admin'])->assignRole($role1);
         
+        Permission::create(['name' => 'bus-stops.admin'])->assignRole($role1);
+        Permission::create(['name' => 'bus-stops.eliminar'])->assignRole($role1);
+        Permission::create(['name' => 'bus-stops.editar'])->assignRole($role1);
+        Permission::create(['name' => 'bus-stops.route'])->assignRole($role1);
+        Permission::create(['name' => 'bus-stops.routes.eliminar'])->assignRole($role1);
     }
     
 }
