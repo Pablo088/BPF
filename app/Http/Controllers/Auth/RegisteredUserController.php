@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class RegisteredUserController extends Controller
 {
