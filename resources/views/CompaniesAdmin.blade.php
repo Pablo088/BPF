@@ -12,6 +12,11 @@
             left: 90%;
             top: 50%;
         }
+        #boton{
+          position: absolute;
+          top: 55%;
+          right: 0%;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +76,7 @@
     <select class="form-select" id="specificSizeSelect" name="busStop_id">
       <option selected>Parada</option>
       @foreach($busstop as $stop)
-      <option value="{{ $stop->id }}">{{ $stop->id}}</option>
+      <option value="{{ $stop->id }}">ID:{{$stop->id}}   /Direccion:{{$stop->direction}}</option>
       @endforeach
     </select>
   </div>
@@ -79,5 +84,7 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+<br>
+<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Editar</a>
 </body>
 </html>

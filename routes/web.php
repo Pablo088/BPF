@@ -49,6 +49,9 @@ Route::controller(Bus_stopController::class)->group(function(){
     Route::post('/Lines/admin/Company/update', [LineController::class, 'añadircompany'])->name('companyupdate');
     Route::post('/Lines/admin/update', [LineController::class, 'añadirlinea'])->name('lineaupdate');
     Route::post('/Lines/admin/line_has_stops/update', [LineController::class, 'añadirrelacion'])->name('relacion');
+    Route::get('/Lines/admin/Company/edit', [LineController::class, 'editarCompania'])->name('companyedit');
+    Route::get('/Lines/admin/Company/edit/linea/{id}', [LineController::class, 'editarlinea'])->name('lineaedit');
+    Route::get('/Lines/admin/Company/edit/compania/{id}', [LineController::class, 'Ceditar'])->name('Cedit');
 //});
 
 Route::controller(LineController::class)->group(function(){

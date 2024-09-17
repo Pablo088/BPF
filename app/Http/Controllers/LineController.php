@@ -58,5 +58,16 @@ class LineController extends Controller
         $has->save();
         return redirect()->back();
     }
+    public function editarCompania(){
+        $buscompany=BusCompany::all();
+        $busline=Bus_line::all();
+        return view('CompaniesAdminEdit', compact('buscompany','busline'));
+    }
+    public function editarlinea($id){
+        dd($id);
+    }
+    public function Ceditar($id){
+        dd($id);
+    }
     
 }
