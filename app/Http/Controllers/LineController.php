@@ -23,4 +23,40 @@ class LineController extends Controller
         return response()->json($busLines);
         
     }
+
+    public function Admin(){
+        $buscompany=BusCompany::all();
+        $busline=Bus_line::all();
+        $busstop=Bus_stop::all();
+        //dd($buscompany);
+        return view('CompaniesAdmin', compact('buscompany','busline', 'busstop'));
+    }
+    public function añadircompany(Request $request){
+        //dd($request);
+        $comp = new BusCompany();
+        $comp-> company_name = $request->company_name;
+        $comp-> created_at = now();
+        $comp->save();
+        return redirect()->back();
+    }
+    public function añadirlinea(Request $request){
+        //dd($request);
+        $lin = new Bus_line();
+        $lin-> line_name = $request->line_name;
+        $lin-> horarios = $request->horarios;
+        $lin-> company_id = $request->company_id;
+        $lin-> created_at = now();
+        $lin->save();
+        return redirect()->back();
+    }
+    public function añadirrelacion(Request $request){
+        //dd($request);
+        $has = new LineHasStop();
+        $has-> busLine_id = $request->busLine_id;
+        $has-> busStop_id = $request->busStop_id;
+        $has-> created_at = now();
+        $has->save();
+        return redirect()->back();
+    }
+    
 }
