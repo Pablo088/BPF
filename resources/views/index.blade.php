@@ -73,12 +73,12 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        @role('admin')
+       {{-- @role('admin')
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
-        @endrole
+        @endrole 
         @can('bus-stops.routes')
             <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
-        @endcan
+        @endcan --}}
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
@@ -116,6 +116,7 @@
         const busStops = JSON.parse(document.getElementById('busStops').value);
         var rutas = <?php echo $rutas; ?>;
         const map = L.map('map').setView([-33.009668, -58.521428], 14);
+        const routes =  L.layerGroup()
         let checkboxP = document.getElementById('mostrarParadas');
         let checkboxR = document.getElementById('mostrarRutas');
         let locationActive = false;
@@ -317,8 +318,9 @@
 
 
         let color;
+    function addRoutes(){  
         rutas.forEach(ruta => {
-            console.log(ruta);
+            //console.log(ruta);
          switch(ruta.nombre){
             case 1:
             color= 'yellow'; // Yellow: #FFFF00 || 1A
@@ -389,7 +391,7 @@
             color = '#6B8E23'; // 5B - ida
             break;
         } */
-        console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
+        //console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
 
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
@@ -399,21 +401,31 @@
     })
     
     .bindPopup(`Esta es la ruta ${ruta.nombre}`)
+    //.addTo(map);
+    routes.addLayer(polyline)
     .addTo(map);
 
     })
+    }
+    
+    addRoutes();
+    var rutasCreadas = true;
 
+    
     function sr() {
         map.eachLayer(function (layer) {
-                    if (layer instanceof L.Polyline && !checkboxR.checked) {
-                        map.removeLayer(layer);
-                    }else if(checkboxR.checked){
-                        console.log('xd');
-                        map.addLayer(layer);
+                    if (layer instanceof L.Polyline && !checkboxR.checked && rutasCreadas === true) {
+                        routes.clearLayers();
+                        console.log(routes);
+                        rutasCreadas = false;
+                    }else if(checkboxR.checked && rutasCreadas === false){
+                        addRoutes();
+                        console.log(routes);
+                        rutasCreadas = true;
                     }
                 });
-        }
-    ;
+    }
+    
 
     
     </script>

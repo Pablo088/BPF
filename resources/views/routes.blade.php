@@ -97,10 +97,6 @@
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
         </a>
-        <a>
-            Mostrar Rutas de Colectivo
-            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sr()" checked> 
-        </a>
     </div>
 
     <input type="hidden" id="busStops" value="{{$busStops}}">
