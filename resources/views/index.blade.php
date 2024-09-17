@@ -73,9 +73,10 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
-        @role('admin')
+        @can('bus-stops.routes')
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
-        @endrole
+        @endcan
+        
         @can('bus-stops.routes')
             <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
         @endcan
