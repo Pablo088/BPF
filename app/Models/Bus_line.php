@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\BusCompany;
 use App\Models\LineHasStop;
 use App\Models\Bus_stop;
+use App\Models\Bus_road;
 
 class Bus_line extends Model
 {
@@ -27,5 +28,9 @@ class Bus_line extends Model
 
     public function busStops(){
         return $this->belongsToMany(Bus_stop::class, 'line_has_stops', 'busLine_id', 'busStop_id');
+    }
+
+    public function Bus_road(){
+        return $this->hasMany(Bus_road::class, 'road_group', 'id');
     }
 }
