@@ -320,8 +320,8 @@
         let color;
     function addRoutes(){  
         rutas.forEach(ruta => {
-            //console.log(ruta);
-         switch(ruta.nombre){
+        
+         switch(ruta.grupo){
             case 1:
             color= 'yellow'; // Yellow: #FFFF00 || 1A
             break;
@@ -356,7 +356,7 @@
             color = 'brown'; // Brown: #A52A2A || 5B - ida
             break;
         } 
-        /* switch(ruta.nombre){
+        /* switch(ruta.grupo){
             case 1:
             color= '#F7E300'; // 1A
             break;
@@ -400,11 +400,10 @@
     smoothFactor: 1
     })
     
-    .bindPopup(`Esta es la ruta ${ruta.nombre}`)
+    .bindPopup(`Esta es la ruta ${ruta.grupo}`)
     //.addTo(map);
     routes.addLayer(polyline)
     .addTo(map);
-
     })
     }
     

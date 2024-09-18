@@ -9,7 +9,7 @@ class Bus_road extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'road_id',
+        'id',
         'road_group',
         'latitude',
         'longitude',

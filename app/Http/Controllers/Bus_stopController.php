@@ -16,14 +16,14 @@ class Bus_stopController extends Controller
 
     $rutas = [];
     foreach ($roads as $fila) {
-        $nombreRuta = $fila->road_group;
-        if (!isset($rutas[$nombreRuta])) {
-            $rutas[$nombreRuta] = [
-                'nombre' => $nombreRuta,
+        $grupo = $fila->road_group;
+        if (!isset($rutas[$grupo])) {
+            $rutas[$grupo] = [
+                'grupo' => $grupo,
                 'coordenadas' => [],
             ];
         }
-        $rutas[$nombreRuta]['coordenadas'][] = [
+        $rutas[$grupo]['coordenadas'][] = [
             (float)$fila->latitude,
             (float)$fila->longitude
         ];
@@ -95,17 +95,17 @@ class Bus_stopController extends Controller
         $busStops = Bus_Stop::all();
         $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
         
-
+        
         $rutas = [];
         foreach ($roads as $fila) {
-        $nombreRuta = $fila->road_group;
-        if (!isset($rutas[$nombreRuta])) {
-            $rutas[$nombreRuta] = [
-                'nombre' => $nombreRuta,
+        $grupo = $fila->road_group;
+        if (!isset($rutas[$grupo])) {
+            $rutas[$grupo] = [
+                'grupo' => $grupo,
                 'coordenadas' => [],
             ];
         }
-        $rutas[$nombreRuta]['coordenadas'][] = [
+        $rutas[$grupo]['coordenadas'][] = [
             (float)$fila->latitude,
             (float)$fila->longitude
         ];
