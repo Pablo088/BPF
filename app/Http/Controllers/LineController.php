@@ -64,10 +64,48 @@ class LineController extends Controller
         return view('CompaniesAdminEdit', compact('buscompany','busline'));
     }
     public function editarlinea($id){
-        dd($id);
+        //dd($id);
+        $buscompany=BusCompany::all();
+        $busLines = Bus_line::with('busStops')->find($id);
+        $Line = Bus_line::find($id);
+        //dd($Line);
+        return view('EditLineas', compact('Line','buscompany','buscompany'));
     }
+
     public function Ceditar($id){
-        dd($id);
+        //dd($id);
+        $Stop = BusCompany::find($id);
+        return view('EditCompanias', compact('Stop'));
     }
+
+    public function Lenviar(Request $request){
+        //dd($request);
+        $ID=$request->id;
+        $Elin = Bus_line::find($ID);
+        $Elin-> line_name = $request->line_name;
+        $Elin-> horarios = $request->horarios;
+        $Elin-> company_id = $request->company_id;
+        $Elin->save();
+        return redirect()->back();
+    }
+
+    public function EliminarStop(Request $request){
+        //dd($request);
+        $lineHasStop = LineHasStop::where('busLine_id', $request->line_id)
+                               ->where('busStop_id', $request->stop_id)
+                               ->first();
+        $lineHasStop->delete();
+        return redirect()->back()->with('success', 'La parada de autobús ha sido eliminada correctamente.');
+                       
+    }
+
+    public function Cenviar(Request $request){
+        $ID=$request->id;
+        $Ecomp = BusCompany::find($ID);
+        $Ecomp-> company_name = $request->company_name;
+        $Ecomp->save();
+        return redirect()->back();
+    }
+        
     
 }
