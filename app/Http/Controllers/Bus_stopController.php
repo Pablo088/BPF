@@ -12,16 +12,26 @@ class Bus_stopController extends Controller
 {
     public function index(){
         $busStops = Bus_Stop::all();
-        $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
-        $lines = Bus_line::with('bus_road')->get();
+        //$roads = Bus_road::with('Bus_line')->orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
+        $roads = Bus_road::with('Bus_line')  // Cargar la relación 'busLine'
+                ->orderBy('road_group', 'asc')
+                ->orderBy('order', 'asc')
+                ->get();
+        //$lines = Bus_line::with('bus_road')->get();
         //$roadgroup = [];
-
+        //dd($roads);
     $rutas = [];
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
+           /*  $lines = Bus_line::select('line_name')
+                ->join('bus_roads', 'bus_roads.road_group', '=', 'bus_lines.id')
+                ->groupBy('bus_roads.road_group', 'bus_lines.id')
+                ->get();
+            dd($lines); */
             $rutas[$grupo] = [
                 'grupo' => $grupo,
+                'nombre' => $fila->Bus_line->line_name,
                 'coordenadas' => [],
             ];
         }

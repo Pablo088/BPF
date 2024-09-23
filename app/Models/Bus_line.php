@@ -13,6 +13,7 @@ class Bus_line extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'line_name',
         'company_id',
         'horarios'

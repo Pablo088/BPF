@@ -17,7 +17,7 @@ class Bus_road extends Model
         'order',
     ];
 
-    public function BusLine(){
+    public function Bus_line(){
         return $this->belongsTo(Bus_line::class, 'road_group', 'id');
     }
 }

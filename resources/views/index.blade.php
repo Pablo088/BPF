@@ -228,10 +228,10 @@
 
                         var zoomvalue = map.getZoom();
                         
-                        if (zoomvalue > 16) {
+                        if (zoomvalue > 18) {
                             map.setView([lat, lng]);
                         }else{
-                            map.setView([lat, lng], 16);
+                            map.setView([lat, lng], 18);
                         }
                         
                         locationActive = true;
@@ -284,7 +284,11 @@
                 ID: ${nearestBusStop.id}<br>
                 Distancia: ${Math.round(minDistance)} metros.
             `)
-            .openPopup(); // Mostrar el pop-up inmediatamente
+
+            setTimeout(function() {
+                 nearestMarker.openPopup();  // Abre el popup automáticamente después de 3 segundos
+            }, 1000);
+           // .openPopup(); // Mostrar el pop-up inmediatamente
     }
     }
 
@@ -306,8 +310,6 @@
                     li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
                     li.addEventListener('click', () => {
                         map.setView([busStop.latitude, busStop.longitude], 16);
-                       /*  removeMarkers(); // Opcional, dependiendo si quieres limpiar los marcadores existentes
-                        addMarkers();  */// Opcional, si quieres volver a mostrar todos los marcadores
                         searchInput.value = busStop.direction;
                         suggestions.innerHTML = '';
                     });
@@ -400,8 +402,7 @@
     smoothFactor: 1
     })
     
-    .bindPopup(`Esta es la ruta ${ruta.grupo}`)
-    //.addTo(map);
+    .bindPopup(`Esta es la linea ${ruta.nombre}`)
     routes.addLayer(polyline)
     .addTo(map);
     })
