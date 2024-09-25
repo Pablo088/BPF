@@ -49,12 +49,14 @@ Route::controller(Bus_stopController::class)->group(function(){
     Route::post('/Lines/admin/Company/update', [LineController::class, 'añadircompany'])->name('companyupdate');
     Route::post('/Lines/admin/update', [LineController::class, 'añadirlinea'])->name('lineaupdate');
     Route::post('/Lines/admin/line_has_stops/update', [LineController::class, 'añadirrelacion'])->name('relacion');
-    Route::get('/Lines/admin/Company/edit', [LineController::class, 'editarCompania'])->name('companyedit');
-    Route::get('/Lines/admin/Company/edit/linea/{id}', [LineController::class, 'editarlinea'])->name('lineaedit');
-    Route::get('/Lines/admin/Company/edit/compania/{id}', [LineController::class, 'Ceditar'])->name('Cedit');
-    Route::post('/Lines/admin/Company/edit/compania/Cenviar', [LineController::class, 'Cenviar'])->name('Cenviar');
-    Route::post('/Lines/admin/Company/edit/linea/Lenviar', [LineController::class, 'Lenviar'])->name('Lenviar');
-    Route::post('/Lines/admin/Company/edit/linea/eliminar', [LineController::class, 'EliminarStop'])->name('EliminarStop');
+    Route::get('/Lines/admin/Company/options', [LineController::class, 'editarCompania'])->name('companyedit');
+    Route::get('/Lines/admin/Company/options/edit/linea/{id}', [LineController::class, 'editarlinea'])->name('lineaedit');
+    Route::get('/Lines/admin/Company/options/edit/compania/{id}', [LineController::class, 'Ceditar'])->name('Cedit');
+    Route::post('/Lines/admin/Company/options/compania/Cenviar', [LineController::class, 'Cenviar'])->name('Cenviar');
+    Route::post('/Lines/admin/Company/options/linea/Lenviar', [LineController::class, 'Lenviar'])->name('Lenviar');
+    Route::post('/Lines/admin/Company/options/linea/eliminar', [LineController::class, 'EliminarStop'])->name('EliminarStop');
+    Route::get('/Lines/admin/Company/options/eliminar/linea/{id}', [LineController::class, 'Eliminarlinea'])->name('Eliminarlinea');
+    Route::get('/Lines/admin/Company/options/eliminar/compania/{id}', [LineController::class, 'Eliminarcompania'])->name('Eliminarcompania');
 //});
 
 Route::controller(LineController::class)->group(function(){

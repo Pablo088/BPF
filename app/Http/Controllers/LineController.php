@@ -106,6 +106,19 @@ class LineController extends Controller
         $Ecomp->save();
         return redirect()->back();
     }
+
+    public function Eliminarlinea($id){
+        $ID=$id;
+        $Elimlin = Bus_line::find($ID);
+        $Elimlin->delete();
+        return redirect()->back();
+    }
+    public function Eliminarcompania($id){
+        $ID=$id;
+        $Elimcom = BusCompany::find($ID);
+        $Elimcom->delete();
+        return redirect()->back();
+    }
         
     
 }
