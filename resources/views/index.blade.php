@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
     <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('css\leaflet.css') }}">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('css\MarkerCluster.css') }}">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('css\MarkerCluster.Default.css') }}">
     <style>
         .leaflet-top.leaflet-left {
             left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
@@ -109,9 +112,11 @@
     
     <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    
+    {{-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> --}}
+    <script src="{{ asset('js\leaflet.js') }}"></script>
+    {{-- <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script> --}}
+    <script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
+
     <script>
         const busStops = JSON.parse(document.getElementById('busStops').value);
         var rutas = <?php echo $rutas; ?>;

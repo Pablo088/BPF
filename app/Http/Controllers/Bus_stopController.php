@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bus_stop;
 use App\Models\Bus_road;
+use App\Models\BusCompany;
 use App\Models\Bus_line;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,28 +13,25 @@ class Bus_stopController extends Controller
 {
     public function index(){
         $busStops = Bus_Stop::all();
-        //$roads = Bus_road::with('Bus_line')->orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
-        $roads = Bus_road::with('Bus_line')  // Cargar la relación 'busLine'
+        $company = BusCompany::all();
+        $roads = Bus_road::with('Bus_line') // Cargar la relación 'busLine'
                 ->orderBy('road_group', 'asc')
                 ->orderBy('order', 'asc')
                 ->get();
-        //$lines = Bus_line::with('bus_road')->get();
-        //$roadgroup = [];
-        //dd($roads);
+
+      
     $rutas = [];
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
-           /*  $lines = Bus_line::select('line_name')
-                ->join('bus_roads', 'bus_roads.road_group', '=', 'bus_lines.id')
-                ->groupBy('bus_roads.road_group', 'bus_lines.id')
-                ->get();
-            dd($lines); */
+            $linea = $fila->Bus_line->company_id;
+            
             $rutas[$grupo] = [
                 'grupo' => $grupo,
                 'nombre' => $fila->Bus_line->line_name,
                 'coordenadas' => [],
             ];
+            
         }
         $rutas[$grupo]['coordenadas'][] = [
             (float)$fila->latitude,
