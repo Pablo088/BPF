@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bus_stop;
 use App\Models\Bus_road;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class Bus_stopController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $busStops = Bus_Stop::all();
         $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
         //$roadgroup = [];
@@ -32,9 +34,10 @@ class Bus_stopController extends Controller
 
     $rutas = array_values($rutas);
     $rutas = json_encode($rutas);
+    $userRol = $request->user()->hasRole("Admin");
 
     //dd($rutas);
-    return view('index', compact('busStops','rutas'));
+    return view('index', compact('busStops','rutas','userRol'));
 }
 
     

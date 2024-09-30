@@ -6,6 +6,7 @@ use App\Http\Controllers\Bus_stopController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,11 @@ Route::controller(Bus_stopController::class)->group(function(){
 Route::controller(LineController::class)->group(function(){
     Route::get('/Lines', 'Lines')->name('LinesView');
     Route::get('/Lines/buscar/{id}', 'LinesBusc')->name('LineBusc');
+});
+
+
+Route::controller(UserController::class)->group(function(){
+
 });
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
