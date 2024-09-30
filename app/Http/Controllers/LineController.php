@@ -7,15 +7,17 @@ use App\Models\Bus_line;
 use App\Models\BusCompany;
 use App\Models\LineHasStop;
 use App\Models\Bus_stop;
+use Illuminate\Support\Facades\Auth;
 
 
 class LineController extends Controller
 {
-    public function Lines(){
+    public function Lines(Request $request){
         //$lines = Bus_line::all();
         $lines = Bus_line::with('BusCompany')->get();
+        $userSession = Auth::user() !== null;
         //dd($busLines);
-        return view('Lines', compact('lines'));
+        return view('Lines', compact('lines','userSession'));
     }
     public function LinesBusc($id){
         //dd($id);

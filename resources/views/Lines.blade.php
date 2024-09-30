@@ -71,9 +71,22 @@
 }
     </style>
 </head>
+
 <body>
-
-
+    <div class="open-menu" onclick="openMenu()">&#9776;</div>
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+    
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+        <a href="{{ route('bus-stops.index')}}">Inicio</a>
+        @if ($userSession !== true)
+            <a href="{{ route('login') }}">Iniciar sesión</a>
+            <a href="{{route('register')}}">Registrarse</a>
+         @endif
+      
+         <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+    </div>
+    <script src="{{ asset('js\menu.js') }}"></script>
 <div id="contenedor1">
     <table class="table">
         <thead>
