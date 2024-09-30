@@ -25,7 +25,7 @@ class Bus_stopController extends Controller
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
            $linename=$fila->Bus_line;
-           dd($linename);
+           //dd($linename);
             
             $rutas[$grupo] = [
                 'grupo' => $grupo,
