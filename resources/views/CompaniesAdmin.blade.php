@@ -40,8 +40,12 @@
     <input type="text" class="form-control" id="specificSizeInputName" placeholder="Nombre linea" name="line_name">
   </div>
   <div class="col-sm-1">
-    <label class="visually-hidden" for="specificSizeInputName">Hora</label>
-    <input type="time" class="form-control" name=horarios >
+    <label class="form-label" for="specificSizeInputHorarioI">Hora inicio</label>
+    <input type="time" class="form-control" id="specificSizeInputHorarioI" name=horario_comienzo >
+  </div>
+  <div class="col-sm-1">
+    <label class="form-label" for="specificSizeInputHorarioF">Hora fin</label>
+    <input type="time" class="form-control" id="specificSizeInputHorarioF" name=horario_finalizacion >
   </div>
   <div class="col-sm-3">
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
@@ -85,6 +89,6 @@
   </div>
 </form>
 <br>
-<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Editar</a>
+<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
 </body>
 </html>

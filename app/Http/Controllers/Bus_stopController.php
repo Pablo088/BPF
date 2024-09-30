@@ -24,11 +24,12 @@ class Bus_stopController extends Controller
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
-            $linea = $fila->Bus_line->company_id;
+           $linename=$fila->Bus_line;
+           dd($linename);
             
             $rutas[$grupo] = [
                 'grupo' => $grupo,
-                'nombre' => $fila->Bus_line->line_name,
+                'nombre' => $linename->line_name,
                 'coordenadas' => [],
             ];
             

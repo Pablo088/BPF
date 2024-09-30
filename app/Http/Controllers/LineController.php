@@ -20,6 +20,7 @@ class LineController extends Controller
     public function LinesBusc($id){
         //dd($id);
         $busLines = Bus_line::with('busStops')->find($id);
+        //dd($busLines);
         return response()->json($busLines);
         
     }
@@ -43,7 +44,8 @@ class LineController extends Controller
         //dd($request);
         $lin = new Bus_line();
         $lin-> line_name = $request->line_name;
-        $lin-> horarios = $request->horarios;
+        $lin-> horario_comienzo = $request->horario_comienzo;
+        $lin-> horario_finalizacion = $request->horario_finalizacion;
         $lin-> company_id = $request->company_id;
         $lin-> created_at = now();
         $lin->save();
