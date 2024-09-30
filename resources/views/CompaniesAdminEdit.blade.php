@@ -32,15 +32,17 @@
                 {{ $buslines->line_name }}
             </td>
             <td class="table-primary">
-                <a href='/Lines/admin/Company/edit/linea/{{ $buslines->id }}' class="btn btn-success" id="boton">Editar</a>
+                <a href='/Lines/admin/Company/options/edit/linea/{{ $buslines->id }}' class="btn btn-success" id="boton">Editar</a>
+                <a href='/Lines/admin/Company/options/eliminar/linea/{{ $buslines->id }}' class="btn btn-danger" id="boton">Eliminar</a>
             </td>
             <td class="table-info">
-                @foreach($buscompany as $buscompanies)
-                    {{ $buscompanies->company_name }}<br>
-                @endforeach
+                
+                    {{ $buslines->BusCompany->company_name}}<br>
+                
             </td>
             <td class="table-info">
-                <a href='/Lines/admin/Company/edit/compania/{{ $buslines->id }}' class="btn btn-success" id="boton">Editar</a>
+                <a href='/Lines/admin/Company/options/edit/compania/{{ $buslines->id }}' class="btn btn-success" id="boton">Editar</a>
+                <a href='/Lines/admin/Company/options/eliminar/compania/{{ $buslines->id }}' class="btn btn-danger" id="boton">Eliminar</a>
             </td>
         </tr>
         @endforeach

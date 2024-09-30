@@ -357,7 +357,7 @@ function sr() {
         rutas.forEach(ruta => {
             console.log(ruta);
 
-            switch(ruta.nombre){
+            switch(ruta.grupo){
             case 1:
             color= 'yellow'; // Yellow: #FFFF00 || 1A
             break;
@@ -393,7 +393,7 @@ function sr() {
             break;
         } 
 
-        console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
+        console.log(`Color para la ruta ${ruta.grupo}: ${color}`);
 
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
@@ -404,8 +404,8 @@ function sr() {
     
     .bindPopup(`
     <div>
-        <p>Esta es la ruta: ${ruta.nombre}</p>
-        <a href="/bus-stops/admin/routes/eliminar/${ruta.nombre}" id=eliminar > Eliminar </a>
+        <p>Esta es la ruta: ${ruta.grupo}</p>
+        <a href="/bus-stops/admin/routes/eliminar/${ruta.grupo}" id=eliminar > Eliminar </a>
     </div>`
     )
     .addTo(map);

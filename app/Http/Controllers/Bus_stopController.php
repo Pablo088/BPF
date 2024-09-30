@@ -7,23 +7,34 @@ use App\Models\Bus_stop;
 use App\Models\Bus_road;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Models\BusCompany;
+use App\Models\Bus_line;
 use Illuminate\Support\Facades\Auth;
 
 class Bus_stopController extends Controller
 {
     public function index(Request $request){
         $busStops = Bus_Stop::all();
-        $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
-        //$roadgroup = [];
+        $company = BusCompany::all();
+        $roads = Bus_road::with('Bus_line') // Cargar la relación 'busLine'
+                ->orderBy('road_group', 'asc')
+                ->orderBy('order', 'asc')
+                ->get();
 
+      
     $rutas = [];
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
+           $linename=$fila->Bus_line;
+           dd($linename);
+            
             $rutas[$grupo] = [
                 'grupo' => $grupo,
+                'nombre' => $linename->line_name,
                 'coordenadas' => [],
             ];
+            
         }
         $rutas[$grupo]['coordenadas'][] = [
             (float)$fila->latitude,

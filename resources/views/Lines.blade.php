@@ -80,7 +80,8 @@
             <tr class="table-primary">
                 <th>Compañía</th> 
                 <th>Linea</th>
-                <th>horarios</th>
+                <th>horario inicio</th>
+                <th>horario fin</th>
                 <th style="display: none;">ID</th>
             </tr>
         </thead>
@@ -89,7 +90,8 @@
             <tr class="table-secondary">
                 <td id="texto">{{$line->BusCompany->company_name}}</td> 
                 <td id="texto">{{$line->line_name}}</td>
-                <td id="texto">{{$line->horarios}}</td>
+                <td id="texto">{{$line->horario_comienzo}}</td>
+                <td id="texto">{{$line->horario_finalizacion}}</td>
                 <td style="display: none;">{{ $line->id }}</td>
             </tr>
             @endforeach
@@ -113,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     rows.forEach(row => {
     row.addEventListener('click', function() {
-        const id = this.querySelector('td:nth-child(4)').textContent;
+        const id = this.querySelector('td:nth-child(5)').textContent;
         fetch(`/Lines/buscar/${id}`)
             .then(response => {
                 return response.json();
@@ -133,7 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 modalInfo.innerHTML = `
                     <strong>Nombre de la línea:</strong> ${data.line_name} <br>
-                    <strong>Horario:</strong> ${data.horarios} <br><br>
+                    <strong>Horario Comienzo:</strong> ${data.horario_comienzo} <br>
+                    <strong>Horario Finalización:</strong> ${data.horario_finalizacion} <br><br>
                     ${stopsInfo}
                 `;
                 modal.style.display = 'block';

@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
     <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('css\leaflet.css') }}">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('css\MarkerCluster.css') }}">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('css\MarkerCluster.Default.css') }}">
     <style>
         .leaflet-top.leaflet-left {
             left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
@@ -105,9 +108,11 @@
     
     <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    
+    {{-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> --}}
+    <script src="{{ asset('js\leaflet.js') }}"></script>
+    {{-- <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script> --}}
+    <script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
+
     <script>
         const busStops = JSON.parse(document.getElementById('busStops').value);
         var rutas = <?php echo $rutas; ?>;
@@ -226,10 +231,10 @@
 
                         var zoomvalue = map.getZoom();
                         
-                        if (zoomvalue > 16) {
+                        if (zoomvalue > 18) {
                             map.setView([lat, lng]);
                         }else{
-                            map.setView([lat, lng], 16);
+                            map.setView([lat, lng], 18);
                         }
                         
                         locationActive = true;
@@ -282,7 +287,11 @@
                 ID: ${nearestBusStop.id}<br>
                 Distancia: ${Math.round(minDistance)} metros.
             `)
-            .openPopup(); // Mostrar el pop-up inmediatamente
+
+            setTimeout(function() {
+                 nearestMarker.openPopup();  // Abre el popup automáticamente después de 3 segundos
+            }, 1000);
+           // .openPopup(); // Mostrar el pop-up inmediatamente
     }
     }
 
@@ -304,8 +313,6 @@
                     li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
                     li.addEventListener('click', () => {
                         map.setView([busStop.latitude, busStop.longitude], 16);
-                       /*  removeMarkers(); // Opcional, dependiendo si quieres limpiar los marcadores existentes
-                        addMarkers();  */// Opcional, si quieres volver a mostrar todos los marcadores
                         searchInput.value = busStop.direction;
                         suggestions.innerHTML = '';
                     });
@@ -398,8 +405,7 @@
     smoothFactor: 1
     })
     
-    .bindPopup(`Esta es la ruta ${ruta.grupo}`)
-    //.addTo(map);
+    .bindPopup(`Esta es la linea ${ruta.nombre}`)
     routes.addLayer(polyline)
     .addTo(map);
     })
