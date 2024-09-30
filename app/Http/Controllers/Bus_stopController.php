@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class Bus_stopController extends Controller
 {
     public function index(Request $request){
+        $userRol = "";
         $busStops = Bus_Stop::all();
         $company = BusCompany::all();
         $roads = Bus_road::with('Bus_line') // Cargar la relación 'busLine'
@@ -42,20 +43,22 @@ class Bus_stopController extends Controller
         ];
        
     }
-
     $rutas = array_values($rutas);
     $rutas = json_encode($rutas);
-    $userRol = $request->user()->hasRole("Admin");
-
-    //dd($rutas);
-    return view('index', compact('busStops','rutas','userRol'));
+    $userSession = Auth::user() !== null;
+    if($userSession !== false){
+        $userRol = $request->user()->hasRole("Admin");
+    }
+   
+    return view('index', compact('busStops','rutas','userRol','userSession'));
 }
 
     
-    public function edit()
+    public function edit(Request $request)
     {
+        $userSession = Auth::user() !== null;
         $busStops = Bus_Stop::all();
-        return view('bus_stops', compact('busStops'));
+        return view('bus_stops', compact('busStops','userSession'));
     }
     
     public function store(Request $request)
