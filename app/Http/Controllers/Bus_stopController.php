@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bus_stop;
 use App\Models\Bus_road;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 use App\Models\BusCompany;
 use App\Models\Bus_line;
 use Illuminate\Support\Facades\Auth;
 
 class Bus_stopController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $userRol = "";
         $busStops = Bus_Stop::all();
         $company = BusCompany::all();
         $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
@@ -24,7 +27,8 @@ class Bus_stopController extends Controller
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
-            $linea = $fila->Bus_line->company_id;
+           $linename=$fila->Bus_line;
+           //dd($linename);
             
             $rutas[$grupo] = [
                 'grupo' => $grupo,
@@ -41,19 +45,22 @@ class Bus_stopController extends Controller
         ];
        
     }
-
     $rutas = array_values($rutas);
     $rutas = json_encode($rutas);
-
-    //dd($rutas);
-    return view('index', compact('busStops','rutas'));
+    $userSession = Auth::user() !== null;
+    if($userSession !== false){
+        $userRol = $request->user()->hasRole("Admin");
+    }
+   
+    return view('index', compact('busStops','rutas','userRol','userSession'));
 }
 
     
-    public function edit()
+    public function edit(Request $request)
     {
+        $userSession = Auth::user() !== null;
         $busStops = Bus_Stop::all();
-        return view('bus_stops', compact('busStops'));
+        return view('bus_stops', compact('busStops','userSession'));
     }
     
     public function store(Request $request)
@@ -62,7 +69,17 @@ class Bus_stopController extends Controller
             'direction' => 'nullable|string|max:255',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-        ]);
+        ],[
+            'direction.string' => 'La dirección debe ser una cadena de texto.',
+            'direction.max' => 'La dirección no debe tener más de 255 caracteres.',
+            
+            
+            'latitude.required' => 'La latitud es obligatoria.',
+            'latitude.numeric' => 'La latitud debe ser un número válido.',
+            
+            
+            'longitude.required' => 'La longitud es obligatoria.',
+            'longitude.numeric' => 'La longitud debe ser un número válido.',]);
         //dd($request);
         Bus_Stop::create($request->all());
 

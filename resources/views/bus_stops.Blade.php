@@ -41,11 +41,19 @@
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('bus-stops.index')}}">Inicio</a>
-        <a href="{{ route('login') }}">Iniciar sesión</a>
-        <a href="{{route('register')}}">Registrarse</a>
+        @if ($userSession !== true)
+            <a href="{{ route('login') }}">Iniciar sesión</a>
+            <a href="{{route('register')}}">Registrarse</a>
+         @endif
+      
+        <a href="{{route('LinesView')}}">Lineas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
+        </a>
+        <a>
+            Mostrar Rutas de Colectivo
+            <input type="checkbox" id="mostrarRutas" value="" name="Rutas" class="check" onchange="sr()" checked> 
         </a>
     </div>
 
@@ -211,5 +219,14 @@
                 }); 
         });
     </script>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </body>
 </html>

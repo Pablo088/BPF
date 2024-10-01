@@ -31,6 +31,11 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+@if ($errors->has('company_name'))
+    <div class="alert alert-danger">
+        {{ $errors->first('company_name') }}
+    </div>
+@endif
 
 <form action="{{ route('lineaupdate') }}" method="POST" class="row gx-3 gy-2 align-items-center">
     @csrf
@@ -40,8 +45,12 @@
     <input type="text" class="form-control" id="specificSizeInputName" placeholder="Nombre linea" name="line_name">
   </div>
   <div class="col-sm-1">
-    <label class="visually-hidden" for="specificSizeInputName">Hora</label>
-    <input type="time" class="form-control" name=horarios >
+    <label class="form-label" for="specificSizeInputHorarioI">Hora inicio</label>
+    <input type="time" class="form-control" id="specificSizeInputHorarioI" name=horario_comienzo >
+  </div>
+  <div class="col-sm-1">
+    <label class="form-label" for="specificSizeInputHorarioF">Hora fin</label>
+    <input type="time" class="form-control" id="specificSizeInputHorarioF" name=horario_finalizacion >
   </div>
   <div class="col-sm-3">
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
@@ -56,6 +65,15 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <form action="{{ route('relacion') }}" method="POST" class="row gx-3 gy-2 align-items-center">
     @csrf
@@ -84,7 +102,16 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <br>
-<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Editar</a>
+<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
 </body>
 </html>

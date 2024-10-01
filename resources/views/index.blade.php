@@ -74,14 +74,14 @@
     </div>
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-        <a href="{{ route('login') }}">Iniciar sesión</a>
-        <a href="{{route('register')}}">Registrarse</a>
-       {{-- @role('admin')
-            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>    
-        @endrole 
-        @can('bus-stops.routes')
-            <a href="{{route('bus-stops.routes')}}">Agregar Rutas</a>
-        @endcan --}}
+        @if ($userSession !== true)
+            <a href="{{ route('login') }}">Iniciar sesión</a>
+            <a href="{{route('register')}}">Registrarse</a>
+        @endif
+        @if($userRol == true)
+            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+            <a href="{{route('LinesView')}}">Lineas</a>
+        @endif
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
@@ -90,8 +90,6 @@
             Mostrar Rutas de Colectivo
             <input type="checkbox" id="mostrarRutas" value="" name="Rutas" class="check" onchange="sr()" checked> 
         </a>
-
-        <a href="{{route('LinesView')}}">Lineas</a>
 
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
@@ -144,6 +142,7 @@
             disableClusteringAtZoom: 16
         });
 
+
         function addMarkers() {
             busStops.forEach(busStop => {
                 const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
@@ -152,6 +151,7 @@
                     Latitud: ${busStop.latitude}<br>
                     Longitud: ${busStop.longitude}<br>
                     ID: ${busStop.id}<br>
+                    <label>Me gusta <input type="checkbox" value="${busStop.direction}" id="paradaSeleccionada" name="parada"></label>
                 `);
                 markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
             });
