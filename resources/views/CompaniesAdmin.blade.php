@@ -31,6 +31,11 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+@if ($errors->has('company_name'))
+    <div class="alert alert-danger">
+        {{ $errors->first('company_name') }}
+    </div>
+@endif
 
 <form action="{{ route('lineaupdate') }}" method="POST" class="row gx-3 gy-2 align-items-center">
     @csrf
@@ -60,6 +65,15 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <form action="{{ route('relacion') }}" method="POST" class="row gx-3 gy-2 align-items-center">
     @csrf
@@ -88,6 +102,15 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <br>
 <a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
 </body>

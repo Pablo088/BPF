@@ -17,22 +17,24 @@ class Bus_stopController extends Controller
         $userRol = "";
         $busStops = Bus_Stop::all();
         $company = BusCompany::all();
-        $roads = Bus_road::with('Bus_line') // Cargar la relación 'busLine'
+        $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
                 ->orderBy('road_group', 'asc')
                 ->orderBy('order', 'asc')
                 ->get();
 
-      
+    
     $rutas = [];
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
            $linename=$fila->Bus_line;
-           dd($linename);
+           //dd($linename);
             
             $rutas[$grupo] = [
                 'grupo' => $grupo,
-                'nombre' => $linename->line_name,
+                'nombre' => $fila->Bus_line->line_name,
+                'empresa' => $fila->Bus_line->BusCompany->company_name,
+                'id_empresa' => $fila->Bus_line->BusCompany->id,
                 'coordenadas' => [],
             ];
             
@@ -67,7 +69,17 @@ class Bus_stopController extends Controller
             'direction' => 'nullable|string|max:255',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-        ]);
+        ],[
+            'direction.string' => 'La dirección debe ser una cadena de texto.',
+            'direction.max' => 'La dirección no debe tener más de 255 caracteres.',
+            
+            
+            'latitude.required' => 'La latitud es obligatoria.',
+            'latitude.numeric' => 'La latitud debe ser un número válido.',
+            
+            
+            'longitude.required' => 'La longitud es obligatoria.',
+            'longitude.numeric' => 'La longitud debe ser un número válido.',]);
         //dd($request);
         Bus_Stop::create($request->all());
 
