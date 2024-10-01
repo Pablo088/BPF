@@ -67,7 +67,17 @@ class Bus_stopController extends Controller
             'direction' => 'nullable|string|max:255',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-        ]);
+        ],[
+            'direction.string' => 'La dirección debe ser una cadena de texto.',
+            'direction.max' => 'La dirección no debe tener más de 255 caracteres.',
+            
+            
+            'latitude.required' => 'La latitud es obligatoria.',
+            'latitude.numeric' => 'La latitud debe ser un número válido.',
+            
+            
+            'longitude.required' => 'La longitud es obligatoria.',
+            'longitude.numeric' => 'La longitud debe ser un número válido.',]);
         //dd($request);
         Bus_Stop::create($request->all());
 

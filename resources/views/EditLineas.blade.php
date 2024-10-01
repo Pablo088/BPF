@@ -32,7 +32,15 @@
   <button type="submit" class="btn btn-primary">Enviar</button>
 </div>
 </form>
-
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <h4>Paradas de autobús asociadas</h4>
     <ul>
         @foreach($Line->busStops as $stop)
