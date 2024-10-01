@@ -14,12 +14,12 @@ class Bus_stopController extends Controller
     public function index(){
         $busStops = Bus_Stop::all();
         $company = BusCompany::all();
-        $roads = Bus_road::with('Bus_line') // Cargar la relación 'busLine'
+        $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
                 ->orderBy('road_group', 'asc')
                 ->orderBy('order', 'asc')
                 ->get();
 
-      
+    
     $rutas = [];
     foreach ($roads as $fila) {
         $grupo = $fila->road_group;
@@ -29,6 +29,8 @@ class Bus_stopController extends Controller
             $rutas[$grupo] = [
                 'grupo' => $grupo,
                 'nombre' => $fila->Bus_line->line_name,
+                'empresa' => $fila->Bus_line->BusCompany->company_name,
+                'id_empresa' => $fila->Bus_line->BusCompany->id,
                 'coordenadas' => [],
             ];
             
