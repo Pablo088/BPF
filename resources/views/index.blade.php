@@ -95,18 +95,7 @@
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
-    <script>
-        function permiso(){
-            let respuesta = confirm('¿Queres agregar una parada?');
 
-            if(respuesta == true){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
-    
     <input type="hidden" id="busStops" value="{{$busStops}}">
     
     <div id="map"></div>
@@ -152,11 +141,21 @@
                     Latitud: ${busStop.latitude}<br>
                     Longitud: ${busStop.longitude}<br>
                     ID: ${busStop.id}<br>
-                    <label>Me gusta <input type="checkbox" value="${busStop.direction}" id="paradaSeleccionada" name="parada"></label>
+                    <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
+                        @csrf
+                        <label>Me gusta <input type="checkbox" value="${busStop.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()"></label>
+                    </form>
                 `);
                 markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
             });
             map.addLayer(markers); // Añadir el grupo de clusters al mapa
+        }
+        function guardarParada(){
+            let check = document.getElementById('paradaSeleccionada');
+            let formCheck = document.getElementById('formCheck');
+            if(check.checked){
+                formCheck.submit();
+            } 
         }
 
         function removeMarkers() {

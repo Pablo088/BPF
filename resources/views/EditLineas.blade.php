@@ -16,8 +16,13 @@
     <input type="hidden" name="id" value="{{$Line->id}}"  >
   <input class="form-control form-control-lg" type="text"  placeholder="{{$Line->line_name}}" aria-label=".form-control-lg example" name="line_name">
 </div>
-<div class="col-sm-2">
-    <input class="form-control form-control-lg" type="time"  aria-label=".form-control-lg example" name="horarios" placeholder="Inicio" >
+<div class="col-sm-1">
+  <label class="form-label" for="specificSizeInputHorarioI">Hora inicio</label>
+  <input type="time" class="form-control" id="specificSizeInputHorarioI" name=horario_comienzo >
+</div>
+<div class="col-sm-1">
+  <label class="form-label" for="specificSizeInputHorarioF">Hora fin</label>
+  <input type="time" class="form-control" id="specificSizeInputHorarioF" name=horario_finalizacion >
 </div>
 <div class="col-sm-3">
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>

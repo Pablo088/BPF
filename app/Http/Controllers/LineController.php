@@ -125,7 +125,8 @@ class LineController extends Controller
         $ID=$request->id;
         $Elin = Bus_line::find($ID);
         $Elin-> line_name = $request->line_name;
-        $Elin-> horarios = $request->horarios;
+        $Elin-> horario_comienzo = $request->horario_comienzo;
+        $Elin-> horario_finalizacion = $request->horario_finalizacion;
         $Elin-> company_id = $request->company_id;
         $Elin->save();
         return redirect()->back();

@@ -1,9 +1,22 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>Dashboard</h1>
 @stop
 
 @section('content')
-<p>Welcome to this beautiful admin panel.</p>
+<div>
+    @if ($userStops !== false)
+        <h3>Estas son tus paradas</h3>
+        @foreach ($userStops as $stops)
+        <div>
+            <div>Parada: {{$stops->direction}}</div>
+            <div>Latitud: {{$stops->latitude}}</div>    
+            <div>Longitud: {{$stops->longitude}}</div>  
+        </div>  
+        @endforeach
+    @else
+        <h3>No tenes paradas guardadas</h3>
+    @endif
+    
+</div>
 @stop
