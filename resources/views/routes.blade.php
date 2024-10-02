@@ -34,7 +34,7 @@
             top: 500px;
         }
 
-        #map { height: 595px; }
+        #map { height: 615px; }
 
         #searchContainer {
             position: absolute;
@@ -76,6 +76,12 @@
         .suggestions-list li:hover {
             background: #f0f0f0;
         }
+
+        .form-container {
+            display: inline-block;
+            margin-right: 20px; /* Espaciado entre formularios */
+        }
+
     </style>
 </head>
 <body>
@@ -114,26 +120,38 @@
         <button type="submit">Añadir Parada</button>
     </form> --}}
     <button onclick="back()">↩</button>
-    <form method="POST" action="{{route('bus-stops.storeroutes')}}">
-        @csrf
-        <label for="road_group">Conjunto ruta:</label>
-        <input type="number" min="1" max="11" id="road_group" name="road_group" required>
+    <button onclick="clearRoutes()">CLEAR</button>
+    <div class="form-container">
+        <form method="POST" action="{{route('bus-stops.storeroutes')}}">
+            @csrf
+            <label for="road_group">Conjunto ruta:</label>
+            <input type="number" min="1" max="11" id="road_group" name="road_group" required>
 
-        <label for="latitude"></label>
-        <input type="hidden" id="latitude" name="latitude[]" required>
+            <label for="latitude"></label>
+            <input type="hidden" id="latitude" name="latitude[]" required>
 
-        <label for="longitude"></label>
-        <input type="hidden" id="longitude"  name="longitude[]" required>
+            <label for="longitude"></label>
+            <input type="hidden" id="longitude"  name="longitude[]" required>
 
-        {{-- <label for="orden">orden:</label>
-        <a type="text" id="order"  name="order" required> --}}
+            {{-- <label for="orden">orden:</label>
+            <a type="text" id="order"  name="order" required> --}}
 
-        <label for="puntos">Puntos seleccionados:</label>
-        <a id="puntos"></a>
-        <button type="submit">Añadir Ruta</button>
-        
-    </form>
-    
+            <label for="puntos">Puntos seleccionados:</label>
+            <a id="puntos"></a>
+            <button type="submit">Añadir Ruta</button>
+            
+        </form>
+    </div>
+    <div class="form-container">
+        <form method="POST" action="{{route('relacion')}}">
+            @csrf
+                <label for="busStop_id">Parada:</label>
+                <input type="number" id="busStop_id" name="busStop_id" required>
+                <label for="busLine_id">Ruta:</label>
+                <input type="number" id="busLine_id" name="busLine_id" required>
+                <button type="submit">Añadir Relacion</button>
+        </form>    
+    </div>
 
     <script src="{{ asset('js\menu.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -168,6 +186,7 @@
         busStops.forEach(busStop => {
             const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
             .bindPopup(`
+                <input type="hidden" name="id_parada" id="id_parada" value="${busStop.id}">
                 <b>${busStop.direction ? busStop.direction : 'Parada sin nombre'}</b><br>
                 Latitud: ${busStop.latitude}<br>
                 Longitud: ${busStop.longitude}<br>
@@ -175,6 +194,7 @@
                 <br>
                 <a href="/bus-stops/admin/eliminar/${busStop.id}" id=eliminar > Eliminar </a>
                 <a href="/bus-stops/admin/editar/${busStop.id}" id=editar > Editar </a>
+                <input type="button" name="relacionarP" id="relacionarP" onclick="relacionarParada()">Relacionar</input>
             `);
             markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
         });
@@ -303,6 +323,34 @@ function sr() {
                 console.log("No hay puntos para eliminar");
             }
         }
+
+        /* function clearRoutes() {
+            if (routelat.length > 0 && routelong.length > 0) {
+                routelat= [];
+                routelong= [];
+                cantidadrutas = 0;
+
+                // Actualizar la polyline en el mapa
+                routes.pop();
+                map.eachLayer(function (layer) {
+                    if (layer instanceof L.Polyline && layer.options.color ==="black") {
+                        map.clearLayers(layer);
+                    }
+                });
+                if (routes.length > 0) {
+                    L.polyline(routes, {color: 'black'}).addTo(map);
+                }
+
+                // Actualizar el contador de puntos en la interfaz
+                document.getElementById("puntos").innerHTML = cantidadrutas;
+
+                console.log(routelat);
+                console.log(routelong);
+                console.log("Punto eliminado. Puntos restantes:", cantidadrutas);
+            } else {
+                console.log("No hay puntos para eliminar");
+            }
+        } */
         
         document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault(); // Prevenir el envío por defecto del formulario
@@ -352,7 +400,7 @@ function sr() {
                 });
             }
         });
-
+        //var idRuta = 0;
         let color;
         rutas.forEach(ruta => {
             console.log(ruta);
@@ -404,13 +452,28 @@ function sr() {
     
     .bindPopup(`
     <div>
+        <input type="hidden" name="id_ruta" id="id_ruta" value="${ruta.grupo}">
         <p>Esta es la ruta: ${ruta.grupo}</p>
         <a href="/bus-stops/admin/routes/eliminar/${ruta.grupo}" id=eliminar > Eliminar </a>
+        <input type="button" name="relacionarR" id="relacionarR" onclick="relacionarLinea()">Relacionar</input>
     </div>`
     )
     .addTo(map);
 
     });
+
+    function relacionarLinea(){
+        var idRuta = document.getElementById('id_ruta').value;
+        console.log('Ruta: ',idRuta);
+        document.getElementById('busLine_id').value = idRuta;
+    }
+
+    function relacionarParada(){
+        var idParada = document.getElementById('id_parada').value;
+        console.log('Parada: ', idParada);
+        document.getElementById('busStop_id').value = idParada;
+    }
+
     </script>
 </body>
 </html>

@@ -80,7 +80,8 @@
         @endif
         @if($userRol == true)
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
-            <a href="{{route('LinesView')}}">Lineas</a>
+            <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
+            <a href="{{route('bus-stops.routes')}}">Administrar Rutas</a>
         @endif
         <a>
             Mostrar Paradas de Colectivo
@@ -90,7 +91,7 @@
             Mostrar Rutas de Colectivo
             <input type="checkbox" id="mostrarRutas" value="" name="Rutas" class="check" onchange="sr()" checked> 
         </a>
-
+        <a href="{{route('LinesView')}}">Lineas</a>
         <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>

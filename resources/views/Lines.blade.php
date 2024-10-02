@@ -83,8 +83,11 @@
             <a href="{{ route('login') }}">Iniciar sesión</a>
             <a href="{{route('register')}}">Registrarse</a>
          @endif
-      
-         <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+
+         @if($userRol == true)
+            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+            <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
+        @endif
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
 <div id="contenedor1">
@@ -93,8 +96,8 @@
             <tr class="table-primary">
                 <th>Compañía</th> 
                 <th>Linea</th>
-                <th>horario inicio</th>
-                <th>horario fin</th>
+                <th>Inicio</th>
+                <th>Fin</th>
                 <th style="display: none;">ID</th>
             </tr>
         </thead>

@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Bus_line;
 use App\Models\Bus_stop;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class LineHasStop extends Model
 {
     use HasFactory;
     protected static function booted(): void
     {
-        static::created(function (User $user){
+
+       /*  static::created(function (User $user){
             $user->assignRole('User');
+        }); */
+        static::created(function (LineHasStop $lineHasStop) {
+            // Aquí puedes realizar acciones con $lineHasStop si es necesario
         });
     }
     public function busLine(){

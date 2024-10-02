@@ -17,7 +17,11 @@ class LineController extends Controller
         $lines = Bus_line::with('BusCompany')->get();
         $userSession = Auth::user() !== null;
         //dd($busLines);
-        return view('Lines', compact('lines','userSession'));
+        $userSession = Auth::user() !== null;
+        if($userSession !== false){
+            $userRol = $request->user()->hasRole("Admin");
+        }
+        return view('Lines', compact('lines','userSession', 'userRol'));
     }
     public function LinesBusc($id){
         //dd($id);
