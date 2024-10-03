@@ -156,6 +156,7 @@
     <script src="{{ asset('js\menu.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="{{ asset('js\jQuery.js') }}"></script>
     
     
     <script>
@@ -181,6 +182,19 @@
     disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
 });
 
+
+
+    /* function updateContent() {
+        $.ajax({
+            url: 'tu-archivo-o-endpoint.html',
+            success: function(data) {
+                $('#content').html(data);
+            },
+            error: function() {
+                console.error('Error al actualizar');
+            }
+        });
+    } */
 
     function addMarkers() {
         busStops.forEach(busStop => {
@@ -324,33 +338,25 @@ function sr() {
             }
         }
 
-        /* function clearRoutes() {
-            if (routelat.length > 0 && routelong.length > 0) {
-                routelat= [];
-                routelong= [];
-                cantidadrutas = 0;
+        function clearRoutes() {
+   // Limpiar los arrays y resetear el contador
+   routelat = [];
+   routelong = [];
+   routes = [];
+   cantidadrutas = 0;
 
-                // Actualizar la polyline en el mapa
-                routes.pop();
-                map.eachLayer(function (layer) {
-                    if (layer instanceof L.Polyline && layer.options.color ==="black") {
-                        map.clearLayers(layer);
-                    }
-                });
-                if (routes.length > 0) {
-                    L.polyline(routes, {color: 'black'}).addTo(map);
-                }
+   // Eliminar todas las polylines del mapa
+   map.eachLayer(function (layer) {
+       if (layer instanceof L.Polyline && layer.options.color === "black") {
+           map.removeLayer(layer);
+       }
+   });
 
-                // Actualizar el contador de puntos en la interfaz
-                document.getElementById("puntos").innerHTML = cantidadrutas;
+   // Actualizar el contador de puntos en la interfaz
+   document.getElementById("puntos").innerHTML = cantidadrutas;
 
-                console.log(routelat);
-                console.log(routelong);
-                console.log("Punto eliminado. Puntos restantes:", cantidadrutas);
-            } else {
-                console.log("No hay puntos para eliminar");
-            }
-        } */
+   console.log("Todas las rutas han sido eliminadas");
+}
         
         document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault(); // Prevenir el envío por defecto del formulario
