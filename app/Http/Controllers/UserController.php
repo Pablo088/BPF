@@ -27,16 +27,22 @@ class UserController extends Controller
     public function guardarParada(Request $request){
         $user = $request->user();
         $stop = $request;
-
         if($user !== null){
-            $userStop = new UserStop();
-            $userStop->user_id = $user->id;
-            $userStop->stop_id = $stop->paradaId;
-    
-            $userStop->save();
-    
-            return redirect()->back();
+            $consulta = UserStop::where("stop_id",$stop->paradaId)->get();
+            if($consulta->count() == 0){
+                $userStop = new UserStop();
+                $userStop->user_id = $user->id;
+                $userStop->stop_id = $stop->paradaId;
+        
+                $userStop->save();
+                session()->flash("success","¡Tu parada fue guardada!");
+                return redirect()->back();
+            }else{
+                session()->flash("error","Ya seleccionaste esta parada");
+                return redirect()->back();
+            }
         } else{
+            session()->flash("error","Para usar esta funcionalidad, necesitas iniciar sesion");
             return redirect()->back();
         }
     }
