@@ -85,6 +85,12 @@
     </style>
 </head>
 <body>
+   
+    @if (session('error'))
+        <script>
+            alert("{{ session('error') }}");
+        </script>
+    @endif
 
     <div class="open-menu" onclick="openMenu()">&#9776;</div>
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>

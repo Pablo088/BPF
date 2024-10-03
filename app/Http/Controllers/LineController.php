@@ -98,6 +98,7 @@ class LineController extends Controller
         $has->save();
         return redirect()->back();
     }else if ($relaciones->isEmpty() == false) {
+        
         return redirect()->back()->with('error', 'Esta relación ya existe.');;
     };}
 
