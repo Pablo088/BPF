@@ -141,7 +141,7 @@
                     Latitud: ${busStop.latitude}<br>
                     Longitud: ${busStop.longitude}<br>
                     ID: ${busStop.id}<br>
-                    <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
+                    <form method="post" action="{{route('bus-stops.store')}}" id="formCheck">
                         @csrf
                         <label>Me gusta <input type="checkbox" value="${busStop.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()"></label>
                     </form>
@@ -314,7 +314,7 @@
                     const li = document.createElement('li');
                     li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
                     li.addEventListener('click', () => {
-                        map.setView([busStop.latitude, busStop.longitude], 16);
+                        map.setView([busStop.latitude, busStop.longitude], 19);
                         searchInput.value = busStop.direction;
                         suggestions.innerHTML = '';
                     });

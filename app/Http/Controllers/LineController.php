@@ -79,6 +79,10 @@ class LineController extends Controller
         return redirect()->back();
     }
     public function añadirrelacion(Request $request){
+      
+        $relaciones = LineHasStop::where('busLine_id', $request->busLine_id)->where('busStop_id', $request->busStop_id)->get();
+        //dd($relaciones->isEmpty());
+        if ($relaciones->isEmpty() == true) {
         $request->validate([
             'busStop_id' => 'required',
             'busLine_id' => 'required',
@@ -93,7 +97,12 @@ class LineController extends Controller
         $has-> created_at = now();
         $has->save();
         return redirect()->back();
-    }
+    }else if ($relaciones->isEmpty() == false) {
+        
+        return redirect()->back()->with('error', 'Esta relación ya existe.');;
+    };}
+
+
     public function editarCompania(){
         $buscompany=BusCompany::all();
         $busline=Bus_line::all();
