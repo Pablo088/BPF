@@ -314,7 +314,7 @@
                     const li = document.createElement('li');
                     li.textContent = `${busStop.direction} (ID: ${busStop.id})`;
                     li.addEventListener('click', () => {
-                        map.setView([busStop.latitude, busStop.longitude], 16);
+                        map.setView([busStop.latitude, busStop.longitude], 19);
                         searchInput.value = busStop.direction;
                         suggestions.innerHTML = '';
                     });
