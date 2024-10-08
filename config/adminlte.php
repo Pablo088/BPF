@@ -330,6 +330,7 @@ return [
             'text' => 'Roles y permisos de usuarios',
             'route' => 'dashboard.users',
             'icon' => 'fas fa-fw fa-user',
+            'can'  => 'dashboard.users',
         ],
     ],
 

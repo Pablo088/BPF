@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserStop;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -47,8 +49,19 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function listadoUsuarios(){
-        $users = User::all();
+    public function listadoUsuarios(Request $request){
+        $users = User::where('id','<>',$request->user()->id)->get();
         return view("admin\user_rol", compact("users"));
+    }
+    public function getUserInfo(Request $request, $id){
+        return view("admin\manage_user",compact('id'));
+    }
+    public function cambiarRol(Request $request,$id){
+        $user = User::find($id);
+        $user->syncRoles($request->cambiarRol);
+        if($request->cambiarRol == 'Admin'){
+            $user->syncPermissions('dashboard.users');
+        }
+        return redirect()->route('dashboard.users');
     }
 }

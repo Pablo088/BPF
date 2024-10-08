@@ -8,6 +8,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\UserController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +65,8 @@ Route::controller(LineController::class)->group(function(){
 
 Route::controller(UserController::class)->group(function(){
     Route::get("/dashboard/users","listadoUsuarios")->middleware("solo.admin")->name("dashboard.users");
+    Route::get("/dashboard/users/manage/{id}","getUserInfo")->middleware("solo.admin")->name("users.manage");
+    Route::put("/dasboard/users/manage/{id}/post","cambiarRol")->name("users.manage.post");
     Route::get('/dashboard','dashboard')->middleware(['auth', 'verified'])->name('dashboard');
     Route::post('/store','guardarParada')->name('bus-stop.store');
 });
