@@ -72,7 +72,7 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/store','guardarParada')->name('bus-stop.store');
 });
 
-Route::post('/location', [LocationController::class, 'store']);
+Route::post('/location', [LocalizacionController::class, 'store']);
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
 
