@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserStop;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -45,5 +46,9 @@ class UserController extends Controller
             session()->flash("error","Para usar esta funcionalidad, necesitas iniciar sesion");
             return redirect()->back();
         }
+    }
+    public function listadoUsuarios(){
+        $users = User::all();
+        return view("admin\user_rol", compact("users"));
     }
 }
