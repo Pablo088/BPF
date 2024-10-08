@@ -7,6 +7,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LocalizacionController;
 
 
 /*
@@ -70,6 +71,8 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/dashboard','dashboard')->middleware(['auth', 'verified'])->name('dashboard');
     Route::post('/store','guardarParada')->name('bus-stop.store');
 });
+
+Route::post('/location', [LocationController::class, 'store']);
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
 

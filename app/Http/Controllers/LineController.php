@@ -8,7 +8,7 @@ use App\Models\BusCompany;
 use App\Models\LineHasStop;
 use App\Models\Bus_stop;
 use Illuminate\Support\Facades\Auth;
-
+use Spatie\Permission\Models\Role;
 
 class LineController extends Controller
 {
