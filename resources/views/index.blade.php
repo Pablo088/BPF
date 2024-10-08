@@ -400,14 +400,14 @@
         } */
         //console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
     var idEmpresa = ruta.id_empresa
-    var colorEmpresa = 0;
-    if (idEmpresa == 1){
+    var colorEmpresa = ruta.color;
+    /* if (idEmpresa == 1){
         colorEmpresa= 'yellow';
     }else if (idEmpresa == 2){  
             colorEmpresa= 'blue';
         }else if (idEmpresa == 3){
             colorEmpresa= 'green';
-        }
+    } */
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
     weight: 3,

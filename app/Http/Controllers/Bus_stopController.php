@@ -35,6 +35,7 @@ class Bus_stopController extends Controller
                 'nombre' => $fila->Bus_line->line_name,
                 'empresa' => $fila->Bus_line->BusCompany->company_name,
                 'id_empresa' => $fila->Bus_line->BusCompany->id,
+                'color' => $fila->Bus_line->color,
                 'coordenadas' => [],
             ];
             
