@@ -9,9 +9,12 @@
         <h3>Estas son tus paradas</h3>
         @foreach ($userStops as $stops)
         <div>
-            <div>Parada: {{$stops->direction}}</div>
-            <div>Latitud: {{$stops->latitude}}</div>    
-            <div>Longitud: {{$stops->longitude}}</div>  
+            <p></p>
+            <button>
+                <div>Parada: {{$stops->direction}}</div>
+                <div>Latitud: {{$stops->latitude}}</div>    
+                <div>Longitud: {{$stops->longitude}}</div>
+            </button>  
         </div>  
         @endforeach
     @else

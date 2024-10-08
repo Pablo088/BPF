@@ -315,10 +315,20 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Acciones'],
         [
-            'text' => 'profile',
+            'text' => 'Dashboard',
+            'route' => 'dashboard',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Perfil',
             'route' => 'profile.edit',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Roles y permisos de usuarios',
+            'route' => 'dashboard.users',
             'icon' => 'fas fa-fw fa-user',
         ],
     ],

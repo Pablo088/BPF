@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('company_id')->references('id')->on('bus_companies')->onDelete('cascade');
             $table->time('horario_comienzo');
             $table->time("horario_finalizacion");
+            $table->string('color');
             $table->timestamps(); 
         });
     }

@@ -64,6 +64,7 @@ Route::controller(LineController::class)->group(function(){
 
 
 Route::controller(UserController::class)->group(function(){
+    Route::get("/dashboard/users","listadoUsuarios")->middleware("solo.admin")->name("dashboard.users");
     Route::get('/dashboard','dashboard')->middleware(['auth', 'verified'])->name('dashboard');
     Route::post('/store','guardarParada')->name('bus-stop.store');
 });
