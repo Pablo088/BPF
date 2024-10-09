@@ -417,7 +417,7 @@
     
     .bindPopup(`<b>Esta es la linea: ${ruta.nombre}</b><br>
                 Pertenece a la empresa: ${ruta.empresa}
-                <div style="width: 20px; height: 20px; background-color: ${colorEmpresa};"></div>`)
+                <x-busicon color="${colorEmpresa}"></x-busicon>`)
     routes.addLayer(polyline)
     .addTo(map);
     })
