@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class Bus_stopController extends Controller
 {
     public function index(Request $request){
+        $parada = $request->parada;
         $userRol = "";
         $busStops = Bus_Stop::all();
         $company = BusCompany::all();
@@ -53,7 +54,7 @@ class Bus_stopController extends Controller
         $userRol = $request->user()->hasRole("Admin");
     }
    
-    return view('index', compact('busStops','rutas','userRol','userSession'));
+    return view('index', compact('busStops','rutas','userRol','userSession','parada'));
 }
 
     

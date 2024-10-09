@@ -97,6 +97,7 @@
     <script src="{{ asset('js\menu.js') }}"></script>
 
     <input type="hidden" id="busStops" value="{{$busStops}}">
+    <input type="hidden" id="paradaUser" value="{{$parada}}">
     
     <div id="map"></div>
 
@@ -131,7 +132,7 @@
         var markers = L.markerClusterGroup({
             disableClusteringAtZoom: 16
         });
-
+        
 
         function addMarkers() {
             busStops.forEach(busStop => {
