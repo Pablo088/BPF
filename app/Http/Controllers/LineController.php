@@ -20,8 +20,9 @@ class LineController extends Controller
         $userSession = Auth::user() !== null;
         if($userSession !== false){
             $userRol = $request->user()->hasRole("Admin");
+            return view('Lines', compact('lines','userSession', 'userRol'));
         }
-        return view('Lines', compact('lines','userSession', 'userRol'));
+        
     }
     public function LinesBusc($id){
         //dd($id);
