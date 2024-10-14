@@ -9,7 +9,7 @@ class LocalizacionController extends Controller
 {
     public function store(Request $request)
     {
-        dd($request);
+        //dd($request);
         
         // Guarda la ubicación en la base de datos
         Location::create([
@@ -17,6 +17,7 @@ class LocalizacionController extends Controller
             'longitude' => $request->longitude,
         ]);
 
-        return response()->json(['success' => true]);
+        //return response()->json(['success' => true]);
+        return response()->json($request->all());
     } 
 }
