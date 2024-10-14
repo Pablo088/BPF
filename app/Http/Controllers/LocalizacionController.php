@@ -9,15 +9,15 @@ class LocalizacionController extends Controller
 {
     public function store(Request $request)
     {
-        //dd($request);
+        //dd($request->all());
         
         // Guarda la ubicación en la base de datos
-        Location::create([
+        $location=Localizacion::create([
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
         ]);
-
-        //return response()->json(['success' => true]);
-        return response()->json($request->all());
+        //dd($Localizacion);
+        return response()->json(['success' => true, 'location'=>$location]);
+        //return response()->json($location);
     } 
 }

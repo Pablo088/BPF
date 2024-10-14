@@ -453,7 +453,7 @@ function sr() {
             break;
         } 
 
-        console.log(`Color para la ruta ${ruta.grupo}: ${color}`);
+        //console.log(`Color para la ruta ${ruta.grupo}: ${color}`);
 
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
@@ -480,12 +480,12 @@ function sr() {
         document.getElementById('busLine_id').value = idRuta;
     }
 
+    var idsParadas = [];
     function relacionarParada(){
         var idParada = document.getElementById('id_parada').value;
-        console.log('Parada: ', idParada);
-        document.getElementById('busStop_id').value = idParada;
+        idsParadas.push(idParada);
+        document.getElementById('busStop_id').value = JSON.stringify(idsParadas);
     }
-
     </script>
 </body>
 </html>

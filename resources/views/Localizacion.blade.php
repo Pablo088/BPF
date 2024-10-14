@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <h1>Ubicación Actual y Radio de Alerta</h1>
+   
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -27,11 +27,13 @@
 
         var userMarker;
         var userCircle;
-        var radius = 500; // Radio de 500 metros
+        var radius = 50; // Radio de 500 metros
         var isOutsideCircle = false; // Para verificar si ya ha salido del círculo
+        var firsTime=true;
 
         // Función para enviar la ubicación
         function sendLocation(latitude, longitude) {
+            //console.log('Enviando ubicacion');
             fetch('/location', {
                 method: 'POST',
                 headers: {
@@ -102,7 +104,12 @@
             navigator.geolocation.watchPosition(function (position) {
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
+                //console.log('ubicacion', lat, lon);
 
+                if (firsTime){
+                    sendLocation(lat,lon);
+                    firsTime=false;
+                }
                 if (!userMarker && !userCircle) {
                     // Inicializar el marcador y el círculo en la primera ubicación
                     updateCircle(lat, lon);
