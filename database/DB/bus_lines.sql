@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `bus_lines` (
   `company_id` bigint unsigned NOT NULL,
   `horario_comienzo` time NOT NULL,
   `horario_finalizacion` time NOT NULL,
+  `color` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -30,17 +31,17 @@ CREATE TABLE IF NOT EXISTS `bus_lines` (
 
 -- Volcando datos para la tabla bpf.bus_lines: ~11 rows (aproximadamente)
 
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('1A', 1, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('1B', 1, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('4A', 1, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('4A1', 1, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('4B', 1, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('2A', 2, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('2B', 2, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('5A - vuelta', 3, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('5A - ida', 3, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('5B - vuelta', 3, '00:00:00', '00:00:00', NULL, NULL);
-INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `created_at`, `updated_at`) VALUES ('5B - ida', 3, '00:00:00', '00:00:00', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('1A', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('1B', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('4A', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('4A1', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('4B', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('2A', 2, '00:00:00', '00:00:00', '#003366', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('2B', 2, '00:00:00', '00:00:00', '#003366', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('5A - vuelta', 3, '00:00:00', '00:00:00', '#32CD32', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('5A - ida', 3, '00:00:00', '00:00:00', '#32CD32', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('5B - vuelta', 3, '00:00:00', '00:00:00', '#32CD32', NULL, NULL);
+INSERT INTO `bus_lines` (`line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES ('5B - ida', 3, '00:00:00', '00:00:00', '#32CD32', NULL, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
