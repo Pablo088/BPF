@@ -2,19 +2,23 @@
 
 @section('content_header')
 @stop
-
 @section('content')
+
 <div>
+    <style>
+        .container{
+            border: solid blue 1px;
+        }
+    </style>
     @if ($userStops !== false)
         <h3>Estas son tus paradas</h3>
         @foreach ($userStops as $stops)
-        <div>
-            <p></p>
-            <button onclick="mostrarParada()" value="{{$stops->stopId}}" id="paradaId">
-                <div>Parada: {{$stops->direction}}</div>
-                <div>Latitud: {{$stops->latitude}}</div>    
-                <div>Longitud: {{$stops->longitude}}</div>
-            </button>  
+        <div class="container">
+        <button value="{{$stops->stopId}}" id="paradaId" class="paradaId">    
+            <div>Parada: {{$stops->direction}}</div>
+            <div>Latitud: {{$stops->latitude}}</div>    
+            <div>Longitud: {{$stops->longitude}}</div>
+        </button>  
         </div>  
         @endforeach
     @else
@@ -24,14 +28,19 @@
         <input type="hidden" name="parada" value="" id="inputParada">
     </form>
     <script>
-        function mostrarParada(){
-            const parada = document.getElementById("paradaId").value;
-            const inputParada = document.getElementById("inputParada");
-            const form = document.getElementById("form");
-            inputParada.value = parada;
-
-            form.submit();
-        }
+            let paradaId = document.querySelectorAll(".paradaId");
+            let inputParada = document.getElementById("inputParada");
+            let form = document.getElementById("form");
+            
+            
+            paradaId.forEach(button => {
+                button.addEventListener("click", (parada) => {
+                    inputParada.value = parada.currentTarget.value;
+                    form.submit();
+                });
+            });
+            
+            
     </script>
 </div>
 @stop
