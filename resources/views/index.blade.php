@@ -177,11 +177,12 @@
                         <b>${paradas.direction ? paradas.direction : 'Parada sin nombre'}</b><br>
                         Latitud: ${paradas.latitude}<br>
                         Longitud: ${paradas.longitude}<br>
-                        ID: ${paradas.id}<br>
+                        ID: ${paradas.stopId}<br>
                         <div class="container text-center mt-5">
-                            <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
+                            <form method="post" action="{{route('bus-stop.delete')}}" id="checkDelete">
                                 @csrf
-                                <label class="star-checkbox">Me gusta <input type="checkbox" class="d-none" value="${paradas.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()" checked><span class="star"></span></label>
+                                @method('DELETE')
+                                <label class="star-checkbox">Eliminar <input type="checkbox" class="d-none" value="${paradas.stopId}" id="borrarParada" name="paradaId" onchange="eliminarParada()" checked><span class="star"></span></label>
                             </form>
                         </div> 
                     `);
@@ -198,15 +199,11 @@
                         <div class="container text-center mt-5">
                             <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
                                 @csrf
-                                <label class="star-checkbox">Me gusta <input type="checkbox" class="d-none" value="${busStop.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()"><span class="star"></span></label>
+                                <label class="star-checkbox">Guardar <input type="checkbox" class="d-none" value="${busStop.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()"><span class="star"></span></label>
                             </form>
                         </div> 
                     `);
                 markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
-                
-                  
-                
-                
             });
             map.addLayer(markers); // Añadir el grupo de clusters al mapa
         }
@@ -216,6 +213,11 @@
             if(check.checked == true){
                 formCheck.submit();
             } 
+        }
+        function eliminarParada(){
+            let check = document.getElementById('borrarParada');
+            let formCheck = document.getElementById('checkDelete'); 
+                formCheck.submit();
         }
 
         function removeMarkers() {

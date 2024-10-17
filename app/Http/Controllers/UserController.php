@@ -28,26 +28,36 @@ class UserController extends Controller
         }
     }
     public function guardarParada(Request $request){
-        $user = $request->user();
+        $user = $request->user()->id;
         $stop = $request;
         if($user !== null){
-            $consulta = UserStop::where("stop_id",$stop->paradaId)->get();
+            $consulta = UserStop::where("stop_id",$stop->paradaId)
+            ->where('user_id',$user)
+            ->get();
             if($consulta->count() == 0){
                 $userStop = new UserStop();
-                $userStop->user_id = $user->id;
+                $userStop->user_id = $user;
                 $userStop->stop_id = $stop->paradaId;
         
                 $userStop->save();
                 session()->flash("success","¡Tu parada fue guardada!");
-                return redirect()->back();
-            }else{
-                session()->flash("error","Ya seleccionaste esta parada");
                 return redirect()->back();
             }
         } else{
             session()->flash("error","Para usar esta funcionalidad, necesitas iniciar sesion");
             return redirect()->back();
         }
+    }
+    public function eliminarParada(Request $request){
+        $user = $request->user()->id;
+        $parada = $request;
+        dd($parada);
+        $id = UserStop::select('id')->where('user_id',$user)->where('stop_id',$parada->paradaId)->get();
+
+        UserStop::destroy($id);
+
+        session()->flash("success","Tu parada fue eliminada");
+        return redirect()->back();
     }
     public function listadoUsuarios(Request $request){
         $users = User::where('id','<>',$request->user()->id)->get();
