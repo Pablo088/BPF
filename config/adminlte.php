@@ -317,9 +317,9 @@ return [
         ],
         ['header' => 'Acciones'],
         [
-            'text' => 'Dashboard',
+            'text' => 'Favoritos',
             'route' => 'dashboard',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-star',
         ],
         [
             'text' => 'Perfil',
