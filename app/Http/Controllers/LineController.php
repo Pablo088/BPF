@@ -80,28 +80,29 @@ class LineController extends Controller
         return redirect()->back();
     }
     public function añadirrelacion(Request $request){
-      
-        $relaciones = LineHasStop::where('busLine_id', $request->busLine_id)->where('busStop_id', $request->busStop_id)->get();
-        //dd($relaciones->isEmpty());
-        if ($relaciones->isEmpty() == true) {
-        $request->validate([
-            'busStop_id' => 'required',
-            'busLine_id' => 'required',
-        ],[
-            'busStop_id.required' => 'Este campo es obligatorio es obligatorio.',
+        $busLine_id = $request->busLine_id;
+        $busStop_ids = json_decode($request->busStop_id);
 
-            'busLine_id.required' =>'Este campo es obligatorio es obligatorio.',]);
-        //dd($request);
-        $has = new LineHasStop();
-        $has-> busLine_id = $request->busLine_id;
-        $has-> busStop_id = $request->busStop_id;
-        $has-> created_at = now();
-        $has->save();
-        return redirect()->back();
-    }else if ($relaciones->isEmpty() == false) {
+        foreach ($busStop_ids as $busStop_id) {
+            $relacion = LineHasStop::where('busLine_id', $busLine_id)
+                                   ->where('busStop_id', $busStop_id)
+                                   ->first();
+
+            if (!$relacion) {
+                $has = new LineHasStop();
+                $has->busLine_id = $busLine_id;
+                $has->busStop_id = $busStop_id;
+                $has->created_at = now();
+                $has->save();
+            }
+        }
+        /* else if ($relaciones->isEmpty() == false) {
         
-        return redirect()->back()->with('error', 'Esta relación ya existe.');;
-    };}
+            return redirect()->back()->with('error', 'Esta relación ya existe.');;
+        } */
+
+        return redirect()->back()->with('success', 'Relaciones añadidas correctamente.');
+    }
 
 
     public function editarCompania(){
