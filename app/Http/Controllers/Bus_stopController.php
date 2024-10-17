@@ -9,14 +9,32 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\BusCompany;
 use App\Models\Bus_line;
+use App\Models\UserStop;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Bus;
 
 class Bus_stopController extends Controller
 {
     public function index(Request $request){
-        $parada = $request->parada;
+        $user = $request->user()->id??1;
+        
+        $consulta = UserStop::select("bus_stops.id as stopId","direction","latitude","longitude")
+        ->join("bus_stops","users_stops.stop_id","=","bus_stops.id")
+        ->join("users","users_stops.user_id","=","users.id")
+        ->where("users_stops.user_id",$user)
+        ->groupBy("bus_stops.id")
+        ->get();
+
+        $comparacion = UserStop::select("bus_stops.id as stopId")
+        ->join("bus_stops","users_stops.stop_id","=","bus_stops.id")
+        ->join("users","users_stops.user_id","=","users.id")
+        ->where("users_stops.user_id",$user)
+        ->groupBy("bus_stops.id")
+        ->get();
+    
+        $parada = Bus_Stop::find($request->parada);
         $userRol = "";
-        $busStops = Bus_Stop::all();
+        $busStops = Bus_Stop::whereNotIn('id',$comparacion)->get();
         $company = BusCompany::all();
         $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
                 ->orderBy('road_group', 'asc')
@@ -54,7 +72,7 @@ class Bus_stopController extends Controller
         $userRol = $request->user()->hasRole("Admin");
     }
    
-    return view('index', compact('busStops','rutas','userRol','userSession','parada'));
+    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta'));
 }
 
     

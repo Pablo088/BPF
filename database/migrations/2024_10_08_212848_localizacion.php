@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('latitude',20, 7);
             $table->string('longitude',20, 7);
+            $table->string('Email');
             $table->timestamps(); 
         });
     }
