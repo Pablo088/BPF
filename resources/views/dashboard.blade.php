@@ -5,11 +5,6 @@
 @section('content')
 
 <div>
-    <style>
-        .container{
-            border: solid blue 1px;
-        }
-    </style>
     @if ($userStops !== false)
         <h3>Estas son tus paradas</h3>
         @foreach ($userStops as $stops)

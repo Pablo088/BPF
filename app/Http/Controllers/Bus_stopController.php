@@ -16,18 +16,25 @@ use Illuminate\Support\Facades\Bus;
 class Bus_stopController extends Controller
 {
     public function index(Request $request){
-        $user = $request->user();
+        $user = $request->user()->id??1;
         
         $consulta = UserStop::select("bus_stops.id as stopId","direction","latitude","longitude")
         ->join("bus_stops","users_stops.stop_id","=","bus_stops.id")
         ->join("users","users_stops.user_id","=","users.id")
-        ->where("users_stops.user_id",$user->id)
+        ->where("users_stops.user_id",$user)
+        ->groupBy("bus_stops.id")
+        ->get();
+
+        $comparacion = UserStop::select("bus_stops.id as stopId")
+        ->join("bus_stops","users_stops.stop_id","=","bus_stops.id")
+        ->join("users","users_stops.user_id","=","users.id")
+        ->where("users_stops.user_id",$user)
         ->groupBy("bus_stops.id")
         ->get();
 
         $parada = Bus_Stop::find($request->parada);
         $userRol = "";
-        $busStops = Bus_Stop::all();
+        $busStops = Bus_Stop::where();
         $company = BusCompany::all();
         $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
                 ->orderBy('road_group', 'asc')

@@ -147,7 +147,7 @@
     <script>
         const busStops = JSON.parse(document.getElementById('busStops').value);
         let userStops = (document.getElementById('paradaUser').value !== '') ? JSON.parse(document.getElementById('paradaUser').value) : '';
-        let paradasGuardadas = (document.getElementById('paradasGuardadas').value !== '') ? document.querySelectorAll('.paradasGuardadas').value : '';
+        let paradasGuardadas = JSON.parse(document.getElementById('paradasGuardadas').value)??'';
         var rutas = <?php echo $rutas; ?>;
         const map = (userStops == "") ? L.map('map').setView([-33.009668, -58.521428], 14): L.map('map').setView([userStops.latitude, userStops.longitude], 23);
         const routes =  L.layerGroup()
@@ -172,8 +172,24 @@
         });
         
         function addMarkers() {
-            busStops.forEach(busStop => {
-                if(busStop.id){
+            paradasGuardadas.forEach(function(paradas){
+                const marker = L.marker([paradas.latitude, paradas.longitude], {icon: busStopIcon})
+                    .bindPopup(`
+                        <b>${paradas.direction ? paradas.direction : 'Parada sin nombre'}</b><br>
+                        Latitud: ${paradas.latitude}<br>
+                        Longitud: ${paradas.longitude}<br>
+                        ID: ${paradas.id}<br>
+                        <div class="container text-center mt-5">
+                            <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
+                                @csrf
+                                <label class="star-checkbox">Me gusta <input type="checkbox" class="d-none" value="${paradas.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()" checked><span class="star"></span></label>
+                            </form>
+                        </div> 
+                    `);
+                    markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
+            });
+            busStops.forEach(function(busStop) {
+                
                     const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
                     .bindPopup(`
                         <b>${busStop.direction ? busStop.direction : 'Parada sin nombre'}</b><br>
@@ -188,22 +204,9 @@
                         </div> 
                     `);
                 markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
-                } else{
-                    const marker = L.marker([busStop.latitude, busStop.longitude], {icon: busStopIcon})
-                    .bindPopup(`
-                        <b>${busStop.direction ? busStop.direction : 'Parada sin nombre'}</b><br>
-                        Latitud: ${busStop.latitude}<br>
-                        Longitud: ${busStop.longitude}<br>
-                        ID: ${busStop.id}<br>
-                        <div class="container text-center mt-5">
-                            <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
-                                @csrf
-                                <label class="star-checkbox">Me gusta <input type="checkbox" class="d-none" value="${busStop.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()" checked><span class="star"></span></label>
-                            </form>
-                        </div> 
-                    `);
-                    markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
-                }
+                
+                  
+                
                 
             });
             map.addLayer(markers); // Añadir el grupo de clusters al mapa
