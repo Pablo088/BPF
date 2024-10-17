@@ -317,9 +317,14 @@ return [
         ],
         ['header' => 'Acciones'],
         [
-            'text' => 'Dashboard',
+            'text' => 'Favoritos',
             'route' => 'dashboard',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-star',
+        ],
+        [
+            'text' => 'Lineas',
+            'route' => 'LinesView',
+            'icon' => 'fas fa-fw fa-bus',
         ],
         [
             'text' => 'Perfil',
@@ -327,9 +332,27 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Agregar parada',
+            'route' => 'bus-stop.admin',
+            'icon' => 'fas fa-fw fa-map-marker-alt',
+            'can' => 'dashboard.users',
+        ],
+        [
+            'text' => 'Agregar ruta',
+            'route' => 'bus-stops.routes',
+            'icon' => 'fas fa-fw fa-map-signs',
+            'can'  => 'dashboard.users',
+        ],
+        [
+            'text' => 'Administrar lineas',
+            'route' => 'LinesAdmin',
+            'icon' => 'fas fa-fw fa-puzzle-piece',
+            'can'  => 'dashboard.users',
+        ],
+        [
             'text' => 'Roles y permisos de usuarios',
             'route' => 'dashboard.users',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
             'can'  => 'dashboard.users',
         ],
     ],
