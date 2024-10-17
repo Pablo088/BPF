@@ -152,7 +152,7 @@
         <form method="POST" action="{{route('relacion')}}">
             @csrf
                 <label for="busStop_id">Parada:</label>
-                <input type="number" id="busStop_id" name="busStop_id" required>
+                <input type="text" id="busStop_id" name="busStop_id" required>
                 <label for="busLine_id">Ruta:</label>
                 <input type="number" id="busLine_id" name="busLine_id" required>
                 <button type="submit">Añadir Relacion</button>
@@ -415,7 +415,7 @@ function sr() {
         //var idRuta = 0;
         let color;
         rutas.forEach(ruta => {
-            console.log(ruta);
+            //console.log(ruta);
 
             switch(ruta.grupo){
             case 1:
@@ -454,7 +454,7 @@ function sr() {
         } 
 
         //console.log(`Color para la ruta ${ruta.grupo}: ${color}`);
-
+        //console.log(ruta.nombre);
     var polyline = L.polyline(ruta.coordenadas, {
     color: color,
     weight: 4,
@@ -465,7 +465,7 @@ function sr() {
     .bindPopup(`
     <div>
         <input type="hidden" name="id_ruta" id="id_ruta" value="${ruta.grupo}">
-        <p>Esta es la ruta: ${ruta.grupo}</p>
+        <p>Esta es la ruta: ${ruta.nombre}</p>
         <a href="/bus-stops/admin/routes/eliminar/${ruta.grupo}" id=eliminar > Eliminar </a>
         <input type="button" name="relacionarR" id="relacionarR" onclick="relacionarLinea()">Relacionar</input>
     </div>`
@@ -485,6 +485,7 @@ function sr() {
         var idParada = document.getElementById('id_parada').value;
         idsParadas.push(idParada);
         document.getElementById('busStop_id').value = JSON.stringify(idsParadas);
+        console.log('Parada: ',idsParadas);
     }
     </script>
 </body>

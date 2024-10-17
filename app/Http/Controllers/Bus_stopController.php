@@ -124,15 +124,22 @@ class Bus_stopController extends Controller
     public function routes()
     {
         $busStops = Bus_Stop::all();
-        $roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
-        
-        
+        //$roads = Bus_road::orderBy('road_group', 'asc')->orderBy('order', 'asc')->get();
+        $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
+                ->orderBy('road_group', 'asc')
+                ->orderBy('order', 'asc')
+                ->get();
+
         $rutas = [];
         foreach ($roads as $fila) {
         $grupo = $fila->road_group;
         if (!isset($rutas[$grupo])) {
             $rutas[$grupo] = [
                 'grupo' => $grupo,
+                'nombre' => $fila->Bus_line->line_name,
+                'empresa' => $fila->Bus_line->BusCompany->company_name,
+                'id_empresa' => $fila->Bus_line->BusCompany->id,
+                'color' => $fila->Bus_line->color,
                 'coordenadas' => [],
             ];
         }
