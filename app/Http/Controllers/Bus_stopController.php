@@ -31,10 +31,10 @@ class Bus_stopController extends Controller
         ->where("users_stops.user_id",$user)
         ->groupBy("bus_stops.id")
         ->get();
-
+    
         $parada = Bus_Stop::find($request->parada);
         $userRol = "";
-        $busStops = Bus_Stop::where();
+        $busStops = Bus_Stop::whereNotIn('id',$comparacion)->get();
         $company = BusCompany::all();
         $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
                 ->orderBy('road_group', 'asc')

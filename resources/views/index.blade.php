@@ -156,7 +156,6 @@
         let locationActive = false;
         let userMarker = null;
 
-        console.log(paradasGuardadas);
         L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
             maxZoom: 20,
         }).addTo(map);
