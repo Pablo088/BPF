@@ -77,7 +77,7 @@
           </select>
       </div>
       <div class="col-auto">
-        <input type="color" value="#000000" name="color" id="color">
+        <input type="color" name="color" id="color">
       </div>
       <div class="col-auto">
         <button type="submit" class="btn btn-primary">Enviar</button>
