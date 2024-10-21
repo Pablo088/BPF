@@ -38,7 +38,7 @@ Route::controller(Bus_stopController::class)->group(function(){
   Route::post('/bus-stops/admin/storeroutes', 'storeroutes')->name('bus-stops.storeroutes');
 });
 
-//Route::middleware('solo.admin')->group(function (){
+Route::middleware('solo.admin')->group(function (){
     Route::get('/bus-stops/admin', [Bus_stopController::class, 'edit'])->name('bus-stop.admin');
     Route::get('/bus-stops/admin/eliminar/{id}', [Bus_stopController::class, 'eliminar'])->name('bus-stops.eliminar');
     //Route::get('/bus-stops/admin/routes/eliminar/{road_group}', 'eliminarRutas')->name('bus-stops.routes.eliminar');
@@ -56,7 +56,7 @@ Route::controller(Bus_stopController::class)->group(function(){
     Route::post('/Lines/admin/Company/options/linea/eliminar', [LineController::class, 'EliminarStop'])->name('EliminarStop');
     Route::get('/Lines/admin/Company/options/eliminar/linea/{id}', [LineController::class, 'Eliminarlinea'])->name('Eliminarlinea');
     Route::get('/Lines/admin/Company/options/eliminar/compania/{id}', [LineController::class, 'Eliminarcompania'])->name('Eliminarcompania');
-//});
+});
 
 Route::controller(LineController::class)->group(function(){
     Route::get('/Lines', 'Lines')->name('LinesView');
