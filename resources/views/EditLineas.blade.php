@@ -14,7 +14,7 @@
         <div class="row g-3">
           <div class="col-sm-3">
             <input type="hidden" name="id" value="{{$Line->id}}"  >
-            <input class="form-control form-control-lg" type="text"  value="{{$Line->line_name}}" aria-label=".form-control-lg example" name="line_name">
+            <input class="form-control form-control-lg" type="text" value="{{$Line->line_name}}" placeholder="Nombre linea" aria-label=".form-control-lg example" name="line_name">
         </div>
       <div class="col-sm-1">
           <label class="form-label" for="specificSizeInputHorarioI">Hora inicio</label>
