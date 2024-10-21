@@ -88,6 +88,7 @@
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
             <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
         @endif
+        <a href="{{route('dashboard')}}">Dashboard</a>
     </div>
     <script src="{{ asset('js\menu.js') }}"></script>
 <div id="contenedor1">

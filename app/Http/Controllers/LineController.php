@@ -74,6 +74,7 @@ class LineController extends Controller
         $lin-> line_name = $request->line_name;
         $lin-> horario_comienzo = $request->horario_comienzo;
         $lin-> horario_finalizacion = $request->horario_finalizacion;
+        $lin-> color = $request->color;
         $lin-> company_id = $request->company_id;
         $lin-> created_at = now();
         $lin->save();
@@ -138,6 +139,7 @@ class LineController extends Controller
         $Elin-> line_name = $request->line_name;
         $Elin-> horario_comienzo = $request->horario_comienzo;
         $Elin-> horario_finalizacion = $request->horario_finalizacion;
+        $Elin-> color = $request->color;
         $Elin-> company_id = $request->company_id;
         $Elin->save();
         return redirect()->back();

@@ -44,9 +44,11 @@
         @if ($userSession !== true)
             <a href="{{ route('login') }}">Iniciar sesión</a>
             <a href="{{route('register')}}">Registrarse</a>
-         @endif
+        @endif
       
         <a href="{{route('LinesView')}}">Lineas</a>
+        <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
+        <a href="{{route('bus-stops.routes')}}">Administrar Rutas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 

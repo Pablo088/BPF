@@ -105,6 +105,8 @@
         <a href="{{ route('bus-stops.index')}}">Inicio</a>
         <a href="{{ route('login') }}">Iniciar sesión</a>
         <a href="{{route('register')}}">Registrarse</a>
+        <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+        <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
         <a>
             Mostrar Paradas de Colectivo
             <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
