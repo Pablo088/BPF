@@ -78,7 +78,7 @@ class LineController extends Controller
         $lin-> company_id = $request->company_id;
         $lin-> created_at = now();
         $lin->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La línea de autobús ha sido creada correctamente.');
     }
     public function añadirrelacion(Request $request){
         $busLine_id = $request->busLine_id;
@@ -142,7 +142,7 @@ class LineController extends Controller
         $Elin-> color = $request->color;
         $Elin-> company_id = $request->company_id;
         $Elin->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La línea de autobús ha sido editada correctamente.');
     }
 
     public function EliminarStop(Request $request){

@@ -131,5 +131,10 @@
 @endif
 <br>
 <a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
+@if (session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+@endif
 </body>
 </html>
