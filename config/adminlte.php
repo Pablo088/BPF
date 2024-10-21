@@ -327,6 +327,11 @@ return [
             'icon' => 'fas fa-fw fa-bus',
         ],
         [
+            'text' => 'Mapa',
+            'route' => 'bus-stops.index',
+            'icon' => 'fas fa-fw fa-map',
+        ],
+        [
             'text' => 'Perfil',
             'route' => 'profile.edit',
             'icon' => 'fas fa-fw fa-user',
