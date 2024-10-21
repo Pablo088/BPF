@@ -15,7 +15,7 @@
         }
         #boton{
           position: absolute;
-          top: 55%;
+          top: 60%;
           right: 0%;
         }
     </style>
