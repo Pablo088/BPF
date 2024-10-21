@@ -143,6 +143,9 @@
     <script src="{{ asset('js\leaflet.js') }}"></script>
     {{-- <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script> --}}
     <script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
 
     <script>
         const busStops = JSON.parse(document.getElementById('busStops').value);
@@ -172,6 +175,7 @@
         
         function addMarkers() {
             paradasGuardadas.forEach(function(paradas){
+                let id = paradas.stopId;
                 const marker = L.marker([paradas.latitude, paradas.longitude], {icon: busStopIcon})
                     .bindPopup(`
                         <b>${paradas.direction ? paradas.direction : 'Parada sin nombre'}</b><br>
@@ -179,11 +183,7 @@
                         Longitud: ${paradas.longitude}<br>
                         ID: ${paradas.stopId}<br>
                         <div class="container text-center mt-5">
-                            <form method="post" action="{{route('bus-stop.delete')}}" id="checkDelete">
-                                @csrf
-                                @method('DELETE')
-                                <label class="star-checkbox">Eliminar <input type="checkbox" class="d-none" value="${paradas.stopId}" id="borrarParada" name="paradaId" onchange="eliminarParada()" checked><span class="star"></span></label>
-                            </form>
+                            <label class="star-checkbox">Guardada <input type="checkbox" class="d-none" value="${paradas.stopId}" id="borrarParada" name="paradaId" onchange="eliminarParada()" checked><span class="star"></span></label>
                         </div> 
                     `);
                     markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
@@ -506,10 +506,22 @@
     }  
     </script>
     @if (session('success'))
-        <script>alert("{{session('success')}}")</script>
+        <script>
+            swal({
+                title: "Exito",
+                text: "{{session('success')}}",
+                type: "success"
+            });
+        </script>
     @endif
     @if (session('error'))
-        <script>alert("{{session('error')}}")</script>
+        <script>
+            swal({
+                title: "Error",
+                text: "{{session('error')}}",
+                type: "warning"
+            });
+        </script>
     @endif
 </body>
 </html>

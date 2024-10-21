@@ -70,7 +70,7 @@ Route::controller(UserController::class)->group(function(){
     Route::put("/dasboard/users/manage/{id}/post","cambiarRol")->name("users.manage.post");
     Route::get('/dashboard','dashboard')->middleware(['auth', 'verified'])->name('dashboard');
     Route::post('/store','guardarParada')->name('bus-stop.store');
-    Route::delete('/delete','eliminarParada')->name('bus-stop.delete');
+    Route::delete('/delete/{id}','eliminarParada')->name('bus-stop.delete');
 });
 
 Route::get('/xd', function () {

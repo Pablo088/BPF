@@ -28,7 +28,7 @@ class UserController extends Controller
         }
     }
     public function guardarParada(Request $request){
-        $user = $request->user()->id;
+        $user = $request->user()->id??null;
         $stop = $request;
         if($user !== null){
             $consulta = UserStop::where("stop_id",$stop->paradaId)
@@ -48,13 +48,9 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function eliminarParada(Request $request){
-        $user = $request->user()->id;
-        $parada = $request;
-        dd($parada);
-        $id = UserStop::select('id')->where('user_id',$user)->where('stop_id',$parada->paradaId)->get();
-
-        UserStop::destroy($id);
+    public function eliminarParada(Request $request,$stopId){
+        $userId = $request->user()->id;
+        $id = UserStop::select("id")->where("user_id",$userId)->where("stop_id",$stopId)->delete();
 
         session()->flash("success","Tu parada fue eliminada");
         return redirect()->back();
