@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Localizacion extends Model
 {
     use HasFactory;
-
+    protected $table='localizacions';
     protected $fillable = [
+        'Email',
         'latitude',
         'longitude',
     ];
