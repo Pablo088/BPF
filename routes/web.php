@@ -73,11 +73,10 @@ Route::controller(UserController::class)->group(function(){
     Route::delete('/delete/{id}','eliminarParada')->name('bus-stop.delete');
 });
 
-Route::get('/xd', function () {
-    return view('Localizacion');
+Route::middleware('solo.colectivero')->group(function (){
+    Route::get('/locate',[LocalizacionController::class, 'show']);
+    Route::post('/location', [LocalizacionController::class, 'store']);
 });
-
-Route::post('/location', [LocalizacionController::class, 'store']);
 
 Route::get('/menu', [MenuController::class, 'showMenu']);
 

@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'session.auth' => \App\Http\Middleware\sessionAuth::class,
         'solo.admin' => \App\Http\Middleware\SoloAdmin::class,
+        'solo.colectivero' => \App\Http\Middleware\SoloColectivero::class,
     ];
 }

@@ -13,15 +13,16 @@ El software permite ver las diferentes paradas de colectivo, las distintas rutas
 
 ## Guia de instalación
 
-1. Podes descargar el proyecto tocando el boton "code" y luego presionando "download", o podes hacer un git clone (en la consola de comandos introducís: git clone https://github.com/Pablo088/BPF.git)
-2. Copia el archivo ".env.example". Ahora vas a tener que renombrar esa copia de ".env.example" como ".env"
-3. En la consola de comandos de Laragon, dirigite al directorio del proyecto
-4. Introducí el comando "composer install"
-5. Luego tenés que introducir el comando "php artisan key:generate --ansi"
-6. Ahora tenés que correr las migraciones con "php artisan migrate --seed"
-7. Corre el comando composer require "almasaeed2010/adminlte=~3.0"
-8. Por último, inicia el proyecto con el comando "php artisan serve"
-9. Ingresá a http://127.0.0.1:8000 para empezar a probar la aplicación (▬_▬)
+1. Podes descargar el proyecto tocando el boton "code" y luego presionando "download", o podes hacer un git clone (en la consola de comandos introducís: git clone https://github.com/Pablo088/BPF.git).
+2. Copia el archivo ".env.example". Ahora vas a tener que renombrar esa copia de ".env.example" como ".env".
+3. En la consola de comandos de Laragon, dirigite al directorio del proyecto.
+4. Introducí el comando "composer install".
+5. Luego tenés que introducir el comando "php artisan key:generate --ansi".
+6. Ahora tenés que correr las migraciones con "php artisan migrate --seed".
+7. Corre el comando composer require "almasaeed2010/adminlte=~3.0".
+8. Corre el comando npm run dev.
+9. Por último, inicia el proyecto con el comando "php artisan serve".
+10. Ingresá a http://127.0.0.1:8000 para empezar a probar la aplicación (▬_▬).
 
 ## About Laravel
 

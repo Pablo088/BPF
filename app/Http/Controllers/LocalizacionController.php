@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LocalizacionController extends Controller
 {
+    public function show(){
+        return view('localizacion');
+    }
     public function store(Request $request)
     {
         $user = Auth::user();
