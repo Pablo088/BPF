@@ -181,7 +181,6 @@
                         <b>${paradas.direction ? paradas.direction : 'Parada sin nombre'}</b><br>
                         Latitud: ${paradas.latitude}<br>
                         Longitud: ${paradas.longitude}<br>
-                        ID: ${paradas.stopId}<br>
                         <div class="container text-center mt-5">
                             <label class="star-checkbox">Guardada <input type="checkbox" class="d-none" value="${paradas.stopId}" id="borrarParada" name="paradaId" onchange="eliminarParada()" checked><span class="star"></span></label>
                         </div> 
@@ -195,7 +194,6 @@
                         <b>${busStop.direction ? busStop.direction : 'Parada sin nombre'}</b><br>
                         Latitud: ${busStop.latitude}<br>
                         Longitud: ${busStop.longitude}<br>
-                        ID: ${busStop.id}<br>
                         <div class="container text-center mt-5">
                             <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
                                 @csrf
