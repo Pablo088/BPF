@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 class SoloColectivero
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
+    * Handle an incoming request.
+    *
+    * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+    */
     public function handle(Request $request, Closure $next): Response
     {
         if($request->user() !== null){
