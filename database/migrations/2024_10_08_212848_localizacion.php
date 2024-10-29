@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('latitude',20, 7);
             $table->string('longitude',20, 7);
-            $table->string('Email');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('line_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('line_id')->references('id')->on('bus_lines')->onDelete('cascade');
             $table->timestamps(); 
         });
     }

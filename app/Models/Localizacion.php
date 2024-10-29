@@ -15,4 +15,10 @@ class Localizacion extends Model
         'longitude',
     ];
 
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function bus_line(){
+        return $this->hasOne(Bus_line::class, 'id', 'line_id');
+    }
 }

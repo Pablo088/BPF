@@ -34,4 +34,8 @@ class Bus_line extends Model
     public function Bus_road(){
         return $this->hasMany(Bus_road::class, 'road_group', 'id');
     }
+
+    public function Localizacion(){
+        return $this->hasOne(Localizacion::class, 'line_id', 'id');
+    }
 }

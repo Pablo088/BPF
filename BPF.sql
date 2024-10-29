@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `bus_lines` (
   CONSTRAINT `bus_lines_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `bus_companies` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.bus_lines: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.bus_lines: ~12 rows (aproximadamente)
 INSERT INTO `bus_lines` (`id`, `line_name`, `company_id`, `horario_comienzo`, `horario_finalizacion`, `color`, `created_at`, `updated_at`) VALUES
-	(1, '1A', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL),
+	(1, '1A', 1, '00:00:00', '00:00:00', '#F7E300', NULL, '2024-10-22 01:08:44'),
 	(2, '1B', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL),
 	(3, '4A', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL),
 	(4, '4A1', 1, '00:00:00', '00:00:00', '#F7E300', NULL, NULL),
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `bus_roads` (
   CONSTRAINT `bus_roads_road_group_foreign` FOREIGN KEY (`road_group`) REFERENCES `bus_lines` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.bus_roads: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.bus_roads: ~1.448 rows (aproximadamente)
 INSERT INTO `bus_roads` (`id`, `road_group`, `latitude`, `longitude`, `order`, `created_at`, `updated_at`) VALUES
 	(1, 1, '-33.025151342933334', '-58.52057576179505', 1, '2024-09-09 23:10:13', '2024-09-09 23:10:13'),
 	(2, 1, '-33.02534137040753', '-58.52069646120072', 2, '2024-09-09 23:10:13', '2024-09-09 23:10:13'),
@@ -2024,7 +2024,7 @@ CREATE TABLE IF NOT EXISTS `line_has_stops` (
   CONSTRAINT `line_has_stops_busstop_id_foreign` FOREIGN KEY (`busStop_id`) REFERENCES `bus_stops` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.line_has_stops: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.line_has_stops: ~30 rows (aproximadamente)
 INSERT INTO `line_has_stops` (`id`, `busLine_id`, `busStop_id`, `created_at`, `updated_at`) VALUES
 	(1, 4, 82, '2024-10-03 01:46:08', '2024-10-03 01:46:08'),
 	(2, 4, 79, '2024-10-03 01:49:00', '2024-10-03 01:49:00'),
@@ -2062,12 +2062,18 @@ CREATE TABLE IF NOT EXISTS `localizacions` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `latitude` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `longitude` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_user` bigint DEFAULT NULL,
+  `id_line` bigint DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.localizacions: ~12 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.localizacions: ~3 rows (aproximadamente)
+INSERT INTO `localizacions` (`id`, `latitude`, `longitude`, `id_user`, `id_line`, `created_at`, `updated_at`) VALUES
+	(1, '-33.0080431', '-58.521691', NULL, NULL, '2024-10-23 02:07:24', '2024-10-24 01:25:46'),
+	(2, '-33.0080521', '-58.5217206', NULL, NULL, '2024-10-23 02:08:46', '2024-10-23 02:09:28'),
+	(3, '-33.0080408', '-58.5216922', NULL, NULL, '2024-10-24 01:56:40', '2024-10-24 01:56:40');
 
 -- Volcando estructura para tabla bpf.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -2089,27 +2095,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(8, '2024_08_26_223116_bus_lines', 1),
 	(9, '2024_08_27_202012_bus_roads', 1),
 	(10, '2024_09_09_202412_lines_has_stops', 1),
-	(13, '2014_10_12_000000_create_users_table', 1),
-	(14, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-	(15, '2019_08_19_000000_create_failed_jobs_table', 1),
-	(16, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-	(17, '2023_05_20_213917_bus_company', 1),
-	(18, '2024_05_20_213816_bus_stops', 1),
-	(19, '2024_08_08_223130_create_permission_tables', 1),
-	(20, '2024_08_26_223116_bus_lines', 1),
-	(21, '2024_08_27_202012_bus_roads', 1),
-	(22, '2024_09_09_202412_lines_has_stops', 1),
-	(23, '2024_09_18_230136_users_stops', 1),
-	(24, '2024_10_08_212848_localizacion', 1),
-	(47, '2014_10_12_000000_create_users_table', 1),
-	(48, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-	(49, '2019_08_19_000000_create_failed_jobs_table', 1),
-	(50, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-	(51, '2023_05_20_213917_bus_lines', 1),
-	(52, '2024_05_20_213816_bus_stops', 1),
-	(53, '2024_05_21_213217_buses', 1),
-	(54, '2024_08_08_223130_create_permission_tables', 1),
-	(55, '2024_09_18_230136_users_stops', 2);
+	(11, '2024_09_18_230136_users_stops', 1),
+	(12, '2024_10_08_212848_localizacion', 1);
 
 -- Volcando estructura para tabla bpf.model_has_permissions
 CREATE TABLE IF NOT EXISTS `model_has_permissions` (
@@ -2122,6 +2109,8 @@ CREATE TABLE IF NOT EXISTS `model_has_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla bpf.model_has_permissions: ~0 rows (aproximadamente)
+INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES
+	(7, 'App\\Models\\User', 1);
 
 -- Volcando estructura para tabla bpf.model_has_roles
 CREATE TABLE IF NOT EXISTS `model_has_roles` (
@@ -2133,10 +2122,13 @@ CREATE TABLE IF NOT EXISTS `model_has_roles` (
   CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.model_has_roles: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.model_has_roles: ~4 rows (aproximadamente)
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 	(1, 'App\\Models\\User', 1),
-	(2, 'App\\Models\\User', 2);
+	(1, 'App\\Models\\User', 2),
+	(2, 'App\\Models\\User', 3),
+	(3, 'App\\Models\\User', 4),
+	(2, 'App\\Models\\User', 5);
 
 -- Volcando estructura para tabla bpf.password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
@@ -2159,10 +2151,15 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.permissions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.permissions: ~7 rows (aproximadamente)
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-	(1, 'bus-stops.index', 'web', '2024-08-21 01:00:39', '2024-08-21 01:00:39'),
-	(2, 'bus-stops.admin', 'web', '2024-08-21 01:00:39', '2024-08-21 01:00:39');
+	(1, 'bus-stops.index', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(2, 'bus-stops.admin', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(3, 'bus-stops.eliminar', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(4, 'bus-stops.editar', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(5, 'bus-stops.route', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(6, 'bus-stops.routes.eliminar', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(7, 'dashboard.users', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52');
 
 -- Volcando estructura para tabla bpf.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
@@ -2194,10 +2191,11 @@ CREATE TABLE IF NOT EXISTS `roles` (
   UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.roles: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.roles: ~2 rows (aproximadamente)
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-	(1, 'Admin', 'web', '2024-08-21 01:00:39', '2024-08-21 01:00:39'),
-	(2, 'User', 'web', '2024-08-21 01:00:39', '2024-08-21 01:00:39');
+	(1, 'Admin', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(2, 'User', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(3, 'Colectivero', 'web', '2024-10-18 01:04:52', '2024-10-18 01:04:52');
 
 -- Volcando estructura para tabla bpf.role_has_permissions
 CREATE TABLE IF NOT EXISTS `role_has_permissions` (
@@ -2209,10 +2207,15 @@ CREATE TABLE IF NOT EXISTS `role_has_permissions` (
   CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.role_has_permissions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.role_has_permissions: ~8 rows (aproximadamente)
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(1, 1),
 	(2, 1),
+	(3, 1),
+	(4, 1),
+	(5, 1),
+	(6, 1),
+	(7, 1),
 	(1, 2);
 
 -- Volcando estructura para tabla bpf.users
@@ -2229,10 +2232,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.users: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.users: ~4 rows (aproximadamente)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Admin', 'admin@admin.com', NULL, '$2y$12$xkQV/69NGl/1LDnpxvAUVeN6/rTA8PCjI/afY.5ApjwtPBRPxAeOm', '4pyFmzqRPz61vqWAeqlGCMKPF3r7CUd9QHGFZXezaSCGPBzRDRslUAWfHTDV', '2024-10-02 02:07:13', '2024-10-02 02:07:13'),
-	(2, 'User123', 'user@user.com', NULL, '$2y$12$1jCQZj/JYyR2nGr9eXQh8uiBxitp2MUQlkMe0ooPEpdcBrHe4Goza', NULL, '2024-10-14 22:55:36', '2024-10-14 22:55:36');
+	(1, 'admin', 'test@example.com', '2024-10-18 01:04:52', '$2y$12$kU9N1jAri.4fOTbIo0uMK.S3CGNN.8RvmldxJXJO6twvDETrjXRzy', 'AoxkiNaNsu7KkOwGHyM3FFbQIQV7FxaW5At5itPZrY4FTNTNcVDU5zuelKg0', '2024-10-18 01:04:52', '2024-10-18 01:04:52'),
+	(2, 'Admin', 'admin@admin.com', NULL, '$2y$12$wnjpWs3tNJ6iSNeMO634e.JZXRpmMjG37nHXUoOczrGpoDtx.Ssc6', 'ySE8cKsI3roaRlCj3T6pinBBVGQXp5ZlvpVYOJ90LUsVIQ9oMoLV4mHldTV7', '2024-10-18 01:06:25', '2024-10-18 01:06:25'),
+	(3, 'User1', 'user@user.com', NULL, '$2y$12$gpRQ/uwWkb7yAW3fD877ruElgVgKwLLn11YpiGmpoBMjU.jWs.EG6', 'OoKWz7ppGAEduHKknu7po1qtqSWSOZ62PTPjwHdPdbcLKPqGc6WvYvpGEVQD', '2024-10-21 23:26:00', '2024-10-21 23:27:13'),
+	(4, 'Colectivero1', 'colectivero@bondi.com', NULL, '$2y$12$Oy4mm7mUKvctHLUKHa4SLOigjRNv3DrF5WjP/MV9asnSquG7taZxC', NULL, '2024-10-21 23:29:37', '2024-10-21 23:29:37'),
+	(5, 'UsuarioNgrok', 'usserngrok@user.com', NULL, '$2y$12$kK2nObBJGprqDc20pR54kuUFHE.JLuwxDS3qblLmbPChibhOml8ri', NULL, '2024-10-23 01:25:17', '2024-10-23 01:25:17');
 
 -- Volcando estructura para tabla bpf.users_stops
 CREATE TABLE IF NOT EXISTS `users_stops` (
@@ -2248,10 +2254,12 @@ CREATE TABLE IF NOT EXISTS `users_stops` (
   CONSTRAINT `users_stops_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bpf.users_stops: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.users_stops: ~4 rows (aproximadamente)
 INSERT INTO `users_stops` (`id`, `user_id`, `stop_id`, `created_at`, `updated_at`) VALUES
-	(1, 2, 82, '2024-10-14 22:56:09', '2024-10-14 22:56:09'),
-	(2, 1, 1, '2024-10-14 23:22:55', '2024-10-14 23:22:55');
+	(1, 3, 82, '2024-10-21 23:39:05', '2024-10-21 23:39:05'),
+	(2, 3, 81, '2024-10-21 23:39:29', '2024-10-21 23:39:29'),
+	(3, 1, 82, '2024-10-24 01:16:49', '2024-10-24 01:16:49'),
+	(4, 1, 264, '2024-10-24 01:30:06', '2024-10-24 01:30:06');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
