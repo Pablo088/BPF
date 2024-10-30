@@ -8,6 +8,7 @@ use App\Models\BusCompany;
 use App\Models\LineHasStop;
 use App\Models\Bus_stop;
 use App\Models\Bus_road;
+use App\Models\UserHasLine;
 
 class Bus_line extends Model
 {
@@ -37,5 +38,8 @@ class Bus_line extends Model
 
     public function Localizacion(){
         return $this->hasOne(Localizacion::class, 'line_id', 'id');
+    }
+    public function UserHasLine(){
+        return $this->hasOne(UserHasLine::class,'line_id');
     }
 }
