@@ -7,8 +7,11 @@ use App\Models\Bus_line;
 use App\Models\BusCompany;
 use App\Models\LineHasStop;
 use App\Models\Bus_stop;
+use App\Models\UserHasLine;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class LineController extends Controller
 {
@@ -116,8 +119,14 @@ class LineController extends Controller
         $buscompany=BusCompany::all();
         $busLines = Bus_line::with('busStops')->find($id);
         $Line = Bus_line::find($id);
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('role_id', 3); // ID del rol deseado
+        })->get();
+        
+        //dd($users);  
+
         //dd($Line);
-        return view('EditLineas', compact('Line','buscompany','buscompany'));
+        return view('EditLineas', compact('Line','buscompany','buscompany', 'users'));
     }
 
     public function Ceditar($id){
@@ -142,6 +151,14 @@ class LineController extends Controller
         $Elin-> color = $request->color;
         $Elin-> company_id = $request->company_id;
         $Elin->save();
+        
+        $user = User::find($request->usuarios);
+        $linea = Bus_line::find($ID);
+        UserHasLine::updateOrCreate([
+            'user_id' => $user->id,
+            'line_id' => $linea->id,
+        ]);
+
         return redirect()->back()->with('success', 'La línea de autobús ha sido editada correctamente.');
     }
 

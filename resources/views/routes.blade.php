@@ -103,8 +103,6 @@
     <div id="menu" class="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
         <a href="{{ route('bus-stops.index')}}">Inicio</a>
-        <a href="{{ route('login') }}">Iniciar sesión</a>
-        <a href="{{route('register')}}">Registrarse</a>
         <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
         <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
         <a>

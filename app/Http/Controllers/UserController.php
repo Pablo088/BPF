@@ -80,13 +80,8 @@ class UserController extends Controller
         }
         return redirect()->back()->with( ['lines' => $lines] );
     }
-    public function RelacionarLinea(Request $request){
-        $user = User::find($request->user_id);
-        $linea = Bus_line::find($request->lineas);
-        $user_line = UserHasLine::updateOrCreate([
-            'user_id' => $user->id,
-            'line_id' => $linea->id,
-        ]);
+   /*  public function RelacionarLinea(Request $request){
+       
         return redirect()->back();
-    }
+    } */
 }
