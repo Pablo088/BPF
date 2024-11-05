@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fuerza HTTPS en el entorno local, por ejemplo, cuando usas Ngrok.
         if ($this->app->environment('local')) {
-            URL::forceScheme('https');
+       //     URL::forceScheme('https');
         }
     }
 

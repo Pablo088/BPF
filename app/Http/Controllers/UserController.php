@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bus_line;
 use Illuminate\Http\Request;
 use App\Models\UserStop;
 use App\Models\User;
+use App\Models\UserHasLine;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -60,14 +62,31 @@ class UserController extends Controller
         return view("admin\user_rol", compact("users"));
     }
     public function getUserInfo(Request $request, $id){
-        return view("admin\manage_user",compact('id'));
+        $userLine = UserHasLine::join('bus_lines',"users_has_lines.line_id","=","bus_lines.id")
+        ->join('users',"users_has_lines.user_id","=","users.id")
+        ->where('user_id',$id)
+        ->get()??null;
+        return view("admin\manage_user",compact('id','userLine'));
     }
     public function cambiarRol(Request $request,$id){
         $user = User::find($id);
+        $lines = null;
         $user->syncRoles($request->cambiarRol);
         if($request->cambiarRol == 'Admin'){
             $user->syncPermissions('dashboard.users');
         }
-        return redirect()->route('dashboard.users');
+        if($request->cambiarRol == 'Colectivero'){
+            $lines = Bus_line::all();
+        }
+        return redirect()->back()->with( ['lines' => $lines] );
+    }
+    public function RelacionarLinea(Request $request){
+        $user = User::find($request->user_id);
+        $linea = Bus_line::find($request->lineas);
+        $user_line = UserHasLine::updateOrCreate([
+            'user_id' => $user->id,
+            'line_id' => $linea->id,
+        ]);
+        return redirect()->back();
     }
 }

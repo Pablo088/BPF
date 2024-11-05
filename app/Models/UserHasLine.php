@@ -10,7 +10,11 @@ use App\Models\Bus_line;
 class UserHasLine extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'user_id',
+        'line_id',
+    ];
+    protected $table = 'users_has_lines';
     public function User(){
         return $this->belongsTo(User::class,'user_id');
     }

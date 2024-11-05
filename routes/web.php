@@ -71,6 +71,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/dashboard','dashboard')->middleware(['auth', 'verified'])->name('dashboard');
     Route::post('/store','guardarParada')->name('bus-stop.store');
     Route::delete('/delete/{id}','eliminarParada')->name('bus-stop.delete');
+    Route::post('/dashboard/users/manage/lines','RelacionarLinea')->name('user-line.add');
 });
 
 Route::middleware('solo.colectivero')->group(function (){
