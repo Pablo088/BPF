@@ -24,7 +24,7 @@ class LocalizacionController extends Controller
         try {
             // Actualizar o crear la ubicación del usuario basado en su email
             Localizacion::updateOrCreate(
-                ['Email' => $user->email], // Condición para encontrar el registro
+                ['user_id' => $user->id], // Condición para encontrar el registro
                 [
                     'latitude' => $validated['latitude'], // Datos para actualizar o crear
                     'longitude' => $validated['longitude'],

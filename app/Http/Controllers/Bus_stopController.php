@@ -12,6 +12,7 @@ use App\Models\Bus_line;
 use App\Models\UserStop;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
+use App\Models\Localizacion;
 
 class Bus_stopController extends Controller
 {
@@ -34,6 +35,7 @@ class Bus_stopController extends Controller
     
         $parada = Bus_Stop::find($request->parada);
         $userRol = "";
+        $userDriver = "";
         $busStops = Bus_Stop::whereNotIn('id',$comparacion)->get();
         $company = BusCompany::all();
         $roads = Bus_road::with(['Bus_line.BusCompany']) // Cargar la relación 'busLine'
@@ -70,9 +72,10 @@ class Bus_stopController extends Controller
     $userSession = Auth::user() !== null;
     if($userSession !== false){
         $userRol = $request->user()->hasRole("Admin");
+        $userDriver = $request->user()->hasRole("Colectivero");
     }
    
-    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta'));
+    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta', 'userDriver'));
 }
 
     
@@ -198,6 +201,13 @@ class Bus_stopController extends Controller
         Bus_road::where('road_group', $road_groups)->delete();
         return redirect()->back()->with('success', 'Ruta eliminada correctamente');
     }
-}
+
 
     
+
+public function getLocalizaciones()
+{
+    $localizaciones = Localizacion::with(['user', 'bus_line'])->get();
+    return response()->json($localizaciones);
+}
+}

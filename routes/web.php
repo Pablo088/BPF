@@ -74,7 +74,7 @@ Route::controller(UserController::class)->group(function(){
 });
 
 Route::middleware('solo.colectivero')->group(function (){
-    Route::get('/locate',[LocalizacionController::class, 'show']);
+    Route::get('/locate',[LocalizacionController::class, 'show'])->name('locate');
     Route::post('/location', [LocalizacionController::class, 'store']);
 });
 
@@ -83,3 +83,4 @@ Route::get('/menu', [MenuController::class, 'showMenu']);
 Route::get('/pruebamail', [MailController::class, 'enviarCorreoPrueba']);
 
 require __DIR__.'/auth.php';
+

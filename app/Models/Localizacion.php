@@ -10,9 +10,10 @@ class Localizacion extends Model
     use HasFactory;
     protected $table='localizacions';
     protected $fillable = [
-        'Email',
+        'user_id',
         'latitude',
         'longitude',
+        'line_id',
     ];
 
     public function user(){
