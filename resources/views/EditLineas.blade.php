@@ -51,8 +51,7 @@
                         <input type="hidden" name="line_id" value="{{ $Line->id }}">
                         <select name="usuarios" id="usuarios">
                           <option selected disabled>Seleccionar conductor de la linea</option>
-                            @foreach ($users as $user)
-                               
+                            @foreach ($users as $user)    
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
@@ -86,12 +85,13 @@
             </li>
         @endforeach
     </ul>
-
+<div id="mensaje">
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+</div>
 
 </body>
 

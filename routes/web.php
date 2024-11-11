@@ -41,7 +41,7 @@ Route::middleware('solo.admin')->group(function (){
     Route::post('/bus-stops/admin/storeroutes',[Bus_stopController::class,'storeroutes'])->name('bus-stops.storeroutes');
     Route::get('/bus-stops/admin', [Bus_stopController::class, 'edit'])->name('bus-stop.admin');
     Route::get('/bus-stops/admin/eliminar/{id}', [Bus_stopController::class, 'eliminar'])->name('bus-stops.eliminar');
-    //Route::get('/bus-stops/admin/routes/eliminar/{road_group}', 'eliminarRutas')->name('bus-stops.routes.eliminar');
+    Route::get('/bus-stops/admin/routes/eliminar/{road_group}', [Bus_stopController::class, 'eliminarRutas'])->name('bus-stops.routes.eliminar');
     Route::get('/bus-stops/admin/editar/{id}', [Bus_stopController::class, 'edite'])->name('bus-stops.editar');
     Route::get('/bus-stops/admin/routes', [Bus_stopController::class, 'routes'])->name('bus-stops.routes');
     Route::get('/Lines/admin', [LineController::class, 'Admin'])->name('LinesAdmin');

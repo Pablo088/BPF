@@ -14,14 +14,20 @@
             top: 50%;
         }
         #boton{
-          position: absolute;
-          top: 60%;
-          right: 0%;
+          padding: 15px;
+        }
+        #opciones{
+          position: relative;
+          display: flex;
+        }
+        #container{
+          position: relative;
+          display: flex;
+          margin: 15px;
         }
     </style>
 </head>
 <body>
-
   {{-- <div id="menu" class="menu">
     <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
     <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
@@ -70,7 +76,7 @@
       <div class="col-sm-3">
         <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
           <select class="form-select" id="specificSizeSelect" name="company_id">
-            <option selected>Seleccionar</option>
+            <option selected disabled>Seleccionar</option>
             @foreach($buscompany as $company)
             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
             @endforeach
@@ -100,7 +106,7 @@
 
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
     <select class="form-select" id="specificSizeSelect" name="busLine_id">
-      <option selected>Linea</option>
+      <option selected disabled>Linea</option>
       @foreach($busline as $lines)
       <option value="{{ $lines->id }}">{{ $lines->line_name}}</option>
       @endforeach
@@ -110,7 +116,7 @@
   <div class="col-sm-3">
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
     <select class="form-select" id="specificSizeSelect" name="busStop_id">
-      <option selected>Parada</option>
+      <option selected disabled>Parada</option>
       @foreach($busstop as $stop)
       <option value="{{ $stop->id }}">ID:{{$stop->id}}   /Direccion:{{$stop->direction}}</option>
       @endforeach
@@ -130,11 +136,17 @@
 </div>
 @endif
 <br>
-<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
-@if (session('success'))
-    <div class="alert alert-success">
-      {{ session('success') }}
-    </div>
+<div id="opciones">
+  <div id="botonContainer">
+    <a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
+  </div>
+</div>
+<div class="container">
+  @if (session('success'))
+  <div class="alert alert-success">
+    {{ session('success') }}
+  </div>
 @endif
+</div>
 </body>
 </html>
