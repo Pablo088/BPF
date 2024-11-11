@@ -42,22 +42,24 @@ class Bus_stopController extends Controller
                 ->orderBy('road_group', 'asc')
                 ->orderBy('order', 'asc')
                 ->get();
-        $rutas = Bus_road::all();
 
     
     $rutas = [];
     foreach ($roads as $fila) {
+
         $grupo = $fila->road_group;
+        //dd ($fila);
         if (!isset($rutas[$grupo])) {
-           $linename=$fila->Bus_line;
+           //$linename=$fila->Bus_line;
            //dd($linename);
-            
+
             $rutas[$grupo] = [
                 'grupo' => $grupo,
                 'nombre' => $fila->Bus_line->line_name,
                 'empresa' => $fila->Bus_line->BusCompany->company_name,
                 'id_empresa' => $fila->Bus_line->BusCompany->id,
                 'color' => $fila->Bus_line->color,
+                'color_rutas' => $fila->color,
                 'coordenadas' => [],
             ];
             
@@ -76,7 +78,7 @@ class Bus_stopController extends Controller
         $userDriver = $request->user()->hasRole("Colectivero");
     }
    
-    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta', 'userDriver'));
+    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta', 'userDriver', 'rut'));
 }
 
     
@@ -162,6 +164,7 @@ class Bus_stopController extends Controller
                 'empresa' => $fila->Bus_line->BusCompany->company_name,
                 'id_empresa' => $fila->Bus_line->BusCompany->id,
                 'color' => $fila->Bus_line->color,
+                'color_rutas' => $fila->color,
                 'coordenadas' => [],
             ];
         }

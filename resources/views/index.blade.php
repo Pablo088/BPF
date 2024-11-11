@@ -399,14 +399,15 @@
             }
         });
 
-
+        
         let color;
+        
         function addRoutes() {
             rutas.forEach(ruta => {
                 var idEmpresa = ruta.id_empresa
                 var colorEmpresa = ruta.color;
                 var polyline = L.polyline(ruta.coordenadas, {
-                    color: ruta.color,
+                    color: ruta.color_rutas,
                     weight: 4,
                     opacity: 1,
                     smoothFactor: 1

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('latitude',20, 7);
             $table->string('longitude',20, 7);
             $table->integer('order');
+            $table->string('color');
             $table->timestamps();
         });
     }

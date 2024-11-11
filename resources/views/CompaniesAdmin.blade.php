@@ -18,6 +18,14 @@
           top: 60%;
           right: 0%;
         }
+        #contenedor{
+          position: relative;
+          margin-bottom: 20px;
+        }
+        #contenedor2{
+          position: relative;
+          margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -130,11 +138,16 @@
 </div>
 @endif
 <br>
-<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
-@if (session('success'))
-    <div class="alert alert-success">
-      {{ session('success') }}
-    </div>
+<div id="contenedor">
+  <a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
+</div>
+<div id="contenedor2">
+  @if (session('success'))
+  <div class="alert alert-success">
+    {{ session('success') }}
+  </div>
 @endif
+</div>
+
 </body>
 </html>
