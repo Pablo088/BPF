@@ -14,20 +14,14 @@
             top: 50%;
         }
         #boton{
-          padding: 15px;
-        }
-        #opciones{
-          position: relative;
-          display: flex;
-        }
-        #container{
-          position: relative;
-          display: flex;
-          margin: 15px;
+          position: absolute;
+          top: 60%;
+          right: 0%;
         }
     </style>
 </head>
 <body>
+
   {{-- <div id="menu" class="menu">
     <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
     <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
@@ -76,7 +70,7 @@
       <div class="col-sm-3">
         <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
           <select class="form-select" id="specificSizeSelect" name="company_id">
-            <option selected disabled>Seleccionar</option>
+            <option selected>Seleccionar</option>
             @foreach($buscompany as $company)
             <option value="{{ $company->id }}">{{ $company->company_name }}</option>
             @endforeach
@@ -99,14 +93,14 @@
 </div>
 @endif
 
-<form action="{{ route('relacion') }}" method="POST" class="row gx-3 gy-2 align-items-center">
+ <form action="{{ route('relacion1a1') }}" method="POST" class="row gx-3 gy-2 align-items-center">
     @csrf
     <h2>Relacion con las lineas</h2>
     <div class="col-sm-3">
 
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
     <select class="form-select" id="specificSizeSelect" name="busLine_id">
-      <option selected disabled>Linea</option>
+      <option selected>Linea</option>
       @foreach($busline as $lines)
       <option value="{{ $lines->id }}">{{ $lines->line_name}}</option>
       @endforeach
@@ -116,7 +110,7 @@
   <div class="col-sm-3">
   <label class="visually-hidden" for="specificSizeSelect">Compañía</label>
     <select class="form-select" id="specificSizeSelect" name="busStop_id">
-      <option selected disabled>Parada</option>
+      <option selected>Parada</option>
       @foreach($busstop as $stop)
       <option value="{{ $stop->id }}">ID:{{$stop->id}}   /Direccion:{{$stop->direction}}</option>
       @endforeach
@@ -136,17 +130,11 @@
 </div>
 @endif
 <br>
-<div id="opciones">
-  <div id="botonContainer">
-    <a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
-  </div>
-</div>
-<div class="container">
-  @if (session('success'))
-  <div class="alert alert-success">
-    {{ session('success') }}
-  </div>
+<a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Opciones</a>
+@if (session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
 @endif
-</div>
 </body>
 </html>

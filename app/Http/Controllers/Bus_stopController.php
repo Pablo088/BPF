@@ -171,10 +171,10 @@ class Bus_stopController extends Controller
         ];
        
     }
-
+        $totalRutas = Bus_Line::count();
         $rutas = array_values($rutas);
         $rutas = json_encode($rutas);
-        return view('routes', compact('busStops','rutas'));
+        return view('routes', compact('busStops', 'rutas', 'totalRutas'));
     }
 
     public function storeroutes(Request $request)
@@ -182,6 +182,7 @@ class Bus_stopController extends Controller
         $latitudes = $request->input('latitude');
         $longitudes = $request->input('longitude');
         $roadGroup = $request->road_group;
+        $color = $request->color;
 
         //dd($request);
 
@@ -190,7 +191,8 @@ class Bus_stopController extends Controller
                 'road_group' => $roadGroup,
                 'latitude' => $latitudes[$i],
                 'longitude' => $longitudes[$i],
-                'order' => $i
+                'order' => $i,
+                'color' => $color,
             ]);
         }
 

@@ -41,13 +41,14 @@ Route::middleware('solo.admin')->group(function (){
     Route::post('/bus-stops/admin/storeroutes',[Bus_stopController::class,'storeroutes'])->name('bus-stops.storeroutes');
     Route::get('/bus-stops/admin', [Bus_stopController::class, 'edit'])->name('bus-stop.admin');
     Route::get('/bus-stops/admin/eliminar/{id}', [Bus_stopController::class, 'eliminar'])->name('bus-stops.eliminar');
-    Route::get('/bus-stops/admin/routes/eliminar/{road_group}', [Bus_stopController::class, 'eliminarRutas'])->name('bus-stops.routes.eliminar');
+    //Route::get('/bus-stops/admin/routes/eliminar/{road_group}', 'eliminarRutas')->name('bus-stops.routes.eliminar');
     Route::get('/bus-stops/admin/editar/{id}', [Bus_stopController::class, 'edite'])->name('bus-stops.editar');
     Route::get('/bus-stops/admin/routes', [Bus_stopController::class, 'routes'])->name('bus-stops.routes');
     Route::get('/Lines/admin', [LineController::class, 'Admin'])->name('LinesAdmin');
     Route::post('/Lines/admin/Company/update', [LineController::class, 'añadircompany'])->name('companyupdate');
     Route::post('/Lines/admin/update', [LineController::class, 'añadirlinea'])->name('lineaupdate');
     Route::post('/Lines/admin/line_has_stops/update', [LineController::class, 'añadirrelacion'])->name('relacion');
+    Route::post('/Lines/admin/line_has_stops/update1a1', [LineController::class, 'añadirrelacion1a1'])->name('relacion1a1');
     Route::get('/Lines/admin/Company/options', [LineController::class, 'editarCompania'])->name('companyedit');
     Route::get('/Lines/admin/Company/options/edit/linea/{id}', [LineController::class, 'editarlinea'])->name('lineaedit');
     Route::get('/Lines/admin/Company/options/edit/compania/{id}', [LineController::class, 'Ceditar'])->name('Cedit');

@@ -16,6 +16,7 @@ class Bus_road extends Model
         'latitude',
         'longitude',
         'order',
+        'color',
     ];
 
     public function Bus_line(){
