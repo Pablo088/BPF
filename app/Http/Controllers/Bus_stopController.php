@@ -42,6 +42,7 @@ class Bus_stopController extends Controller
                 ->orderBy('road_group', 'asc')
                 ->orderBy('order', 'asc')
                 ->get();
+        $rutas = Bus_road::all();
 
     
     $rutas = [];

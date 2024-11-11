@@ -403,89 +403,10 @@
         let color;
         function addRoutes() {
             rutas.forEach(ruta => {
-
-                switch (ruta.grupo) {
-                    case 1:
-                        color = 'yellow'; // Yellow: #FFFF00 || 1A
-                        break;
-                    case 2:
-                        color = 'red'; // Red: #FF0000 || 1B
-                        break;
-                    case 3:
-                        color = 'teal'; // Teal: #008080 || 4A
-                        break;
-                    case 4:
-                        color = 'orange'; // Bright Orange: #FFA500 || 4A1
-                        break;
-                    case 5:
-                        color = 'salmon'; // Salmon: #FA8072|| 4B
-                        break;
-                    case 6:
-                        color = 'blue'; // Blue: #0000FF || 2A
-                        break;
-                    case 7:
-                        color = 'purple'; // Bright Purple: #8A2BE2  || 2B
-                        break;
-                    case 8:
-                        color = 'green'; // Yellow: #FFFF00 || 5A - vuelta
-                        break;
-                    case 9:
-                        color = '#00FFFF'; // cian: #00FFFF || 5A - ida
-                        break;
-                    case 10:
-                        color = 'pink'; // Pink: #FFC0CB || 5B - vuelta
-                        break;
-                    case 11:
-                        color = 'brown'; // Brown: #A52A2A || 5B - ida
-                        break;
-                }
-                /* switch(ruta.grupo){
-                    case 1:
-                    color= '#F7E300'; // 1A
-                    break;
-                    case 2: 
-                    color= '#FFFF99'; // 1B
-                    break;
-                    case 3:
-                    color = '#FFD700'; // 4A
-                    break;
-                    case 4:
-                    color = '#FFCC00'; // 4A1
-                    break;
-                    case 5:
-                    color = '#FFAE42'; // 4B
-                    break;
-                    case 6:
-                    color = '#87CEEB'; // 2A
-                    break;
-                    case 7:
-                    color = '#003366'; // 2B
-                    break;
-                    case 8:
-                    color = '#32CD32'; // 5A - vuelta
-                    break;
-                    case 9:
-                    color = '#77DD77' ; // 5A - ida
-                    break;
-                    case 10:
-                    color = '#228B22'; // 5B - vuelta
-                    break;
-                    case 11:
-                    color = '#6B8E23'; // 5B - ida
-                    break;
-                } */
-                //console.log(`Color para la ruta ${ruta.nombre}: ${color}`);
                 var idEmpresa = ruta.id_empresa
                 var colorEmpresa = ruta.color;
-                /* if (idEmpresa == 1){
-                    colorEmpresa= 'yellow';
-                }else if (idEmpresa == 2){  
-                        colorEmpresa= 'blue';
-                    }else if (idEmpresa == 3){
-                        colorEmpresa= 'green';
-                } */
                 var polyline = L.polyline(ruta.coordenadas, {
-                    color: color,
+                    color: ruta.color,
                     weight: 4,
                     opacity: 1,
                     smoothFactor: 1
