@@ -178,10 +178,18 @@ class LineController extends Controller
         
         $user = User::find($request->usuarios);
         $linea = Bus_line::find($ID);
-        UserHasLine::updateOrCreate([
-            'user_id' => $user->id,
-            'line_id' => $linea->id,
-        ]);
+        $consulta = UserHasLine::where('user_id', $user->id)
+        ->where('line_id',$linea->id)
+        ->get();
+        if($consulta->count() == 1){
+            UserHasLine::updateOrCreate([
+                'user_id' => $user->id,
+                'line_id' => $linea->id,
+            ]);
+        }else{
+            return redirect()->back()->with('error', 'Este colectivero ya esta asignado a una linea');
+        }
+        
 
         return redirect()->back()->with('success', 'La línea de autobús ha sido editada correctamente.');
     }
@@ -223,6 +231,5 @@ class LineController extends Controller
         $Elimcom->delete();
         return redirect()->back();
     }
-        
     
 }
