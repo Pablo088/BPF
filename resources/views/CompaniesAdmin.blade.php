@@ -93,7 +93,7 @@
 </div>
 @endif
 
-<form action="{{ route('relacion') }}" method="POST" class="row gx-3 gy-2 align-items-center">
+ <form action="{{ route('relacion1a1') }}" method="POST" class="row gx-3 gy-2 align-items-center">
     @csrf
     <h2>Relacion con las lineas</h2>
     <div class="col-sm-3">

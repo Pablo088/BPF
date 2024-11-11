@@ -11,11 +11,12 @@
         #contenedor1{
             
             position: absolute;
+            overflow-y: hidden;
             top: 50%;
-            right: 80%;
+            right: 77%;
             transform: translate(50% , -50%);
-            width: 33%;
-            height: 80%;
+            width: 40%;
+            height: auto;
             border-radius: 3%;
             border: solid 3px;
             border-color: 3px solid black;
@@ -23,7 +24,7 @@
             display: flex; 
             align-items: center; 
             justify-content: left; 
-            background-color: rgba(209, 27, 42, 0.719);
+            background-color: #e2e3e5;
             
             
         }
@@ -36,10 +37,10 @@
     display: none; /* Oculto por defecto */
     position: fixed;
     z-index: 1000; /* En la parte superior */
-    left: 68%;
+    left: 70%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 60%; /* Ancho completo */
+    width: 50%; /* Ancho completo */
     height: auto; /* Alto completo */
     max-height: 80%;
     overflow: auto; /* Agregar scroll si es necesario */

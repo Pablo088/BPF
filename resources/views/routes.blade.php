@@ -131,13 +131,15 @@
         <form method="POST" action="{{route('bus-stops.storeroutes')}}">
             @csrf
             <label for="road_group">Conjunto ruta:</label>
-            <input type="number" min="1" max="11" id="road_group" name="road_group" required>
+            <input type="number" min="1" max="{{ $totalRutas }}" id="road_group" name="road_group" required>
 
             <label for="latitude"></label>
             <input type="hidden" id="latitude" name="latitude[]" required>
 
             <label for="longitude"></label>
             <input type="hidden" id="longitude"  name="longitude[]" required>
+
+            <input type="color" id="color" name="color" required>
 
             {{-- <label for="orden">orden:</label>
             <a type="text" id="order"  name="order" required> --}}
@@ -440,7 +442,7 @@ function sr() {
             color = 'purple'; // Bright Purple: #8A2BE2  || 2B
             break;
             case 8:
-            color = 'green'; // Yellow: #FFFF00 || 5A - vuelta
+            color = 'green'; // Green: #008000 || 5A - vuelta
             break;
             case 9:
             color = '#00FFFF' ; // cian: #00FFFF || 5A - ida

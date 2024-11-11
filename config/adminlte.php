@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'bpf',
+    'title' => 'BPF',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => 'BPF',
-    'logo_img' => 'vendor/adminlte/dist/img/BPFlogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/BPFlogoCuadrado.png',
     'logo_img_class' => 'brand-image img-square ',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/BPFlogo.png',
+            'path' => 'vendor/adminlte/dist/img/BPFlogoRedondo.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -113,11 +113,11 @@ return [
         'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/BPFlogo.png',
+            'path' => 'vendor/adminlte/dist/img/BPFlogoRedondo.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 200,
+            'height' => 140,
         ],
     ],
 

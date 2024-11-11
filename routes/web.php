@@ -48,6 +48,7 @@ Route::middleware('solo.admin')->group(function (){
     Route::post('/Lines/admin/Company/update', [LineController::class, 'añadircompany'])->name('companyupdate');
     Route::post('/Lines/admin/update', [LineController::class, 'añadirlinea'])->name('lineaupdate');
     Route::post('/Lines/admin/line_has_stops/update', [LineController::class, 'añadirrelacion'])->name('relacion');
+    Route::post('/Lines/admin/line_has_stops/update1a1', [LineController::class, 'añadirrelacion1a1'])->name('relacion1a1');
     Route::get('/Lines/admin/Company/options', [LineController::class, 'editarCompania'])->name('companyedit');
     Route::get('/Lines/admin/Company/options/edit/linea/{id}', [LineController::class, 'editarlinea'])->name('lineaedit');
     Route::get('/Lines/admin/Company/options/edit/compania/{id}', [LineController::class, 'Ceditar'])->name('Cedit');

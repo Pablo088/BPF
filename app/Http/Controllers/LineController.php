@@ -108,6 +108,30 @@ class LineController extends Controller
         return redirect()->back()->with('success', 'Relaciones añadidas correctamente.');
     }
 
+    public function añadirrelacion1a1(Request $request){
+        $busLine_id = $request->busLine_id;
+        $busStop_id = $request->busStop_id;
+
+            $relacion = LineHasStop::where('busLine_id', $busLine_id)
+                                   ->where('busStop_id', $busStop_id)
+                                   ->first();
+
+            if (!$relacion) {
+                $has = new LineHasStop();
+                $has->busLine_id = $busLine_id;
+                $has->busStop_id = $busStop_id;
+                $has->created_at = now();
+                $has->save();
+            }
+        
+        /* else if ($relaciones->isEmpty() == false) {
+        
+            return redirect()->back()->with('error', 'Esta relación ya existe.');;
+        } */
+
+        return redirect()->back()->with('success', 'Relaciones añadidas correctamente.');
+    }
+
 
     public function editarCompania(){
         $buscompany=BusCompany::all();
