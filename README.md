@@ -18,11 +18,13 @@ El software permite ver las diferentes paradas de colectivo, las distintas rutas
 3. En la consola de comandos de Laragon, dirigite al directorio del proyecto.
 4. Introducí el comando "composer install".
 5. Luego tenés que introducir el comando "php artisan key:generate --ansi".
-6. Ahora tenés que correr las migraciones con "php artisan migrate --seed".
-7. Corre el comando npm run dev.
-8. Duplica la consola de comandos que estas usando (podes hacerlo haciendo click derecho en "cmder", llendo a "Active console", luego a "Restart or Duplicate" y "duplicate root")
-9. Por ultimo, en esa consola de comandos que duplicaste, corre el comando "php artisan serve"
-10. Ingresá a http://127.0.0.1:8000 para empezar a probar la aplicación (▬_▬).
+6. En laragon presiona el boton "iniciar todo" y luego dirigite a "base de datos". Presiona donde dice "abrir"
+7. Ahora tenés que correr las migraciones con "php artisan migrate --seed".
+8. Corre el comando npm run dev.
+9. Duplica la consola de comandos que estas usando (podes hacerlo haciendo click derecho en "cmder", llendo a "Active console", luego a "Restart or Duplicate" y "duplicate root")
+10. Por ultimo, en esa consola de comandos que duplicaste, corre el comando "php artisan serve"
+11. En el heidi sql, dirigite a "archivo", luego a "cargar archivo sql" y selecciona el archivo "BPF" (se encuentra debajo de la carpeta vendor)
+12. Ingresá a http://127.0.0.1:8000 para empezar a probar la aplicación (▬_▬).
 
 ## About Laravel
 
