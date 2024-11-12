@@ -19,9 +19,9 @@ El software permite ver las diferentes paradas de colectivo, las distintas rutas
 4. Introducí el comando "composer install".
 5. Luego tenés que introducir el comando "php artisan key:generate --ansi".
 6. Ahora tenés que correr las migraciones con "php artisan migrate --seed".
-7. Corre el comando composer require "almasaeed2010/adminlte=~3.0".
-8. En laragon, toca el boton que dice "menu", dirigite a "apache", luego a "ssl" y presiona el boton que dice "habilitado"
-9. Corre el comando npm run dev.
+7. Corre el comando npm run dev.
+8. Duplica la consola de comandos que estas usando (podes hacerlo haciendo click derecho en "cmder", llendo a "Active console", luego a "Restart or Duplicate" y "duplicate root")
+9. Por ultimo, en esa consola de comandos que duplicaste, corre el comando "php artisan serve"
 10. Ingresá a http://127.0.0.1:8000 para empezar a probar la aplicación (▬_▬).
 
 ## About Laravel
