@@ -54,7 +54,7 @@ class LineController extends Controller
         $comp-> company_name = $request->company_name;
         $comp-> created_at = now();
         $comp->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La compania de autobús ha sido creada correctamente.');
     }
     public function añadirlinea(Request $request){
         //dd($request);
@@ -176,12 +176,17 @@ class LineController extends Controller
         $Elin-> company_id = $request->company_id;
         $Elin->save();
         
-        $user = User::find($request->usuarios);
+        $user = User::find($request->usuarios)??null;
         $linea = Bus_line::find($ID);
-        $consulta = UserHasLine::where('user_id', $user->id)
-        ->where('line_id',$linea->id)
-        ->get();
-        if($consulta->count() == 1){
+        $consulta = null;
+        if($user !== null){
+            $consulta = UserHasLine::where('user_id', $user->id)
+            ->get();
+       
+        
+
+        
+        if($consulta->count() == 0){
             UserHasLine::updateOrCreate([
                 'user_id' => $user->id,
                 'line_id' => $linea->id,
@@ -189,7 +194,7 @@ class LineController extends Controller
         }else{
             return redirect()->back()->with('error', 'Este colectivero ya esta asignado a una linea');
         }
-        
+    }
 
         return redirect()->back()->with('success', 'La línea de autobús ha sido editada correctamente.');
     }

@@ -41,8 +41,8 @@
                 
             </td>
             <td class="table-info">
-                <a href='/Lines/admin/Company/options/edit/compania/{{ $buslines->id }}' class="btn btn-success" id="boton">Editar</a>
-                <a href='/Lines/admin/Company/options/eliminar/compania/{{ $buslines->id }}' class="btn btn-danger" id="boton">Eliminar</a>
+                <a href='/Lines/admin/Company/options/edit/compania/{{ $buslines->company_id }}' class="btn btn-success" id="boton">Editar</a>
+                <a href='/Lines/admin/Company/options/eliminar/compania/{{ $buslines->company_id }}' class="btn btn-danger" id="boton">Eliminar</a>
             </td>
         </tr>
         @endforeach

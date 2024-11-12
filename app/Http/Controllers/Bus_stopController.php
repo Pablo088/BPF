@@ -78,7 +78,7 @@ class Bus_stopController extends Controller
         $userDriver = $request->user()->hasRole("Colectivero");
     }
    
-    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta', 'userDriver', 'rut'));
+    return view('index', compact('busStops','rutas','userRol','userSession','parada','consulta', 'userDriver'));
 }
 
     
