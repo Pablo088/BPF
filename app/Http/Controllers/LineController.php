@@ -20,10 +20,11 @@ class LineController extends Controller
         $lines = Bus_line::with('BusCompany')->get();
         $userSession = Auth::user() !== null;
         //dd($busLines);
+        $id_line = $request->id_empresa??"";
         $userSession = Auth::user() !== null;
         if($userSession !== false){
             $userRol = $request->user()->hasRole("Admin");
-            return view('Lines', compact('lines','userSession', 'userRol'));
+            return view('Lines', compact('lines','userSession', 'userRol','id_line'));
         }
         
     }

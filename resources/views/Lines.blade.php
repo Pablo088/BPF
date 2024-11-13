@@ -87,6 +87,7 @@
 
          @if($userRol == true)
             <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
+            <a href="{{route('bus-stops.routes')}}">Administrar Rutas</a>
             <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
         @endif
         <a href="{{route('dashboard')}}">Dashboard</a>
@@ -124,12 +125,25 @@
         <p id="modalInfo">Detalles aquí...</p>
     </div>
 </div>
+<input type="hidden" id="lineId" value="{{ $id_line }}">
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('.table-secondary');
     const modal = document.getElementById('infoModal');
     const closeModal = document.querySelector('.close');
     const modalInfo = document.getElementById('modalInfo');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const lineId = urlParams.get('line');
+    const row = document.getElementById('lineId');
+    console.log(row);
+        
+        if(lineId) {
+            
+            if(row) {
+                row.click();
+            }
+        }
 
     rows.forEach(row => {
     row.addEventListener('click', function() {
@@ -158,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${stopsInfo}
                 `;
                 modal.style.display = 'block';
+                
             });
     });
 });

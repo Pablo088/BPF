@@ -131,7 +131,13 @@
         <form method="POST" action="{{route('bus-stops.storeroutes')}}">
             @csrf
             <label for="road_group">Conjunto ruta:</label>
-            <input type="number" min="1" max="{{ $totalRutas }}" id="road_group" name="road_group" required>
+            {{-- <input type="number" min="1" max="{{ $totalRutas }}" id="road_group" name="road_group" required> --}}
+            <select id="road_group" name="road_group" required>
+                <option value="" disabled selected>Seleccione una ruta</option>
+                @foreach ($lineas as $linea)
+                <option value="{{ $linea->id }}">{{ $linea->line_name }}</option>
+                @endforeach
+            </select>
 
             <label for="latitude"></label>
             <input type="hidden" id="latitude" name="latitude[]" required>
@@ -156,7 +162,13 @@
                 <label for="busStop_id">Parada:</label>
                 <input type="text" id="busStop_id" name="busStop_id" required>
                 <label for="busLine_id">Ruta:</label>
-                <input type="number" id="busLine_id" name="busLine_id" required>
+                {{-- <input type="number" id="busLine_id" name="busLine_id" required> --}}
+                <select id="busLine_id" name="busLine_id" required>
+                    <option value="" disabled selected>Seleccione una ruta</option>
+                    @foreach ($lineas as $linea)
+                    <option value="{{ $linea->id }}">{{ $linea->line_name }}</option>
+                    @endforeach
+                </select>
                 <button type="submit">Añadir Relacion</button>
         </form>    
     </div>
@@ -449,7 +461,10 @@ function sr() {
     var idsParadas = [];
     function relacionarParada(){
         var idParada = document.getElementById('id_parada').value;
-        idsParadas.push(idParada);
+        if (!idsParadas.includes(idParada)) {
+            idsParadas.push(idParada);
+        }
+        
         document.getElementById('busStop_id').value = JSON.stringify(idsParadas);
         console.log('Parada: ',idsParadas);
     }
