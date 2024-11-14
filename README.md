@@ -13,18 +13,20 @@ El software permite ver las diferentes paradas de colectivo, las distintas rutas
 
 ## Guia de instalación
 
-1. Podes descargar el proyecto tocando el boton "code" y luego presionando "download", o podes hacer un git clone (en la consola de comandos introducís: git clone https://github.com/Pablo088/BPF.git).
+1. Podes descargar el proyecto tocando el boton "code" y luego presionando "download", o podes hacer un git clone (si tienes git instalado en tu pc en la consola de comandos introducís: git clone https://github.com/Pablo088/BPF.git).
 2. Copia el archivo ".env.example". Ahora vas a tener que renombrar esa copia de ".env.example" como ".env".
-3. En la consola de comandos de Laragon, dirigite al directorio del proyecto.
-4. Introducí el comando "composer install".
-5. Luego tenés que introducir el comando "php artisan key:generate --ansi".
-6. En laragon presiona el boton "iniciar todo" y luego dirigite a "base de datos". Presiona donde dice "abrir"
-7. Ahora tenés que correr las migraciones con "php artisan migrate --seed".
-8. Corre el comando npm run dev.
-9. Duplica la consola de comandos que estas usando (podes hacerlo haciendo click derecho en "cmder", llendo a "Active console", luego a "Restart or Duplicate" y "duplicate root")
-10. Por ultimo, en esa consola de comandos que duplicaste, corre el comando "php artisan serve"
-11. En el heidi sql, dirigite a "archivo", luego a "cargar archivo sql" y selecciona el archivo "BPF" (se encuentra debajo de la carpeta vendor)
-12. Ingresá a http://127.0.0.1:8000 para empezar a probar la aplicación (▬_▬).
+3. Abre Laragon y asegurate de que inicie todos sus procesos.
+4. En la consola de comandos de Laragon (boton Terminal), ingresa el comando "cd BPF" para dirigirte al directorio del proyecto.
+5. Introducí el comando "composer install".
+6. Luego tenés que introducir el comando "php artisan key:generate --ansi".
+7. Luego dirigite a "base de datos". Presiona donde dice "abrir"
+8. Ahora tenés que correr las migraciones con "php artisan migrate --seed" (si no existe la base de datos tienes que escribir "yes" o solo "y" para que cree la base de datos).
+9. Corre el comando npm run dev (consola de Laragon).
+10. Duplica la consola de comandos que estas usando (podes hacerlo haciendo click derecho en "cmder", llendo a "Active console", luego a "Restart or Duplicate" y "duplicate root" o puedes darle al simbolo de + que se encuentra en la parte de abajo de la consola de Laragon, donde dice "Startup directory for new process:" busca la direccion del proyecto y dale a "Start").
+11. En esa consola de comandos que duplicaste, corre el comando "php artisan serve"
+12. En el heidi sql, dirigite a "archivo", luego a "cargar archivo sql" y selecciona el archivo "BPF" (se encuentra en la carpeta raiz del proyecto, debajo de la carpeta vendor).
+13. Abre otra ventana en la consola de Laragon en la direccion del proyecto (siguendo los mismos pasos nombrados en el paso 10) e ingresa el siguente comando "ngrok http 8000" (en caso de que esto falle puedes utilizar la consola de ngrok que se encuentra en la carpeta raiz del proyecto, si continua fallando ve a la siguente direccion https://dashboard.ngrok.com/get-started/setup/windows y ejecuta el comando "ngrok config add-authtoken" junto con el token proporcionado).
+14. Por último ingresa al link terminado en ".ngrok-free.app" que se encuentra en la linea Forwarding y dale al boton "visit site" que se encuentra en la pagina.
 
 ## About Laravel
 
