@@ -70,9 +70,24 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Resto de tus estilos actuales */
+
+.table tbody tr {
+    transition: all 0.3s;
+}
+
+.table tbody tr.highlight {
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+}
+
+.table tbody tr.highlight td {
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+}
     </style>
 </head>
-
 <body>
     <div class="open-menu" onclick="openMenu()">&#9776;</div>
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>
@@ -106,7 +121,7 @@
         </thead>
         <tbody>
             @foreach($lines as $line)
-            <tr class="table-secondary">
+            <tr class="table-secondary" data-line-id="{{ $line->id }}">
                 <td id="texto">{{$line->BusCompany->company_name}}</td> 
                 <td id="texto">{{$line->line_name}}</td>
                 <td id="texto">{{$line->horario_comienzo}}</td>
@@ -133,38 +148,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModal = document.querySelector('.close');
     const modalInfo = document.getElementById('modalInfo');
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const lineId = urlParams.get('line');
-    const row = document.getElementById('lineId');
-    console.log(row);
+    function loadAndShowLineData(lineId, clickedRow) {
+        // Remover highlight de todas las filas
+        document.querySelectorAll('.table tbody tr').forEach(row => {
+            row.classList.remove('highlight');
+        });
         
-        if(lineId) {
-            
-            if(row) {
-                row.click();
-            }
-        }
+        // Agregar highlight a la fila seleccionada
+        clickedRow.classList.add('highlight');
 
-    rows.forEach(row => {
-    row.addEventListener('click', function() {
-        const id = this.querySelector('td:nth-child(5)').textContent;
-        fetch(`/Lines/buscar/${id}`)
-            .then(response => {
-                return response.json();
-            })
+        fetch(`/Lines/buscar/${lineId}`)
+            .then(response => response.json())
             .then(data => {
                 let stopsInfo = '';
+                if (data && data.bus_stops) {
+                    data.bus_stops.forEach(stop => {
+                        stopsInfo += `
+                            <strong>Dirección de la parada:</strong> ${stop.direction} <br>
+                            <strong>Latitud:</strong> ${stop.latitude} <br>
+                            <strong>Longitud:</strong> ${stop.longitude} <br><br>
+                        `;
+                    });
+                }
 
-                // Iterar sobre las paradas de autobús (busStops)
-                data.bus_stops.forEach(stop => {
-                    stopsInfo += `
-                        <strong>Dirección de la parada:</strong> ${stop.direction} <br>
-                        <strong>Latitud:</strong> ${stop.latitude} <br>
-                        <strong>Longitud:</strong> ${stop.longitude} <br><br>
-                    `;
-                });
-
-                
                 modalInfo.innerHTML = `
                     <strong>Nombre de la línea:</strong> ${data.line_name} <br>
                     <strong>Horario Comienzo:</strong> ${data.horario_comienzo} <br>
@@ -172,22 +178,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${stopsInfo}
                 `;
                 modal.style.display = 'block';
-                
             });
-    });
-});
+    }
 
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
+    // Manejar el parámetro de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const lineIdFromUrl = urlParams.get('line');
+    console.log('ID recibido:', lineIdFromUrl);
+    if (lineIdFromUrl) {
+        const row = document.querySelector(`[data-line-id="${lineIdFromUrl}"]`);
+        if (row) {
+            loadAndShowLineData(lineIdFromUrl, row);
         }
+    }
+
+    rows.forEach(row => {
+        row.addEventListener('click', function() {
+            const id = this.querySelector('td:last-child').textContent;
+            loadAndShowLineData(id, this);
+        });
+    });
+
+    // Cerrar modal
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) modal.style.display = 'none';
     });
 });
 </script>
-    
 </body>
 </html>
