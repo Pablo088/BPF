@@ -1,0 +1,34 @@
+1. Diagrama entidad relacion (modificar)
+2. Calculo distancia de la parada más cercana al usuario en base a su ubicación
+3. Hacer relaciones entre las lineas y las paradas
+4. Terminar rutas (eliminar y editar, ocultar y mostrar)
+5. Hacer calculo estimativo del horario de llegada de una linea a una parada
+6. Desarrollar la vista del usuario registrado
+7. Terminar la cuestion de los roles
+8. Agregar opcion para buscar/mostrar paradas en base a su linea
+
+
+
+
+Rutas:
+Ruta 1, 2, 3, 4, 5 Primero de agosto - Buses gchu
+Rutas 6, 7 Santa rita 
+Rutas 8, 9 El verde
+
+Primero de agosto:
+Ruta 1: 1A
+Ruta 2: 1B
+Ruta 3: 4A
+Ruta 4: 4A1
+Ruta 5: 4B
+-------------------------------------------------------------------------------------------------
+Santa rita:
+Ruta 6: 2A
+Ruta 7: 2B
+-------------------------------------------------------------------------------------------------
+El verde3:
+Ruta 8: 5A - vuelta
+Ruta 9: 5A - ida
+Ruta 10: 5B - vuelta
+Ruta 11: 5B - ida
+
