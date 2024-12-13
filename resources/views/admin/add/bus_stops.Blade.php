@@ -39,36 +39,18 @@
     <input type="hidden" id="busStops" value="{{$busStops}}">
     
     <div id="map"></div>
-    
-    <form method="POST" action="{{route('bus-stops.store')}}">
-        @csrf
-        <label for="name">Nombre:</label>
-        <input type="text" id="direction" name="direction" value = "direction" required>
-        <label for="latitude">Latitud:</label>
-        <input type="text" id="latitude" name="latitude" value = "laitude" required>
-        <label for="longitude">Longitud:</label>
-        <input type="text" id="longitude" name="longitude" value= "longitude" required>
-        <button type="submit">Añadir Parada</button>
-    </form>
-    {{-- <form method="POST" action="{{route('bus-stops.routes')}}">
-        @csrf
-        <label for="road_group">Conjunto ruta:</label>
-        <input type="text" id="road_group" name="road_group" required>
-        
-        <label for="latitude">Latitud:</label>
-        <input type="text" id="latitude" name="laitude" required>
-
-        <label for="longitude">Longitud:</label>
-        <input type="text" id="longitude"  name="longitude" required>
-
-        <label for="orden">orden:</label>
-        <input type="text" id="order"  name="order" required>
-
-        <label for="color">color:</label>
-        <input type="text" id="color"  name="color" required>
-        
-        <button type="submit">Añadir Ruta</button>
-    </form> --}}
+    <div class="form-container">
+        <form method="POST" action="{{route('bus-stops.store')}}" id="formAdd" class="the-form">
+            @csrf
+            <label for="direction">Nombre:</label>
+            <input type="text" id="direction" class="inputForm" name="direction" value = "direction" required>
+            <label for="latitude">Latitud:</label>
+            <input type="text" id="latitude" class="inputForm" name="latitude" value = "laitude" required>
+            <label for="longitude">Longitud:</label>
+            <input type="text" id="longitude" class="inputForm" name="longitude" value= "longitude" required>
+            <button type="submit">Añadir Parada</button>
+        </form>
+    </div>
     
     @if ($errors->any())
     <div class="alert alert-danger">

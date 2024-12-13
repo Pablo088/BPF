@@ -19,3 +19,28 @@ padding: 0.375rem 0.75rem;
 font-size: 0.875rem;
 text-align: right;
 }
+
+.form-container{
+    position: relative;
+}
+.form-container .the-form{
+    position: absolute;
+    top: 10%;
+}
+.form-container .the-form .inputForm{
+    padding: 10px;
+    border-radius: 10px;
+    height: 20px;
+    width: 150px;
+}
+label{
+    font-family:'Times New Roman', Times, serif;
+}
+button{
+    border-radius: 10px;
+    height: 35px;
+    background-color: rgb(162, 235, 238);
+}
+button:hover{
+    background-color: rgb(222, 236, 235);
+}
