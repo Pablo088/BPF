@@ -9,12 +9,11 @@
     <style>
      #tabla{
         background-color: rgba(209, 27, 42, 0.719);
-
      }
     </style>
 </head>
 <body>
-<a href="{{route ('bus-stops.index')}}"><button style="btn btn-primary">Inicio</button></a>
+<a href="{{route ('bus-stops.index')}}"><button class="btn btn-primary">Inicio</button></a>
 
 <table class="table table-bordered border-primary">
         <thead>

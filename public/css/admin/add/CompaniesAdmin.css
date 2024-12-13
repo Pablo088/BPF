@@ -1,0 +1,17 @@
+#pos2{
+    left: 90%;
+    top: 50%;
+}
+#boton{
+  position: absolute;
+  top: 60%;
+  right: 0%;
+}
+#contenedor{
+  position: relative;
+  margin-bottom: 20px;
+}
+#contenedor2{
+  position: relative;
+  margin-top: 20px;
+}

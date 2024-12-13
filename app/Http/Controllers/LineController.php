@@ -41,7 +41,7 @@ class LineController extends Controller
         $busline=Bus_line::all();
         $busstop=Bus_stop::all();
         //dd($buscompany);
-        return view('CompaniesAdmin', compact('buscompany','busline', 'busstop'));
+        return view('admin\add\CompaniesAdmin', compact('buscompany','busline', 'busstop'));
     }
     public function añadircompany(Request $request){
         $request->validate([
@@ -137,7 +137,7 @@ class LineController extends Controller
     public function editarCompania(){
         $buscompany=BusCompany::all();
         $busline=Bus_line::all();
-        return view('CompaniesAdminEdit', compact('buscompany','busline'));
+        return view('admin\edit\CompaniesAdminEdit', compact('buscompany','busline'));
     }
     public function editarlinea($id){
         //dd($id);
@@ -151,13 +151,13 @@ class LineController extends Controller
         //dd($users);  
 
         //dd($Line);
-        return view('EditLineas', compact('Line','buscompany','buscompany', 'users'));
+        return view('admin\edit\EditLineas', compact('Line','buscompany','buscompany', 'users'));
     }
 
     public function Ceditar($id){
         //dd($id);
         $Stop = BusCompany::find($id);
-        return view('EditCompanias', compact('Stop'));
+        return view('admin\edit\EditCompanias', compact('Stop'));
     }
 
     public function Lenviar(Request $request){

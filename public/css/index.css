@@ -1,0 +1,88 @@
+.leaflet-top.leaflet-left {
+    left: 96.1vw;
+    /* Ajusta este valor según el ancho de tu menú */
+    top: 500px;
+}
+
+#map {
+    height: 640px;
+}
+
+#searchContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    /* Asegura que esté encima del mapa */
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#searchInput {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 2.5vw;
+    right: 0.5vw;
+    width: 92%;
+    background: white;
+    border: 1px solid white;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestions-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions-list li:hover {
+    background: #f0f0f0;
+}
+
+.star-checkbox {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.star-checkbox input {
+    display: none;
+    /* Oculta el checkbox original */
+}
+
+.star {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    /* Color de la estrella por defecto */
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+
+    transition: background-color 0.3s;
+}
+
+.star-checkbox input:checked+.star {
+    background-color: #ffd700;
+    /* Color de la estrella cuando está seleccionada */
+}

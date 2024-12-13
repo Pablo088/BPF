@@ -1,0 +1,21 @@
+.leaflet-top.leaflet-left {
+    left: 95vw; /* Ajusta este valor según el ancho de tu menú */
+}
+
+#map { height: 600px; }
+
+#eliminar {
+color: white;
+background-color: #ff0000;
+border-color: #ff0000;
+padding: 0.375rem 0.75rem;
+font-size: 0.875rem;
+}
+#editar{
+color: white;
+background-color: #007bff;
+border-color: #007bff;
+padding: 0.375rem 0.75rem;
+font-size: 0.875rem;
+text-align: right;
+}

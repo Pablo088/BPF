@@ -1,0 +1,71 @@
+.leaflet-top.leaflet-left {
+    left: 95vw; /* Ajusta este valor según el ancho de tu menú */
+}
+#eliminar {
+color: white;
+background-color: #ff0000;
+border-color: #ff0000;
+padding: 0.375rem 0.75rem;
+font-size: 0.875rem;
+}
+#editar{
+color: white;
+background-color: #007bff;
+border-color: #007bff;
+padding: 0.375rem 0.75rem;
+font-size: 0.875rem;
+text-align: right;
+}
+
+.leaflet-top.leaflet-left {
+    left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
+    top: 500px;
+}
+
+#map { height: 615px; }
+
+#searchContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000; /* Asegura que esté encima del mapa */
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#searchInput {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 2.5vw;
+    right: 0.5vw;
+    width: 92%;
+    background: white;
+    border: 1px solid white;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestions-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+.suggestions-list li:hover {
+    background: #f0f0f0;
+}
+
+.form-container {
+    display: inline-block;
+    margin-right: 20px; /* Espaciado entre formularios */
+}

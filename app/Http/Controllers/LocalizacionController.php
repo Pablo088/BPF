@@ -11,7 +11,7 @@ use App\Models\UserHasLine;
 class LocalizacionController extends Controller
 {
     public function show(){
-        return view('localizacion');
+        return view('locate\localizacion');
     }
     public function store(Request $request)
     {

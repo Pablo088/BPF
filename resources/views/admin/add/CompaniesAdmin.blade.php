@@ -6,27 +6,9 @@
     <title>Administrar Lineas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css\admin\add\CompaniesAdmin.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js\menu.js') }}"></script>
-    <style>
-        #pos2{
-            left: 90%;
-            top: 50%;
-        }
-        #boton{
-          position: absolute;
-          top: 60%;
-          right: 0%;
-        }
-        #contenedor{
-          position: relative;
-          margin-bottom: 20px;
-        }
-        #contenedor2{
-          position: relative;
-          margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
 
@@ -40,7 +22,7 @@
   </div> --}}
 
 {{-- <a href="{{route ('bus-stops.index')}}">Inicio</a> --}}
-<a href="{{route ('bus-stops.index')}}"><button style="btn btn-primary">Inicio</button></a>
+<a href="{{route ('bus-stops.index')}}"><button class="btn btn-primary">Inicio</button></a>
 
 <form action="{{ route('companyupdate') }}" method="POST">
     @csrf

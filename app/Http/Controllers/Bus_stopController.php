@@ -86,7 +86,7 @@ class Bus_stopController extends Controller
     {
         $userSession = Auth::user() !== null;
         $busStops = Bus_Stop::all();
-        return view('bus_stops', compact('busStops','userSession'));
+        return view('admin\add\bus_stops', compact('busStops','userSession'));
     }
     
     public function store(Request $request)
@@ -122,7 +122,7 @@ class Bus_stopController extends Controller
     public function edite($id){
         $stop = Bus_Stop::find($id);
 
-        return view('Edit_Stop', [
+        return view('admin\edit\Edit_Stop', [
             'stop' => $stop,
         ]);
     }
@@ -178,7 +178,7 @@ class Bus_stopController extends Controller
         $lineas = Bus_Line::all();
         $rutas = array_values($rutas);
         $rutas = json_encode($rutas);
-        return view('routes', compact('busStops', 'rutas', 'totalRutas', 'lineas'));
+        return view('admin\add\bus_routes', compact('busStops', 'rutas', 'totalRutas', 'lineas'));
     }
 
     public function storeroutes(Request $request)
