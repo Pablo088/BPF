@@ -24,7 +24,7 @@ class LineController extends Controller
         $userSession = Auth::user() !== null;
         if($userSession !== false){
             $userRol = $request->user()->hasRole("Admin");
-            return view('Lines', compact('lines','userSession', 'userRol','id_line'));
+            return view('lines', compact('lines','userSession', 'userRol','id_line'));
         }
         
     }
