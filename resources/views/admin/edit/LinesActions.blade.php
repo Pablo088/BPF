@@ -12,8 +12,10 @@
      }
     </style>
 </head>
-<body>
-<a href="{{route ('bus-stops.index')}}"><button class="btn btn-primary">Inicio</button></a>
+
+@extends('adminlte::page')
+
+@section('content')
 
 <table class="table table-bordered border-primary">
         <thead>
@@ -47,5 +49,6 @@
         @endforeach
     </tbody>
 </table>
-</body>
+
+@stop
 </html>

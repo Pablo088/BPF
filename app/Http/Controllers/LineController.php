@@ -41,7 +41,7 @@ class LineController extends Controller
         $busline=Bus_line::all();
         $busstop=Bus_stop::all();
         //dd($buscompany);
-        return view('admin\add\CompaniesAdmin', compact('buscompany','busline', 'busstop'));
+        return view('admin\add\ManageLines', compact('buscompany','busline', 'busstop'));
     }
     public function añadircompany(Request $request){
         $request->validate([
@@ -137,7 +137,7 @@ class LineController extends Controller
     public function editarCompania(){
         $buscompany=BusCompany::all();
         $busline=Bus_line::all();
-        return view('admin\edit\CompaniesAdminEdit', compact('buscompany','busline'));
+        return view('admin\edit\LinesActions', compact('buscompany','busline'));
     }
     public function editarlinea($id){
         //dd($id);
