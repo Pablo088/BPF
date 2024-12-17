@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @stop
 @section('content')
 
@@ -27,18 +28,14 @@
     <form action="{{route('bus-stops.index')}}" method="get" id="form">
         <input type="hidden" name="parada" value="" id="inputParada">
     </form>
- 
-    <script>
-            let paradaId = document.querySelectorAll(".paradaId");
-            let inputParada = document.getElementById("inputParada");
-            let form = document.getElementById("form");
-            
-            paradaId.forEach(button => {
-                button.addEventListener("click", (parada) => {
-                    inputParada.value = parada.currentTarget.value;
-                    form.submit();
-                });
-            });
-    </script>
+
+    <div id="mensaje-exito" class="container">
+        @if (session('success'))
+            <input type="hidden" name="exito" id="exito" value="{{session('success')}}">
+        @endif
+    </div>
+    
 </div>
+
+@vite('resources/js/dashboard.js')
 @stop

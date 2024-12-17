@@ -1,35 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('adminlte::page')
+@section('content_header')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lines</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css\lines.css') }}">
-</head>
-<body>
-    <div class="open-menu" onclick="openMenu()">&#9776;</div>
-    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
-    
-    <div id="menu" class="menu">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-        <a href="{{ route('bus-stops.index')}}">Inicio</a>
-        @if ($userSession !== true)
-            <a href="{{ route('login') }}">Iniciar sesión</a>
-            <a href="{{route('register')}}">Registrarse</a>
-         @endif
 
-         @if($userRol == true)
-            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
-            <a href="{{route('bus-stops.routes')}}">Administrar Rutas</a>
-            <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
-        @endif
-        <a href="{{route('dashboard')}}">Dashboard</a>
-    </div>
-    <script src="{{ asset('js\menu.js') }}"></script>
-<div id="contenedor1">
+    @vite('resources/css/lines.css')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    @stop
+    @section('content')
+    
+
+<div id="contenedor1" class="container">
     <table class="table">
         <thead>
             <tr class="table-primary">
@@ -52,16 +35,16 @@
             @endforeach
         </tbody>
     </table>
-</div>
-
-<div id="infoModal" class="modal">
+    <div id="infoModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Información Detallada</h2>
         <p id="modalInfo">Detalles aquí...</p>
     </div>
 </div>
+</div>
+
 <input type="hidden" id="lineId" value="{{ $id_line }}">
-</body>
-    <script src="{{ asset('js\lines.js') }}"></script>
-</html>
+
+@vite('resources/js/lines.js')
+@stop

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('adminlte::page')
+@section('content_header')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar Lineas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css\admin\add\ManageLines.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js\menu.js') }}"></script>
-</head>
-@extends('adminlte::page')
-
+@stop
 @section('content')
 
 <div id="div-container" class="container">
@@ -122,4 +118,3 @@
 </div>
 
 @stop
-</html>

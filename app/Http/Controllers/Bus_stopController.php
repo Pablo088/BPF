@@ -17,7 +17,7 @@ use App\Models\Localizacion;
 class Bus_stopController extends Controller
 {
     public function index(Request $request){
-        $user = $request->user()->id??1;
+        $user = $request->user()->id??null;
         
         $consulta = UserStop::select("bus_stops.id as stopId","direction","latitude","longitude")
         ->join("bus_stops","users_stops.stop_id","=","bus_stops.id")

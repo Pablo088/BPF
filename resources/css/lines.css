@@ -1,22 +1,17 @@
 #contenedor1{
-            
+    position: relative;
+    display: flex; 
+}
+.table{
     position: absolute;
     overflow-y: hidden;
-    top: 50%;
-    right: 77%;
-    transform: translate(50% , -50%);
-    width: 40%;
-    height: auto;
+    top: 10%;
     border-radius: 3%;
     border: solid 3px;
     border-color: 3px solid black;
-    margin: auto;
-    display: flex; 
     align-items: center; 
     justify-content: left; 
     background-color: #e2e3e5;
-    
-    
 }
 #texto{
     cursor: pointer;
@@ -25,13 +20,10 @@
 }
 .modal {
 display: none; /* Oculto por defecto */
-position: fixed;
+position: absolute;
 z-index: 1000; /* En la parte superior */
-left: 70%;
-top: 50%;
-transform: translate(-50%, -50%);
-width: 50%; /* Ancho completo */
-height: auto; /* Alto completo */
+top: 80%;
+width: 10%; /* Ancho completo */
 max-height: 80%;
 overflow: auto; /* Agregar scroll si es necesario */
 background-color: rgb(0,0,0); /* Color de fondo con opacidad */
@@ -41,7 +33,7 @@ background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
 .modal-content {
 background-color: #fefefe;
 margin: 15% auto; /* Márgenes automáticos para centrar */
-padding: 20px;
+padding: 10px;
 border: 1px solid #888;
 width: 96%; /* Ancho del modal */
 height: 60%;

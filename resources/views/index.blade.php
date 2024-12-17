@@ -1,71 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
+@extends('adminlte::page')
+@section('content_header')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
-    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
-    {{--
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> --}}
+
     <link rel="stylesheet" href="{{ asset('css\leaflet.css') }}">
-    {{--
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" /> --}}
     <link rel="stylesheet" href="{{ asset('css\MarkerCluster.css') }}">
-    {{--
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" /> --}}
     <link rel="stylesheet" href="{{ asset('css\MarkerCluster.Default.css') }}">
-    <link rel="stylesheet" href="{{ asset('css\index.css') }}">
-    {{--
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> --}}
+    @vite('resources/css/index.css')
+
     <script src="{{ asset('js\leaflet.js') }}"></script>
-    {{--
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script> --}}
     <script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css"
-        rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
-    
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>   
+@stop
+@section('content')
+ <script>
+    function guardarParada(checkbox) {
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{{route("user-stop.store")}}';
+        
 
-<body>
-    {{-- <button onclick="showMyLocation()">Mostrar mi ubicación</button> --}}
+        let csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '_token';
+        csrfToken.id = 'token';
+        csrfToken.value = '{{ csrf_token() }}'
 
-    <div class="open-menu" onclick="openMenu()">&#9776;</div>
-    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
-
+        form.appendChild(csrfToken);
+        form.appendChild(checkbox);
+        document.body.appendChild(form);
+        form.submit();
+    }
+ </script>
     <!-- para buscar las paradas  -->
     <div id="searchContainer">
         <input type="text" id="searchInput" placeholder="Buscar parada...">
         <ul id="suggestions" class="suggestions-list"></ul>
     </div>
-    <div id="menu" class="menu">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-        @if ($userSession !== true)
-            <a href="{{ route('login') }}">Iniciar sesión</a>
-            <a href="{{route('register')}}">Registrarse</a>
-        @endif
-        @if ($userDriver == true)
-            <a href="{{route('locate')}}">Comenzar Ruta</a>
-        @endif
-        @if($userRol == true)
-            <a href="{{route('bus-stop.admin')}}">Agregar Parada</a>
-            <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
-            <a href="{{route('bus-stops.routes')}}">Administrar Rutas</a>
-        @endif
-        <a>
-            Mostrar Paradas de Colectivo
-            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked>
-        </a>
-        <a>
-            Mostrar Rutas de Colectivo
-            <input type="checkbox" id="mostrarRutas" value="" name="Rutas" class="check" onchange="sr()" checked>
-        </a>
-        <a href="{{route('LinesView')}}">Lineas</a>
-        <a href="{{route('dashboard')}}">Dashboard</a>
-    </div>
-    <script src="{{ asset('js\menu.js') }}"></script>
 
     <input type="hidden" id="busStops" value="{{$busStops}}">
     <input type="hidden" id="busRoutes" value="{{$rutas}}">
@@ -74,6 +47,17 @@
 
     <div id="map"></div>
 
-</body>
-    <script src="{{ asset('js\index.js') }}"></script>
-</html>
+    
+    <div id="mensaje-exito" class="container">
+        @if (session('success'))
+            <input type="hidden" name="exito" id="exito" value="{{session('success')}}">
+            @endif
+    </div>
+    <div id="mensaje-error" class="container">
+        @if (session('error'))
+        <input type="hidden" name="error" id="error" value="{{session('error')}}">
+        @endif
+    </div>
+    @vite('resources/js/index.js')
+
+    @stop

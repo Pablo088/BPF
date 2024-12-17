@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('adminlte::page')
+@section('content_header')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
+@stop
+@section('content')
+
     <form action="{{ route('Cenviar') }}" method="POST">
         @csrf
     <h2>Editar Companias</h2>
@@ -21,13 +21,13 @@
     </div>
     </form>
     @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-</body>
-</html>
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
+
+@stop

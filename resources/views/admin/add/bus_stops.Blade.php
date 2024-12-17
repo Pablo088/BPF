@@ -1,40 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+@extends('adminlte::page')
+@section('content_header')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradas de Colectivo</title>
-    <link rel="stylesheet" href="{{ asset('css\menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('css\admin\add\bus_stops.css') }}">
+    @vite('resources/css/admin/bus_stop')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
-</head>
-<body>
-    <div class="open-menu" onclick="openMenu()">&#9776;</div>
-    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
-    
-    <div id="menu" class="menu">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-        <a href="{{ route('bus-stops.index')}}">Inicio</a>
-        @if ($userSession !== true)
-            <a href="{{ route('login') }}">Iniciar sesión</a>
-            <a href="{{route('register')}}">Registrarse</a>
-        @endif
-      
-        <a href="{{route('LinesView')}}">Lineas</a>
-        <a href="{{route('LinesAdmin')}}">Administrar Lineas</a>
-        <a href="{{route('bus-stops.routes')}}">Administrar Rutas</a>
-        <a>
-            Mostrar Paradas de Colectivo
-            <input type="checkbox" id="mostrarParadas" value="" name="Paradas" class="check" onchange="sm()" checked> 
-        </a>
-        <a>
-            Mostrar Rutas de Colectivo
-            <input type="checkbox" id="mostrarRutas" value="" name="Rutas" class="check" onchange="sr()" checked> 
-        </a>
-    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+@stop
+@section('content')
 
     <input type="hidden" id="busStops" value="{{$busStops}}">
     
@@ -62,9 +38,6 @@
         </div>
     @endif
 
-    <script src="{{ asset('js\menu.js') }}"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-</body>
-    <script src="{{ asset('js\admin\add\bus_stops.js') }}"></script>
-</html>
+    
+@vite('resources/js/admin/add/bus_stops')
+@stop

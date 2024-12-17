@@ -1,4 +1,5 @@
-const busStops = JSON.parse(document.getElementById('busStops').value);
+import mostrarMensaje from "./modules/MostrarMensajes";
+        const busStops = JSON.parse(document.getElementById('busStops').value);
         let userStops = (document.getElementById('paradaUser').value !== '') ? JSON.parse(document.getElementById('paradaUser').value) : '';
         let paradasGuardadas = JSON.parse(document.getElementById('paradasGuardadas').value) ?? '';
         var rutas = JSON.parse(document.getElementById('busRoutes').value);
@@ -8,7 +9,7 @@ const busStops = JSON.parse(document.getElementById('busStops').value);
         let checkboxR = document.getElementById('mostrarRutas');
         let locationActive = false;
         let userMarker = null;
-
+        
         L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
             maxZoom: 20,
         }).addTo(map);
@@ -22,57 +23,39 @@ const busStops = JSON.parse(document.getElementById('busStops').value);
         var markers = L.markerClusterGroup({
             disableClusteringAtZoom: 16
         });
+        
 
         function addMarkers() {
             paradasGuardadas.forEach(function (paradas) {
-                let id = paradas.stopId;
                 const marker = L.marker([paradas.latitude, paradas.longitude], { icon: busStopIcon })
                     .bindPopup(`
                         <b>${paradas.direction ? paradas.direction : 'Parada sin nombre'}</b><br>
                         Latitud: ${paradas.latitude}<br>
                         Longitud: ${paradas.longitude}<br>
-                        <div class="container text-center mt-5">
-                            <label class="star-checkbox">Guardada <input type="checkbox" class="d-none" value="${paradas.stopId}" id="borrarParada" name="paradaId" onchange="eliminarParada()" checked><span class="star"></span></label>
-                        </div> 
+                        <label class="star-checkbox" for='paradaId'>Guardada <input type="checkbox" class="d-none" value="${paradas.stopId}" id="borrarParada" name="paradaId" checked><span class="star"></span></label>
                     `);
                 markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
             });
             busStops.forEach(function (busStop) {
-
                 const marker = L.marker([busStop.latitude, busStop.longitude], { icon: busStopIcon })
                     .bindPopup(`
                         <b>${busStop.direction ? busStop.direction : 'Parada sin nombre'}</b><br>
                         Latitud: ${busStop.latitude}<br>
                         Longitud: ${busStop.longitude}<br>
-                        <div class="container text-center mt-5">
-                            <form method="post" action="{{route('bus-stop.store')}}" id="formCheck">
-                                @csrf
-                                <label class="star-checkbox">Guardar <input type="checkbox" class="d-none" value="${busStop.id}" id="paradaSeleccionada" name="paradaId" onchange="guardarParada()"><span class="star"></span></label>
-                            </form>
-                        </div> 
-                    `);
+                        <label class="star-checkbox" for='paradaSeleccionada'>Guardar <input type="checkbox" class="d-none" value="${busStop.id}" id="paradaSeleccionada" name="paradaSeleccionada" onchange='guardarParada(this)'><span class="star"></span></label>
+                    `)
                 markers.addLayer(marker); // Añadir cada marcador al grupo de clusters
             });
             map.addLayer(markers); // Añadir el grupo de clusters al mapa
         }
-        function guardarParada() {
-            let check = document.getElementById('paradaSeleccionada');
-            let formCheck = document.getElementById('formCheck');
-            if (check.checked == true) {
-                formCheck.submit();
-            }
-        }
-        function eliminarParada() {
-            let check = document.getElementById('borrarParada');
-            let formCheck = document.getElementById('checkDelete');
-            formCheck.submit();
-        }
-
+        addMarkers();
+     
+        
         function removeMarkers() {
             markers.clearLayers(); // Remover todas las capas del grupo de clusters
         }
 
-        addMarkers();
+        
 
         function sm() {
             if (checkboxP.checked) {
@@ -310,7 +293,10 @@ function actualizarPosicionesBuses() {
             });
         });
 }
-
+document.addEventListener('beforeinput',()=>{
+    
+})
+mostrarMensaje();
 // Iniciar la actualización
 setInterval(actualizarPosicionesBuses, 5000);
 actualizarPosicionesBuses();

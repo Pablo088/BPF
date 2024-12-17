@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 
-@section('content_header')
-@stop
-<?php $lines = Session::get('lines') ?>
 @section('content')
+
     <h3>Cambiar rol del usuario</h3>
     <form action="{{route('users.manage.post',$id)}}" method="post">
         @csrf
@@ -19,4 +17,5 @@
         @foreach ($userLine as $relacion)
             <div>El usuario {{$relacion->name}} esta asociado a la linea {{$relacion->line_name}}</div>
         @endforeach
+        
 @stop
