@@ -20,7 +20,7 @@
 }
 .modal {
 display: none; /* Oculto por defecto */
-position: absolute;
+position: fixed;
 z-index: 1000; /* En la parte superior */
 top: 80%;
 width: 10%; /* Ancho completo */
