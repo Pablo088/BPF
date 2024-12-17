@@ -1,8 +1,4 @@
 @extends('adminlte::page')
-
-@section('content_header')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@stop
 @section('content')
 
 <div>
@@ -37,5 +33,6 @@
     
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @vite('resources/js/dashboard.js')
 @stop

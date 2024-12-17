@@ -7,12 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css\leaflet.css') }}">
     <link rel="stylesheet" href="{{ asset('css\MarkerCluster.css') }}">
     <link rel="stylesheet" href="{{ asset('css\MarkerCluster.Default.css') }}">
-    @vite('resources/css/index.css')
-
-    <script src="{{ asset('js\leaflet.js') }}"></script>
-    <script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>   
+    @vite('resources/css/index.css') 
 @stop
 @section('content')
  <script>
@@ -58,6 +53,10 @@
         <input type="hidden" name="error" id="error" value="{{session('error')}}">
         @endif
     </div>
-    @vite('resources/js/index.js')
 
-    @stop
+<script src="{{ asset('js\leaflet.js') }}"></script>
+<script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+@vite('resources/js/index.js')
+@stop

@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="{{ asset('css\admin\add\bus_routes.css') }}">
     @vite('resources/css/admin/add/bus_routes.css')
-    
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script src="{{ asset('js\jQuery.js') }}"></script>
 @stop
 @section('content')
 
@@ -75,5 +71,8 @@
         @endif
     </div>
 
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+<script src="{{ asset('js\jQuery.js') }}"></script>    
 @vite('resources/js/admin/add/bus_routes.js')
 @stop
