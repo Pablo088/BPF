@@ -1966,7 +1966,7 @@ INSERT INTO `line_has_stops` (`id`, `busLine_id`, `busStop_id`, `created_at`, `u
 
 -- Volcando datos para la tabla bpf.localizacions: ~0 rows (aproximadamente)
 
--- Volcando datos para la tabla bpf.migrations: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla bpf.migrations: ~1bpf3 rows (aproximadamente)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),

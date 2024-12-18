@@ -5,12 +5,12 @@
 }
 
 #map {
-    height: 640px;
+    height: 570px;
 }
 
 #searchContainer {
     position: absolute;
-    top: 10px;
+    top: 12%;
     right: 10px;
     z-index: 1000;
     /* Asegura que esté encima del mapa */
