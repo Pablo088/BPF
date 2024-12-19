@@ -1,12 +1,12 @@
 import mostrarMensaje from "./modules/MostrarMensajes";
+import generarCheckbox from "./modules/CheckboxMostrar";
+
         const busStops = JSON.parse(document.getElementById('busStops').value);
         let userStops = (document.getElementById('paradaUser').value !== '') ? JSON.parse(document.getElementById('paradaUser').value) : '';
         let paradasGuardadas = JSON.parse(document.getElementById('paradasGuardadas').value) ?? '';
         var rutas = JSON.parse(document.getElementById('busRoutes').value);
         const map = (userStops == "") ? L.map('map').setView([-33.009668, -58.521428], 14) : L.map('map').setView([userStops.latitude, userStops.longitude], 23);
         const routes = L.layerGroup()
-        let checkboxP = document.getElementById('mostrarParadas');
-        let checkboxR = document.getElementById('mostrarRutas');
         let locationActive = false;
         let userMarker = null;
         
@@ -24,7 +24,8 @@ import mostrarMensaje from "./modules/MostrarMensajes";
             disableClusteringAtZoom: 16
         });
         
-
+        generarCheckbox();
+        
         function addMarkers() {
             paradasGuardadas.forEach(function (paradas) {
                 const marker = L.marker([paradas.latitude, paradas.longitude], { icon: busStopIcon })
@@ -54,18 +55,6 @@ import mostrarMensaje from "./modules/MostrarMensajes";
         function removeMarkers() {
             markers.clearLayers(); // Remover todas las capas del grupo de clusters
         }
-
-        
-
-        function sm() {
-            if (checkboxP.checked) {
-                addMarkers();
-            } else {
-                removeMarkers();
-            }
-        }
-
-
 
         const userLocationIcon = L.icon({
             iconUrl: 'Icono_ubicacion.png',
@@ -145,7 +134,6 @@ import mostrarMensaje from "./modules/MostrarMensajes";
                 alert('La geolocalización no es soportada por este navegador.');
             }
         }
-
 
         function removeCurrentLocation() {
             if (userMarker) {
@@ -245,23 +233,8 @@ import mostrarMensaje from "./modules/MostrarMensajes";
         }
 
         addRoutes();
+
         var rutasCreadas = true;
-
-
-        function sr() {
-            map.eachLayer(function (layer) {
-                if (layer instanceof L.Polyline && !checkboxR.checked && rutasCreadas === true) {
-                    routes.clearLayers();
-                    console.log(routes);
-                    rutasCreadas = false;
-                } else if (checkboxR.checked && rutasCreadas === false) {
-                    addRoutes();
-                    console.log(routes);
-                    rutasCreadas = true;
-                }
-            });
-        }  
-
         let busMarkers = {};
 
 function actualizarPosicionesBuses() {
@@ -293,9 +266,33 @@ function actualizarPosicionesBuses() {
             });
         });
 }
-document.addEventListener('beforeinput',()=>{
-    
-})
+document.addEventListener('DOMContentLoaded',()=>{
+    let checkboxP = document.getElementById('mostrarParadas');
+    let checkboxR = document.getElementById('mostrarRutas');
+
+    checkboxP.addEventListener('click',function(e){
+        if (e.currentTarget.checked == true) {
+            addMarkers();
+        } else {
+            removeMarkers();
+        }
+    });
+
+    checkboxR.addEventListener('click',function(checkbox){
+        map.eachLayer(function (layer) {
+            if (layer instanceof L.Polyline && !checkbox.currentTarget.checked && rutasCreadas === true) {
+                routes.clearLayers();
+                console.log(routes);
+                rutasCreadas = false;
+            } else if (checkbox.currentTarget.checked && rutasCreadas === false) {
+                addRoutes();
+                console.log(routes);
+                rutasCreadas = true;
+            }
+        });
+    });
+
+});
 mostrarMensaje();
 // Iniciar la actualización
 setInterval(actualizarPosicionesBuses, 5000);

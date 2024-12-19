@@ -1,4 +1,5 @@
-    const busStops = JSON.parse(document.getElementById('busStops').value);
+import generarCheckbox from "../../modules/CheckboxMostrar";
+ const busStops = JSON.parse(document.getElementById('busStops').value);
     var rutas = JSON.parse(document.getElementById('busRoutes').value);
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
     let checkbox = document.getElementById('mostrarParadas');
@@ -17,10 +18,10 @@
     });
 
     var markers = L.markerClusterGroup({
-    disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
-});
+        disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
+    });
 
-
+    generarCheckbox();
 
     /* function updateContent() {
         $.ajax({
@@ -62,19 +63,6 @@
     //removeDefaultMarkers();
     addMarkers();
      
-    function sm() {
-    if (checkbox.checked) {
-        addMarkers();
-    } else {
-       removeMarkers();
-    }}
-
-function sr() {
-    if (checkbox.checked) {
-        addMarkers();
-    } else {
-       removeMarkers();
-    }}
 
     map.on('contextmenu', function(ev) {
     
@@ -148,7 +136,7 @@ function sr() {
             document.getElementById("puntos").innerHTML= cantidadrutas;
         });
 
-        function back() {
+        document.getElementById('backButton').addEventListener('click',()=>{
             if (routelat.length > 0 && routelong.length > 0) {
                 routelat.pop();
                 routelong.pop();
@@ -174,28 +162,28 @@ function sr() {
             } else {
                 console.log("No hay puntos para eliminar");
             }
-        }
+        });//boton back
 
-        function clearRoutes() {
-   // Limpiar los arrays y resetear el contador
-   routelat = [];
-   routelong = [];
-   routes = [];
-   cantidadrutas = 0;
+        document.getElementById('clearButton').addEventListener('click',()=>{
+            // Limpiar los arrays y resetear el contador
+            routelat = [];
+            routelong = [];
+            routes = [];
+            cantidadrutas = 0;
 
-   // Eliminar todas las polylines del mapa
-   map.eachLayer(function (layer) {
-       if (layer instanceof L.Polyline && layer.options.color === "black") {
-           map.removeLayer(layer);
-       }
-   });
-
-   // Actualizar el contador de puntos en la interfaz
-   document.getElementById("puntos").innerHTML = cantidadrutas;
-
-   console.log("Todas las rutas han sido eliminadas");
-}
+            // Eliminar todas las polylines del mapa
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.Polyline && layer.options.color === "black") {
+                    map.removeLayer(layer);
+                }
+            });//boton clear
         
+            // Actualizar el contador de puntos en la interfaz
+            document.getElementById("puntos").innerHTML = cantidadrutas;
+        
+            console.log("Todas las rutas han sido eliminadas");
+        });
+
         document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault(); // Prevenir el envío por defecto del formulario
                 
@@ -286,3 +274,30 @@ function sr() {
         document.getElementById('busStop_id').value = JSON.stringify(idsParadas);
         console.log('Parada: ',idsParadas);
     }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        let checkboxP = document.getElementById('mostrarParadas');
+        let checkboxR = document.getElementById('mostrarRutas');
+    
+        checkboxP.addEventListener('click',function(e){
+            if (e.currentTarget.checked == true) {
+                addMarkers();
+            } else {
+                removeMarkers();
+            }
+        });
+    
+        checkboxR.addEventListener('click',function(checkbox){
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.Polyline && !checkbox.currentTarget.checked && rutasCreadas === true) {
+                    routes.clearLayers();
+                    console.log(routes);
+                    rutasCreadas = false;
+                } else if (checkbox.currentTarget.checked && rutasCreadas === false) {
+                    addRoutes();
+                    console.log(routes);
+                    rutasCreadas = true;
+                }
+            });
+        });
+    });

@@ -1,4 +1,4 @@
-const busStops = JSON.parse(document.getElementById('busStops').value);
+    const busStops = JSON.parse(document.getElementById('busStops').value);
     const map = L.map('map').setView([-33.009668, -58.521428], 14);
     let checkbox = document.getElementById('mostrarParadas');
     
@@ -16,9 +16,8 @@ const busStops = JSON.parse(document.getElementById('busStops').value);
     });
 
     var markers = L.markerClusterGroup({
-    disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
-});
-
+        disableClusteringAtZoom: 16 // Deshabilita el agrupamiento a partir del nivel de zoom 17
+    });
 
     function addMarkers() {
         busStops.forEach(busStop => {

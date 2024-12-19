@@ -10,25 +10,25 @@
     @vite('resources/css/index.css') 
 @stop
 @section('content')
- <script>
-    function guardarParada(checkbox) {
-        let form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '{{route("user-stop.store")}}';
-        
+    <script>
+       function guardarParada(checkbox) {
+           let form = document.createElement('form');
+           form.method = 'POST';
+           form.action = '{{route("user-stop.store")}}';
 
-        let csrfToken = document.createElement('input');
-        csrfToken.type = 'hidden';
-        csrfToken.name = '_token';
-        csrfToken.id = 'token';
-        csrfToken.value = '{{ csrf_token() }}'
 
-        form.appendChild(csrfToken);
-        form.appendChild(checkbox);
-        document.body.appendChild(form);
-        form.submit();
-    }
- </script>
+           let csrfToken = document.createElement('input');
+           csrfToken.type = 'hidden';
+           csrfToken.name = '_token';
+           csrfToken.id = 'token';
+           csrfToken.value = '{{ csrf_token() }}'
+
+           form.appendChild(csrfToken);
+           form.appendChild(checkbox);
+           document.body.appendChild(form);
+           form.submit();
+       }
+    </script>
     <!-- para buscar las paradas  -->
     <div id="searchContainer">
         <input type="text" id="searchInput" placeholder="Buscar parada...">

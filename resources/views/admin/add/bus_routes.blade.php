@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="{{ asset('css\admin\add\bus_routes.css') }}">
     @vite('resources/css/admin/add/bus_routes.css')
 @stop
 @section('content')
@@ -21,46 +20,58 @@
 
     <div id="map"></div>
 
-    <button onclick="back()">↩</button>
-    <button onclick="clearRoutes()">CLEAR</button>
-    <div class="form-container">
-        <form method="POST" action="{{route('bus-stops.storeroutes')}}">
+    <div id="buttons" class="container">
+        <button id="backButton">↩</button>
+        <button id="clearButton">CLEAR</button>
+    </div>
+    <div class="form-container" id="form-container1">
+        <form method="POST" action="{{route('bus-stops.storeroutes')}}" class="the-form" id="the-form1">
             @csrf
-            <label for="road_group">Conjunto ruta:</label>
-            <select id="road_group" name="road_group" required>
-                <option value="" disabled selected>Seleccione una ruta</option>
-                @foreach ($lineas as $linea)
-                <option value="{{ $linea->id }}">{{ $linea->line_name }}</option>
-                @endforeach
-            </select>
-
-            <label for="latitude"></label>
-            <input type="hidden" id="latitude" name="latitude[]" required>
-
-            <label for="longitude"></label>
-            <input type="hidden" id="longitude"  name="longitude[]" required>
-
-            <input type="color" id="color" name="color" required>
-
-            <label for="puntos">Puntos seleccionados:</label>
-            <a id="puntos"></a>
+            <div class="form-group">
+                <label for="road_group">Conjunto ruta:</label>
+                <select id="road_group" name="road_group" required>
+                    <option value="" disabled selected>Seleccione una ruta</option>
+                    @foreach ($lineas as $linea)
+                    <option value="{{ $linea->id }}">{{ $linea->line_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="latitude"></label>
+                <input type="hidden" id="latitude" name="latitude[]" required>
+            </div>
+            <div class="form-group">
+                <label for="longitude"></label>
+                <input type="hidden" id="longitude"  name="longitude[]" required>
+            </div>
+            <div class="form-group">
+                <input type="color" id="color" name="color" required>
+            </div>
+            <div class="form-group">
+                <label for="puntos">Puntos seleccionados:</label>
+                <a id="puntos"></a>
+            </div>
+            
             <button type="submit">Añadir Ruta</button>
             
         </form>
     </div>
-    <div class="form-container">
-        <form method="POST" action="{{route('relacion')}}">
+    <div class="form-container" id="form-container2">
+        <form method="POST" action="{{route('relacion')}}" id="the-form2" class="the-form">
             @csrf
+            <div class="form-group">
                 <label for="busStop_id">Parada:</label>
                 <input type="text" id="busStop_id" name="busStop_id" required>
-                <label for="busLine_id">Ruta:</label>
-                {{-- <input type="number" id="busLine_id" name="busLine_id" required> --}}
+            </div>
+            <div class="form-group">
+            <label for="busLine_id">Ruta:</label>
                 <select id="busLine_id" name="busLine_id" required>
                     <option value="" disabled selected>Seleccione una ruta</option>
                     @foreach ($lineas as $linea)
                     <option value="{{ $linea->id }}">{{ $linea->line_name }}</option>
                     @endforeach
                 </select>
+            </div>  
                 <button type="submit">Añadir Relacion</button>
         </form>    
     </div>

@@ -1,8 +1,15 @@
 .leaflet-top.leaflet-left {
     left: 95vw; /* Ajusta este valor según el ancho de tu menú */
 }
+html,body{
+    height: 100%;
+}
 
-#map { height: 600px; }
+#map {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
 
 #eliminar {
 color: white;
@@ -21,11 +28,12 @@ text-align: right;
 }
 
 .form-container{
-    position: relative;
+    position: fixed;
 }
 .form-container .the-form{
-    position: absolute;
-    top: 10%;
+    top: 100%;
+    left: 10%;
+    display: flex;
 }
 .form-container .the-form .inputForm{
     padding: 10px;
@@ -38,9 +46,19 @@ label{
 }
 button{
     border-radius: 10px;
-    height: 35px;
+    height: 55px;
+    width: 100px;
     background-color: rgb(162, 235, 238);
 }
 button:hover{
     background-color: rgb(222, 236, 235);
+}
+
+.check-show{
+    margin-left: 10px;
+}
+.label-check{
+    color: #ccc;
+    padding-left: 10px;
+    margin: 10px;
 }

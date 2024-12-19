@@ -3,15 +3,19 @@
     /* Ajusta este valor según el ancho de tu menú */
     top: 500px;
 }
-
+html,body{
+    height: 100%;
+}
 #map {
-    height: 570px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
 #searchContainer {
     position: absolute;
-    top: 12%;
-    right: 10px;
+    top: 10%;
+    right: 0.5%;
     z-index: 1000;
     /* Asegura que esté encima del mapa */
     background: white;
@@ -85,4 +89,12 @@
 .star-checkbox input:checked+.star {
     background-color: #ffd700;
     /* Color de la estrella cuando está seleccionada */
+}
+.check-show{
+    margin-left: 10px;
+}
+.label-check{
+    color: #ccc;
+    padding-left: 10px;
+    margin: 10px;
 }

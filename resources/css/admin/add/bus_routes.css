@@ -21,13 +21,19 @@ text-align: right;
     left: 96.1vw; /* Ajusta este valor según el ancho de tu menú */
     top: 500px;
 }
-
-#map { height: 615px; }
+html,body{
+    height: 100%;
+}
+#map { 
+    height: 100%;
+    width: 100%;
+    position: fixed; 
+}
 
 #searchContainer {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 10%;
+    right: 0.5%;
     z-index: 1000; /* Asegura que esté encima del mapa */
     background: white;
     padding: 5px;
@@ -65,7 +71,35 @@ text-align: right;
     background: #f0f0f0;
 }
 
-.form-container {
-    display: inline-block;
-    margin-right: 20px; /* Espaciado entre formularios */
+.form-container{
+    position: fixed;
+}
+#form-container1{
+    top: 94%;
+    left: 23%;
+}
+#form-container1 #the-form1{
+    display: flex;
+}
+#form-container2{
+    top: 94%;
+    left: 54%;
+}
+#form-container2 #the-form2{
+    display: flex;
+    margin-left: 10px;
+}
+#buttons{
+    position: fixed;
+    left: 15%;
+    top: 94%;
+}
+
+.check-show{
+    margin-left: 10px;
+}
+.label-check{
+    color: #ccc;
+    padding-left: 10px;
+    margin: 10px;
 }
