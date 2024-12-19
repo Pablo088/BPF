@@ -23,7 +23,7 @@ import generarCheckbox from "./modules/CheckboxMostrar";
         var markers = L.markerClusterGroup({
             disableClusteringAtZoom: 16
         });
-        
+
         generarCheckbox();
         
         function addMarkers() {
