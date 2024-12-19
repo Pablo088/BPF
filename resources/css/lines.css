@@ -15,9 +15,8 @@
 }
 #texto{
     cursor: pointer;
-    
-
 }
+
 .modal {
 display: none; /* Oculto por defecto */
 position: fixed;
