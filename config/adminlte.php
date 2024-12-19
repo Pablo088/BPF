@@ -336,9 +336,18 @@ return [
         ],
         [
             'text' => 'Administrar lineas',
-            'route' => 'LinesAdmin',
             'icon' => 'fas fa-fw fa-puzzle-piece',
             'can'  => 'dashboard.users',
+            'submenu' => [
+                [
+                    'text' => 'Acciones generales',
+                    'route' => 'LinesAdmin',
+                ],
+                [
+                    'text' => 'Editar Lineas',
+                    'route' => 'companyedit'
+                ]
+            ]
         ],
         [
             'text' => 'Roles y permisos de usuarios',

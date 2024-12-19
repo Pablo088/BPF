@@ -110,10 +110,6 @@
       </div>
     @endif
   </div>
-
-  <div id="button-editar" class="button-editar">
-    <a href="{{ route('companyedit') }}" class="btn btn-success" id="boton">Editar Lineas</a>
-  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
