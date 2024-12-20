@@ -56,13 +56,13 @@ class UserController extends Controller
     }
     public function listadoUsuarios(Request $request){
         $users = User::where('id','<>',$request->user()->id)->get();
+        return view("admin\user_rol", compact("users"));
+    }
+    public function getUserInfo(Request $request, $id){
         $userLine = UserHasLine::join('bus_lines',"users_has_lines.line_id","=","bus_lines.id")
         ->join('users',"users_has_lines.user_id","=","users.id")
         ->where('user_id',$id)
         ->get()??null;
-        return view("admin\user_rol", compact("users"));
-    }
-    public function getUserInfo(Request $request, $id){
         return view("admin\manage_user",compact('id','userLine'));
     }
     public function cambiarRol(Request $request,$id){
