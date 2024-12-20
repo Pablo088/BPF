@@ -7,17 +7,17 @@
     <table>
         <thead>
             <tr>
-                <td>Usuario</td>
-                <td>Email</td>
-                <td>Acciones</td>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <th>{{$user->name}}</th>
-                    <th>{{$user->email}}</th>
-                    <th><a href="{{route('users.manage',$user->id)}}"><button>Cambiar Rol</button></a></th>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td><a href="{{route('users.manage',$user->id)}}"><button>Cambiar Rol</button></a></td>
                 </tr>
             @endforeach
         </tbody>
