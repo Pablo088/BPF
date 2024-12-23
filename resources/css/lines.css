@@ -21,12 +21,11 @@
 display: none; /* Oculto por defecto */
 position: fixed;
  /* En la parte superior */
-top: 13%;
+top: 9%;
 left: 12%;
-width: 85%; /* Ancho completo */
+width: 88%; /* Ancho completo */
 max-height: 100%;
 overflow: auto; /* Agregar scroll si es necesario */
-background-color: rgb(0,0,0); /* Color de fondo con opacidad */
 background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
 }
 

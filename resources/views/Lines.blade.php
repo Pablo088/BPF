@@ -34,12 +34,12 @@
         </tbody>
     </table>
     <div id="infoModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Información Detallada</h2>
-        <p id="modalInfo">Detalles aquí...</p>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Información Detallada</h2>
+            <p id="modalInfo">Detalles aquí...</p>
+        </div>
     </div>
-</div>
 </div>
 
 <input type="hidden" id="lineId" value="{{ $id_line }}">

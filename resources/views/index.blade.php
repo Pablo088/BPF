@@ -11,11 +11,11 @@
 @stop
 @section('content')
     <script>
+        var linesViewRoute = "{{ route('LinesView') }}";
        function guardarParada(checkbox) {
            let form = document.createElement('form');
            form.method = 'POST';
            form.action = '{{route("user-stop.store")}}';
-
 
            let csrfToken = document.createElement('input');
            csrfToken.type = 'hidden';
