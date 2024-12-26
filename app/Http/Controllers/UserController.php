@@ -73,6 +73,7 @@ class UserController extends Controller
             $user->syncPermissions('dashboard.users');
         }
         if($request->cambiarRol == 'Colectivero'){
+            $user->syncPermissions('locate');
             $lines = Bus_line::all();
         }
         return redirect()->back()->with( ['lines' => $lines] );

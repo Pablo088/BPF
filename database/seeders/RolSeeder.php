@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Models\User;
 
 class RolSeeder extends Seeder
 {
@@ -27,9 +26,7 @@ class RolSeeder extends Seeder
         Permission::create(['name' => 'bus-stops.route'])->assignRole($role1);
         Permission::create(['name' => 'bus-stops.routes.eliminar'])->assignRole($role1);
         Permission::create(['name' => 'dashboard.users'])->assignRole($role1);
-
-        $admin = User::find(1);
-        $admin->assignRole($role1)->givePermissionTo('dashboard.users');
+        Permission::create(['name' => 'locate'])->assignRole($role3);
     }
     
 }

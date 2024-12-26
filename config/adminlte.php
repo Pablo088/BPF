@@ -323,6 +323,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Iniciar Recorrido',
+            'route' => 'locate',
+            'icon' => 'fas fa-fw fa-map-marker-alt',
+            'can' => 'locate',
+        ],
+        [
             'text' => 'Agregar parada',
             'route' => 'bus-stop.admin',
             'icon' => 'fas fa-fw fa-map-marker-alt',
