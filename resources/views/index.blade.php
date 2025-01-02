@@ -12,22 +12,22 @@
 @section('content')
     <script>
         var linesViewRoute = "{{ route('LinesView') }}";
-       function guardarParada(checkbox) {
+        var userStopRoute = '{{route("user-stop.store")}}';
+        var userStopcsrf = document.createElement('input');
+           userStopcsrf.type = 'hidden';
+           userStopcsrf.name = '_token';
+           userStopcsrf.id = 'token';
+           userStopcsrf.value = '{{ csrf_token() }}';
+        function guardarParada(checkbox) {
            let form = document.createElement('form');
            form.method = 'POST';
-           form.action = '{{route("user-stop.store")}}';
+           form.action = userStopRoute;
 
-           let csrfToken = document.createElement('input');
-           csrfToken.type = 'hidden';
-           csrfToken.name = '_token';
-           csrfToken.id = 'token';
-           csrfToken.value = '{{ csrf_token() }}'
-
-           form.appendChild(csrfToken);
+           form.appendChild(userStopcsrf);
            form.appendChild(checkbox);
            document.body.appendChild(form);
            form.submit();
-       }
+        }
     </script>
     <!-- para buscar las paradas  -->
     <div id="searchContainer">
@@ -41,22 +41,21 @@
     <input type="hidden" id="paradasGuardadas" class="paradasGuardadas" value="{{$consulta}}">
 
     <div id="map"></div>
-
     
     <div id="mensaje-exito" class="container">
         @if (session('success'))
             <input type="hidden" name="exito" id="exito" value="{{session('success')}}">
-            @endif
+        @endif
     </div>
     <div id="mensaje-error" class="container">
         @if (session('error'))
-        <input type="hidden" name="error" id="error" value="{{session('error')}}">
+            <input type="hidden" name="error" id="error" value="{{session('error')}}">
         @endif
     </div>
 
-<script src="{{ asset('js\leaflet.js') }}"></script>
-<script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    <script src="{{ asset('js\leaflet.js') }}"></script>
+    <script src="{{ asset('js\leaflet.markercluster.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 @vite('resources/js/index.js')
 @stop

@@ -6,7 +6,7 @@
     position: absolute;
     overflow-y: hidden;
     top: 10%;
-    border-radius: 3%;
+    border-radius: 15px;
     border: solid 3px;
     border-color: 3px solid black;
     align-items: center; 
