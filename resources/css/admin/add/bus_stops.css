@@ -1,6 +1,7 @@
 .leaflet-top.leaflet-left {
     left: 95vw; /* Ajusta este valor según el ancho de tu menú */
 }
+
 html,body{
     height: 100%;
 }
@@ -37,9 +38,9 @@ text-align: right;
 }
 .form-container .the-form .inputForm{
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     height: 20px;
-    width: 150px;
+    width: 250px;
 }
 label{
     font-family:'Times New Roman', Times, serif;

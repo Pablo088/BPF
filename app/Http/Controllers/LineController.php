@@ -16,16 +16,9 @@ use Spatie\Permission\Models\Permission;
 class LineController extends Controller
 {
     public function Lines(Request $request){
-        //$lines = Bus_line::all();
         $lines = Bus_line::with('BusCompany')->get();
-        $userSession = Auth::user() !== null;
-        //dd($busLines);
         $id_line = $request->id_empresa??"";
-        $userSession = Auth::user() !== null;
-        if($userSession !== false){
-            $userRol = $request->user()->hasRole("Admin");
-            return view('lines', compact('lines','userSession', 'userRol','id_line'));
-        }
+        return view('lines', compact('lines','id_line'));
         
     }
     public function LinesBusc($id){
@@ -64,7 +57,7 @@ class LineController extends Controller
             'company_id' => 'required',
             'horario_comienzo' => 'required',
             'horario_finalizacion' => 'required',
-        ],[
+            ],[
             'line_name.required' => 'El nombre es obligatorio.',
             'line_name.string' => 'La dirección debe ser una cadena de texto.',
             'line_name.max' => 'La dirección no debe tener más de 255 caracteres.',
@@ -74,14 +67,14 @@ class LineController extends Controller
             'horario_comienzo.required' => 'El horario es obligatorio.',
 
             'horario_finalizacion.required' => 'El horario es obligatorio.',]);
-        $lin = new Bus_line();
-        $lin-> line_name = $request->line_name;
-        $lin-> horario_comienzo = $request->horario_comienzo;
-        $lin-> horario_finalizacion = $request->horario_finalizacion;
-        $lin-> color = $request->color;
-        $lin-> company_id = $request->company_id;
-        $lin-> created_at = now();
-        $lin->save();
+            $lin = new Bus_line();
+            $lin-> line_name = $request->line_name;
+            $lin-> horario_comienzo = $request->horario_comienzo;
+            $lin-> horario_finalizacion = $request->horario_finalizacion;
+            $lin-> color = $request->color;
+            $lin-> company_id = $request->company_id;
+            $lin-> created_at = now();
+            $lin->save();
         return redirect()->back()->with('success', 'La línea de autobús ha sido creada correctamente.');
     }
     public function añadirrelacion(Request $request){
